@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:56:48 by sehyan            #+#    #+#             */
-/*   Updated: 2021/01/25 15:27:34 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/01/27 20:11:05 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,24 @@ char	*ft_set_xsur(unsigned int u, int xlen)
 
 void	ft_print_x(va_list ap)
 {
-	char				*xpre;
-	char				*xstr;
-	char				*xsur;
-	unsigned int		u;
-	int					xlen;
+	char			*xpre;
+	char			*xstr;
+	char			*xsur;
+	unsigned int	u;
+	char			*strx;
 
 	u = va_arg(ap, unsigned int);
-	xlen = ft_strlen(ft_hexa(u));
-	if (g_flag == '-' && g_prec >= xlen &&
-			((int)ft_strlen(ft_hexa(u)) >= g_width || g_prec >= g_width))
+	strx = ft_hexa(u);
+	if (g_flag == '-' && g_prec >= (int)ft_strlen(strx) &&
+			((int)ft_strlen(strx) >= g_width || g_prec >= g_width))
 		g_flag = '0';
-	xpre = ft_set_xpre(u, xlen);
+	xpre = ft_set_xpre(u, (int)ft_strlen(strx));
 	ft_write_str(xpre);
-	xstr = ft_set_xstr(u, xlen);
+	xstr = ft_set_xstr(u, (int)ft_strlen(strx));
 	ft_write_str(xstr);
-	xsur = ft_set_xsur(u, xlen);
+	xsur = ft_set_xsur(u, (int)ft_strlen(strx));
 	ft_write_str(xsur);
+	free(strx);
 	free(xpre);
 	free(xstr);
 	free(xsur);

@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 16:40:15 by sehyan            #+#    #+#             */
-/*   Updated: 2021/01/25 21:46:20 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/01/27 20:03:58 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_set_dpre(int d, int dlen)
 	char	*dpre;
 
 	dpre = 0;
+	if (d < 0 && g_prec >= g_width)
+		g_prec += 1;
 	if (!(dpre = ft_set_check_dpre(d, dpre, dlen)))
 		return (0);
 	if (d < 0 && (dpre[0] == '0' || dpre[0] == '\0') && d != -2147483648)
@@ -104,24 +106,23 @@ void	ft_print_d(va_list ap)
 	char	*dstr;
 	char	*dsur;
 	int		d;
-	int		dlen;
+	char	*strd;
 
 	d = va_arg(ap, int);
 	if (d >= 0)
-		dlen = ft_strlen(ft_itoa(d));
+		strd = ft_itoa(d);
 	else
-		dlen = ft_strlen(ft_itoa(-d));
-	if (d < 0 && g_prec >= g_width)
-		g_prec += 1;
-	if (g_flag == '-' && g_prec >= dlen &&
-			((int)ft_strlen(ft_itoa(d)) >= g_width || g_prec >= g_width))
+		strd = ft_itoa(-d);
+	if (g_flag == '-' && g_prec >= (int)ft_strlen(strd) &&
+			((int)ft_strlen(strd) >= g_width || g_prec >= g_width))
 		g_flag = '0';
-	dpre = ft_set_dpre(d, dlen);
+	dpre = ft_set_dpre(d, (int)ft_strlen(strd));
 	ft_write_str(dpre);
-	dstr = ft_set_dstr(d, dlen);
+	dstr = ft_set_dstr(d, (int)ft_strlen(strd));
 	ft_write_str(dstr);
-	dsur = ft_set_dsur(d, dlen);
+	dsur = ft_set_dsur(d, (int)ft_strlen(strd));
 	ft_write_str(dsur);
+	free(strd);
 	free(dpre);
 	free(dstr);
 	free(dsur);

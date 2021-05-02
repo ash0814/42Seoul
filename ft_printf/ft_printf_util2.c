@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 21:38:15 by sehyan            #+#    #+#             */
-/*   Updated: 2021/01/26 14:19:54 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/01/27 20:30:05 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,10 @@ char	*ft_hexa_ptr(unsigned long long u)
 	ft_rev(hex, (int)ft_strlen(hex));
 	if (!(pre = (char *)ft_calloc(1, (int)ft_strlen(hex) + 2)))
 		return (0);
-	if (g_prec <= g_width)
-	{
-		pre[0] = '0';
+	if (g_prec <= g_width && (pre[0] = '0'))
 		pre[1] = 'x';
-	}
 	ft_strlcat(pre, hex, (int)ft_strlen(hex) + 3);
+	free(hex);
 	return (pre);
 }
 

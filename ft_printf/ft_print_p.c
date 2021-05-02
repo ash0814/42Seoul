@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:58:36 by sehyan            #+#    #+#             */
-/*   Updated: 2021/01/26 01:20:18 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/01/27 20:27:47 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,21 +99,22 @@ void	ft_print_p(va_list ap)
 	char				*pstr;
 	char				*psur;
 	unsigned long long	u;
-	int					plen;
+	char				*strp;
 
 	u = va_arg(ap, unsigned long long);
-	plen = ft_strlen(ft_hexa_ptr(u));
-	if (g_flag == '-' && g_prec >= plen &&
-			((int)ft_strlen(ft_hexa(u)) >= g_width || g_prec >= g_width))
+	strp = ft_hexa_ptr(u);
+	if (g_flag == '-' && g_prec >= (int)ft_strlen(strp) &&
+			((int)ft_strlen(strp) >= g_width || g_prec >= g_width))
 		g_flag = '0';
 	if (g_prec > g_width)
 		ft_write_str("0x");
-	ppre = ft_set_ppre(u, plen);
+	ppre = ft_set_ppre(u, (int)ft_strlen(strp));
 	ft_write_str(ppre);
-	pstr = ft_set_pstr(u, plen);
+	pstr = ft_set_pstr(u, (int)ft_strlen(strp));
 	ft_write_str(pstr);
-	psur = ft_set_psur(u, plen);
+	psur = ft_set_psur(u, (int)ft_strlen(strp));
 	ft_write_str(psur);
+	free(strp);
 	free(ppre);
 	free(pstr);
 	free(psur);

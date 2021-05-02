@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 21:50:49 by sehyan            #+#    #+#             */
-/*   Updated: 2021/01/19 22:42:33 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/01/27 20:08:35 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,24 @@ char	*ft_set_usur(unsigned int u, int ulen)
 
 void	ft_print_u(va_list ap)
 {
-	char				*upre;
-	char				*ustr;
-	char				*usur;
-	unsigned int		u;
-	int					ulen;
+	char			*upre;
+	char			*ustr;
+	char			*usur;
+	unsigned int	u;
+	char			*stru;
 
 	u = va_arg(ap, unsigned int);
-	ulen = ft_strlen(ft_itoa(u));
-	if (g_flag == '-' && g_prec >= ulen &&
-			((int)ft_strlen(ft_itoa(u)) >= g_width || g_prec >= g_width))
+	stru = ft_itoa(u);
+	if (g_flag == '-' && g_prec >= (int)ft_strlen(stru) &&
+			((int)ft_strlen(stru) >= g_width || g_prec >= g_width))
 		g_flag = '0';
-	upre = ft_set_upre(u, ulen);
+	upre = ft_set_upre(u, (int)ft_strlen(stru));
 	ft_write_str(upre);
-	ustr = ft_set_ustr(u, ulen);
+	ustr = ft_set_ustr(u, (int)ft_strlen(stru));
 	ft_write_str(ustr);
-	usur = ft_set_usur(u, ulen);
+	usur = ft_set_usur(u, (int)ft_strlen(stru));
 	ft_write_str(usur);
+	free(stru);
 	free(upre);
 	free(ustr);
 	free(usur);
