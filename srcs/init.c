@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:21:46 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/16 22:01:27 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/16 22:06:55 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,5 @@ t_scene		*scene_init(void)
 	t_scene		*scene;
 
 	scene = (t_scene *)malloc(sizeof(t_scene));
-
 	return (scene);
 }
