@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
+/*   Updated: 2021/05/17 02:12:38 by ash              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -43,5 +55,25 @@ t_scene		*scene_init(void);
 
 // parse
 void	parse(char *argv, t_scene *scene);
+
+//canvas
+t_canvas	canvas(int	width, int height);
+
+
+//camera
+t_camera	*camera(t_canvas canvas, t_point orig);
+
+// objects
+t_sphere    *sphere(t_point center, double radius);
+t_plane	    *plane(t_point point, t_vec normal);
+t_triangle  *triangle(t_point p1, t_point p2, t_point p3);
+t_square    *square(t_point point, t_vec normal, double len);
+t_cylinder  *cylinder(t_point point, t_vec normal, double radius);
+
+// object_create
+t_object    *object(t_object_type type, void *element, t_color albedo);
+t_object    *oadd(t_object **list, t_object *new);
+t_object    *olast(t_object *list);
+t_light     *light_point(t_point l_org, t_color l_color, double bright_ratio);
 
 #endif

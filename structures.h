@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structures.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/17 01:51:53 by ash               #+#    #+#             */
+/*   Updated: 2021/05/17 01:58:36 by ash              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
@@ -51,14 +63,13 @@ typedef struct	s_object
 
 typedef struct		s_camera
 {
-    t_point			origin;
+    t_point			org;
     double			viewport_h;
     double			viewport_w;
-    t_vec			horizontal;
-    t_vec			vertical;
+    t_vec			hrzt;
+    t_vec			vrtc;
     double			focal_len;
     t_point			left_bottom;
-	t_camera		*next;
 }               	t_camera;
 
 typedef struct		s_light
@@ -104,5 +115,46 @@ typedef struct	s_vars
 	void		*win;
 	t_scene		*scene;
 }				t_vars;
+
+typedef struct	s_sphere
+{
+	t_point		center;
+	double		radius;
+	double		radius2;
+	t_color		color;
+}				t_sphere;
+
+typedef struct s_plane
+{
+	t_point		point;
+	t_vec		normal;
+	t_color		color;
+}				t_plane;
+
+typedef struct	s_square
+{
+	t_point		point;
+	t_vec		normal;
+	double		len;
+	t_color		color;
+}				t_square;
+
+typedef struct s_triangle
+{
+	t_point		p1;
+	t_point		p2;
+	t_point		p3;
+	t_vec		normal;
+	t_color		color;
+}				t_triangle;
+
+typedef struct s_cylinder
+{
+	t_point		point;
+	t_vec		normal;
+	double		radius;
+	double		height;
+	t_color		color;
+}				t_cylinder;
 
 #endif

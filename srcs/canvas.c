@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 21:21:46 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/17 02:00:57 by ash              ###   ########.fr       */
+/*   Created: 2021/05/17 01:46:19 by ash               #+#    #+#             */
+/*   Updated: 2021/05/17 01:54:21 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../minirt.h"
 
-t_scene		*scene_init(void)
+t_canvas	canvas(int	width, int height)
 {
-	t_scene		*scene;
-
-	scene = (t_scene *)malloc(sizeof(t_scene));
-	scene->canvas = canvas(1, 1);
-	
-	return (scene);
+	t_canvas canvas;
+    
+	canvas.width = width;
+	canvas.height = height;
+	canvas.aspect_ratio = (double)width / (double)height;
+	return (canvas);
 }
