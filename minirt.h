@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 00:31:55 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 01:14:51 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,11 @@ void    check_file(char *str, t_scene *scene);
 void	parse_r(char **words, t_scene *scene);
 void	parse_a(char **words, t_scene *scene);
 void	parse_l(char **words, t_scene *scene);
+void	parse_cy(char **words, t_scene *scene);
+void	parse_tr(char **words, t_scene *scene);
+void	parse_sp(char **words, t_scene *scene);
+void	parse_sq(char **words, t_scene *scene);
+void	parse_pl(char **words, t_scene *scene)
 
 //canvas
 t_canvas	canvas(int	width, int height);
@@ -106,14 +111,14 @@ t_canvas	canvas(int	width, int height);
 t_camera	*camera(t_canvas canvas, t_point orig);
 
 // objects
-t_sphere    *sphere(t_point center, double radius);
+t_sphere    *sphere(t_point center, double radius, t_color color);
 t_plane	    *plane(t_point point, t_vec normal);
 t_triangle  *triangle(t_point p1, t_point p2, t_point p3);
 t_square    *square(t_point point, t_vec normal, double len);
-t_cylinder  *cylinder(t_point point, t_vec normal, double radius);
+t_cylinder  *cylinder(t_point point, t_vec normal, double radius, double heignt, t_color color);
 
 // object_create
-t_object    *object(t_object_type type, void *element, t_color albedo);
+t_object    *object(t_object_type type, void *element);
 t_object    *oadd(t_object **list, t_object *new);
 t_object    *olast(t_object *list);
 t_light     *light_point(t_point l_org, t_color l_color, double bright_ratio);

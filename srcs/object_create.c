@@ -6,14 +6,14 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 02:05:48 by ash               #+#    #+#             */
-/*   Updated: 2021/05/17 02:12:51 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 01:12:07 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
 
-t_object	*object(t_object_type type, void *element, t_color albedo)
+t_object	*object(t_object_type type, void *element)
 {
 	t_object	*new;
 

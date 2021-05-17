@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:58:13 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 00:34:43 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 01:17:14 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ void	parse_l(char **words, t_scene *scene)
 	check_three_double(tmp);
 	double_free(tmp);
 	scene->light = oadd(&scene->light, object(LIGHT_POINT, 
-					light_point(l_point, l_color, ft_atof(words[2])), color(0, 0, 0)));
+					light_point(l_point, l_color, ft_atof(words[2]))));
 }
