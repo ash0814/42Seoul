@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 01:14:51 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 01:56:56 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ t_camera	*camera(t_canvas canvas, t_point orig);
 
 // objects
 t_sphere    *sphere(t_point center, double radius, t_color color);
-t_plane	    *plane(t_point point, t_vec normal);
-t_triangle  *triangle(t_point p1, t_point p2, t_point p3);
-t_square    *square(t_point point, t_vec normal, double len);
-t_cylinder  *cylinder(t_point point, t_vec normal, double radius, double heignt, t_color color);
+t_plane	    *plane(t_point point, t_vec normal, t_color color);
+t_triangle  *triangle(t_point p1, t_point p2, t_point p3, t_color color);
+t_square    *square(t_point point, t_vec normal, double len, t_color color);
+t_cylinder  *cylinder(t_point point, t_vec normal, double *num, t_color color);
 
 // object_create
 t_object    *object(t_object_type type, void *element);

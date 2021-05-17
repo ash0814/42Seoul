@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 02:05:14 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 01:18:58 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 01:38:07 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_square	*square(t_point point, t_vec normal, double len, t_color color)
 	return (squ);
 }
 
-t_cylinder	*cylinder(t_point point, t_vec normal, double radius, double height, t_color color)
+t_cylinder	*cylinder(t_point point, t_vec normal, double *num, t_color color)
 {
 	t_cylinder *cyl;
 	
@@ -72,7 +72,8 @@ t_cylinder	*cylinder(t_point point, t_vec normal, double radius, double height, 
 		return (NULL);
 	cyl->normal = normal;
 	cyl->point = point;
-	cyl->radius = radius;
-	cyl->height = height;
+	cyl->radius = num[0];
+	cyl->height = num[1];
+	cyl->color = color;
 	return (cyl);
 }
