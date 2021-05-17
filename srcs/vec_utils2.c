@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:14:17 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/16 20:28:36 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/17 17:02:36 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ double v_pow(t_vec v1)
 double v_len(t_vec v1)
 {
 	double len;
-	len = sqrt(vec_len_squared(v1));
+	len = sqrt(v_pow(v1));
 	return (len);
 }

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:26:28 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/16 20:34:25 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:12:54 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
 
-size_t	ft_check_len(char const *s, char c)
+int		ft_check_len(char const *s, char c)
 {
-	size_t i;
-	size_t len;
-	size_t n;
+	int		i;
+	int		len;
+	int		n;
 
 	n = 0;
 	i = -1;
@@ -37,9 +37,9 @@ size_t	ft_check_len(char const *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**r;
-	size_t	len;
-	size_t	h;
-	size_t	i;
+	int		len;
+	int		h;
+	int		i;
 
 	if (s == 0)
 		return (0);
@@ -48,7 +48,6 @@ char	**ft_split(char const *s, char c)
 	while (s[++i])
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == 0))
 			h++;
-	
 	len = ft_check_len(s, c);
 	r = ft_put_r(s, c, h, len);
 	if (r == 0)
@@ -56,11 +55,11 @@ char	**ft_split(char const *s, char c)
 	return (r);
 }
 
-char	**ft_put_r_wsp(const char *s, size_t h, size_t len)
+char	**ft_put_r_wsp(const char *s, int h, int len)
 {
-	size_t	i;
-	size_t	n;
-	size_t	j;
+	int		i;
+	int		n;
+	int		j;
 	char	**r;
 
 	i = -1;
@@ -82,11 +81,11 @@ char	**ft_put_r_wsp(const char *s, size_t h, size_t len)
 	return (r);
 }
 
-size_t	ft_check_len_wsp(char const *s)
+int	ft_check_len_wsp(char const *s)
 {
-	size_t i;
-	size_t len;
-	size_t n;
+	int		i;
+	int		len;
+	int		n;
 
 	n = 0;
 	i = -1;
@@ -106,9 +105,9 @@ size_t	ft_check_len_wsp(char const *s)
 char	**ft_split_wsp(char const *s)
 {
 	char	**r;
-	size_t	len;
-	size_t	h;
-	size_t	i;
+	int		len;
+	int		h;
+	int		i;
 
 	if (s == 0)
 		return (0);

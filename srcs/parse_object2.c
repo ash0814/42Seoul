@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   parse_object2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 21:21:46 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/17 17:03:20 by ash              ###   ########.fr       */
+/*   Created: 2021/05/18 00:40:24 by ash               #+#    #+#             */
+/*   Updated: 2021/05/18 00:41:14 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
-t_scene		*scene_init(void)
+void	parse_cy(char **words, t_scene *scene)
 {
-	t_scene		*scene;
-
-	scene = (t_scene *)malloc(sizeof(t_scene));
-	scene->canvas = canvas(1, 1);
 	
-	return (scene);
 }

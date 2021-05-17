@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 21:21:46 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/17 17:03:20 by ash              ###   ########.fr       */
+/*   Created: 2021/05/17 21:12:01 by ash               #+#    #+#             */
+/*   Updated: 2021/05/17 21:13:13 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
-t_scene		*scene_init(void)
+int	key_hook(int keycode, t_vars *vars)
 {
-	t_scene		*scene;
+	(void)vars;
+	if(keycode == 53)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
+	}
+	return (0);
+}
 
-	scene = (t_scene *)malloc(sizeof(t_scene));
-	scene->canvas = canvas(1, 1);
-	
-	return (scene);
+int exit_hook()
+{
+	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:51:53 by ash               #+#    #+#             */
-/*   Updated: 2021/05/17 01:58:36 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/17 22:40:23 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define FALSE 0
 # define TRUE 1
 # define LIGHT_POINT 1
+# define CAM 2
 # define EPSILON 1e-6
 
 typedef int		t_bool;
@@ -70,6 +71,7 @@ typedef struct		s_camera
     t_vec			vrtc;
     double			focal_len;
     t_point			left_bottom;
+	double			fov;
 }               	t_camera;
 
 typedef struct		s_light

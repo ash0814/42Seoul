@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:01:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/16 20:28:32 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:06:43 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_vec	vec(double x, double y, double z)
 	return (out);
 }
 
-t_vec	color(double r, double g, double b)
+t_color	color(double r, double g, double b)
 {
     t_color out;
 	out.x = r;
