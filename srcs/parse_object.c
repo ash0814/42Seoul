@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:58:13 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 17:01:57 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 17:53:03 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	parse_c(char **words, t_scene *scene)
 	check_three_nor(tmp);
 	cam_vec = vec(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
-	obj_add_back(&scene->camera, object(CAM, camera(scene->canvas, cam_p, cam_vec, cam_fov)));
+	oadd(&scene->camera, object(CAM, camera(scene->canvas, cam_p, cam_vec, cam_fov)));
+	// vec_print("test2", ((t_camera *)(scene->camera->element))->org);
 }
 
 void	parse_l(char **words, t_scene *scene)

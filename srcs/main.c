@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/18 16:39:54 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 17:52:42 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,18 @@ void		print_image(t_vars *vars)
 	image.addr = mlx_get_data_addr(image.img,
 				&image.bits_per_pixel, &image.line_length, &image.endian);
 	j = vars->scene->canvas.height-1;
+
+
+	int d=0;
+	t_object	*tmp;
+	tmp = vars->scene->world;
+	while (tmp)
+	{
+		printf("test : %d\n",++d);
+		tmp = tmp->next;
+	}
+
+	
 	while (j >= 0)
 	{
 		i = -1;
@@ -86,6 +98,7 @@ void		print_image(t_vars *vars)
 		}
 		j--;
 	}
+	vec_print("orig test", ((t_light *)(vars->scene->light->element))->origin);
 	mlx_put_image_to_window(vars->mlx, vars->win, image.img, 0, 0);
 	mlx_key_hook(vars->win, key_hook, vars);
 	mlx_hook(vars->win, 17, (1L << 5), exit_hook, 0);
@@ -105,6 +118,7 @@ int			main(int argc, char *argv[])
 	}
 	else
 		ft_error("input ERROR\n");
+		
 	check_window_size(&vars);
 	print_image(&vars);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 16:54:58 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 17:33:41 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,5 @@ int			ft_atoi(const char *str);
 double		ft_power(double a, int b);
 double		ft_atof(const char *str);
 
-
+void vec_print(char *str, t_point t);
 #endif

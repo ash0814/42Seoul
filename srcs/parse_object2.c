@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:40:24 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 15:41:53 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 17:54:39 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	parse_sp(char **words, t_scene *scene)
 	t_point	sp_p;
 	double	rad;
 	t_color	sp_color;
-
+	
 	if (ft_len_2D(words) != 4 || ft_atof(words[2]) <= 0)
 		ft_error("SP Parsing ERROR\n");
 	tmp = ft_split(words[1], ',');
@@ -78,7 +78,8 @@ void	parse_sp(char **words, t_scene *scene)
 	sp_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	rad = ft_atof(words[2]);
-	obj_add_back(&scene->world, object(SP, sphere(sp_p, rad, sp_color)));
+	oadd(&scene->world, object(SP, sphere(sp_p, rad, sp_color)));
+	vec_print("sp_org", ((t_sphere *)(scene->world->element))->center);
 }
 
 void	parse_sq(char **words, t_scene *scene)

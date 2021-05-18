@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:43:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/18 15:33:04 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 17:55:26 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void    check_file(char *str, t_scene *scene)
         ft_error("PARSING ERROR_split\n");
     if (ft_strlen(words[0]) == 1)
     {
+        printf("test11\n");
         if (words[0][0] == 'R')
             parse_r(words, scene);
         else if (words[0][0] == 'A')
@@ -56,8 +57,9 @@ void    check_file(char *str, t_scene *scene)
         else if (words[0][0] == '#')
             ;
     }
-    else if (ft_strlen(words[2]) == 2)
+    else if (ft_strlen(words[0]) == 2)
     {
+        printf("test22\n");
         if (words[0][0] == 'c' && words[0][1] == 'y')
             parse_cy(words, scene);
         else if (words[0][0] == 'p' && words[0][1] == 'l')
@@ -71,5 +73,6 @@ void    check_file(char *str, t_scene *scene)
     }
     // else
     //     ft_error("PASING ERROR_words\n");
+    
     double_free(words);
 }

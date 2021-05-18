@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 02:05:48 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 16:55:00 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 17:39:13 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,18 @@ t_object	*object(t_object_type type, void *element)
 
 void	oadd(t_object **list, t_object *new)
 {
-	t_object	*cur;
+	// t_object	*cur;
 	
 	if (*list == NULL)
 	{
 		*list = new;
 		return ;
 	}
-	cur = *list;
-	while (cur->next)
-		cur = cur->next;
-	cur->next = new;
+	// cur = *list;
+	// while (cur->next)
+	// 	cur = cur->next;
+	// cur->next = new;
+	olast(*list)->next = new;
 }
 
 
