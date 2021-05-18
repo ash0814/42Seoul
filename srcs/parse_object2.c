@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:40:24 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 12:14:53 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 15:41:53 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_cy(char **words, t_scene *scene)
 	check_color(tmp);
 	cy_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
-	scene->world = oadd(&scene->world, 
+	obj_add_back(&scene->world, 
 					object(CYL, cylinder(cy_center, cy_nor, cy, cy_color)));
 }
 
@@ -58,7 +58,7 @@ void	parse_pl(char **words, t_scene *scene)
 	check_color(tmp);
 	pl_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
-	scene->world = oadd(&scene->world, object(PLN, plane(pl_point, pl_nor, pl_color)));
+	obj_add_back(&scene->world, object(PLN, plane(pl_point, pl_nor, pl_color)));
 }
 
 void	parse_sp(char **words, t_scene *scene)
@@ -78,7 +78,7 @@ void	parse_sp(char **words, t_scene *scene)
 	sp_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	rad = ft_atof(words[2]);
-	scene->world = oadd(&scene->world, object(SP, sphere(sp_p, rad, sp_color)));
+	obj_add_back(&scene->world, object(SP, sphere(sp_p, rad, sp_color)));
 }
 
 void	parse_sq(char **words, t_scene *scene)
@@ -103,7 +103,7 @@ void	parse_sq(char **words, t_scene *scene)
 	sq_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	sq_len = ft_atof(words[3]);
-	scene->world = oadd(&scene->world, object(SQU, square(sq_p, sq_nor, sq_len, sq_color)));
+	obj_add_back(&scene->world, object(SQU, square(sq_p, sq_nor, sq_len, sq_color)));
 }
 
 void	parse_tr(char **words, t_scene *scene)
@@ -127,5 +127,5 @@ void	parse_tr(char **words, t_scene *scene)
 	check_color(tmp);
 	tr_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
-	scene->world = oadd(&scene->world, object(TRI, triangle(tr_p[0], tr_p[1], tr_p[2], tr_color)));
+	obj_add_back(&scene->world, object(TRI, triangle(tr_p[0], tr_p[1], tr_p[2], tr_color)));
 }

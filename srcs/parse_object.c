@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:58:13 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 12:51:48 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 17:01:57 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	parse_c(char **words, t_scene *scene)
 	check_three_nor(tmp);
 	cam_vec = vec(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
-	scene->camera = oadd(&scene->camera, object(CAM, camera(scene->canvas, cam_p, cam_vec, cam_fov)));
+	obj_add_back(&scene->camera, object(CAM, camera(scene->canvas, cam_p, cam_vec, cam_fov)));
 }
 
 void	parse_l(char **words, t_scene *scene)
@@ -64,7 +64,6 @@ void	parse_l(char **words, t_scene *scene)
 	char	**tmp;
 	t_point	l_point;
 	t_color	l_color;
-
 	if (ft_len_2D(words) != 4 || ft_atof(words[2]) < 0.0 || ft_atof(words[2]) > 1.0)
 		ft_error("L Parsing ERROR\n");
 	tmp = ft_split(words[1], ',');
@@ -74,6 +73,6 @@ void	parse_l(char **words, t_scene *scene)
 	l_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	check_color(tmp);
 	double_free(tmp);
-	scene->light = oadd(&scene->light, object(LIGHT_POINT, 
+	oadd(&scene->light, object(LIGHT_POINT, 
 					light_point(l_point, l_color, ft_atof(words[2]))));
 }

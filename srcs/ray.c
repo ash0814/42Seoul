@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:09:02 by ash               #+#    #+#             */
-/*   Updated: 2021/05/17 23:33:06 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 15:05:06 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ t_color		ray_color(t_scene *scene)
 	scene->rec.tmin = EPSILON;
 	scene->rec.tmax = INFINITY;
 	if (hit(scene->world, &scene->ray, &scene->rec))
+	{
 		return (phong_lighting(scene));
+	}
 	else
 	{
 		t = 0.5 * (scene->ray.dir.y + 1.0);
-		return (v_add(vt_mul(color(1.0, 1.0, 1.0), 1 - t), vt_mul(color(0.5, 0.7, 1.0), t)));
+		return (color(0, 0, 1));
 	}
 }
 

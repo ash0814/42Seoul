@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/18 15:00:03 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 16:39:54 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ int write_color(int t, t_color *pixel_color)
 	return (t << 24 | (int)(255.999 * pixel_color->x) << 16 | (int)(255.999 * pixel_color->y) << 8 | (int)(255.999 * pixel_color->z));
 }
 
+void vec_print(char *str, t_point t) {
+	printf("%s : %.2f %.2f %2.f\n", str, t.x, t.y, t.z);
+}
+
 void		print_image(t_vars *vars)
 {
 	t_data	image;
@@ -56,6 +60,11 @@ void		print_image(t_vars *vars)
 	double	v;
 	int 	i;
 	int		j;
+
+	t_camera *cam = (t_camera *)((t_object *)vars->scene->camera->next)->element;
+	vec_print("org", cam->org);
+	vec_print("normal", cam->normal);
+	printf("{fov : %f}\n", cam->fov);
 
 	vars->win = mlx_new_window(vars->mlx, vars->scene->canvas.width,
 							vars->scene->canvas.height, "ash_world!");
@@ -71,7 +80,7 @@ void		print_image(t_vars *vars)
 		{
 			u = (double) (i) / (vars->scene->canvas.width-1);
 			v = (double)(j) / (vars->scene->canvas.height-1);
-			vars->scene->ray = ray_primary((t_camera *)vars->scene->camera, u, v);
+			vars->scene->ray = ray_primary(cam, u, v);
 			color = ray_color(vars->scene);
 			my_mlx_pixel_put(&image, i, vars->scene->canvas.height - 1 - j, write_color(0, &color));
 		}
@@ -98,6 +107,5 @@ int			main(int argc, char *argv[])
 		ft_error("input ERROR\n");
 	check_window_size(&vars);
 	print_image(&vars);
-	write(1, "bb\n", 3);
 	return (0);
 }	

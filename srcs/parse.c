@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:43:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/18 13:05:51 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 15:33:04 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	parse(char *argv, t_scene *scene)
         i++;
     }
     double_free(line);
+    close(fd);
 }
 
 void    check_file(char *str, t_scene *scene)

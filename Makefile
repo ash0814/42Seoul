@@ -6,7 +6,7 @@
 #    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 19:54:45 by sehyan            #+#    #+#              #
-#    Updated: 2021/05/18 14:56:46 by sehyan           ###   ########.fr        #
+#    Updated: 2021/05/18 16:23:42 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJ = $(SRC:.c=.o)
 #
 
 CC		=	clang
-CFLAGS	=	-Wall -Werror -Wextra #-fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
 CLIB	=	-Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 
 #

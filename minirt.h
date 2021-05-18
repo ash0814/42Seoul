@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 14:54:12 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 16:54:58 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,10 @@ t_cylinder  *cylinder(t_point point, t_vec normal, double *num, t_color color);
 
 // object_create
 t_object    *object(t_object_type type, void *element);
-t_object    *oadd(t_object **list, t_object *new);
+void		oadd(t_object **list, t_object *new);
 t_object    *olast(t_object *list);
 t_light     *light_point(t_point l_org, t_color l_color, double bright_ratio);
+void		obj_add_back(t_object **list, t_object *new);
 
 //utils
 void    ft_error(char *s);
