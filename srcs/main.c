@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/18 14:31:53 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 15:00:03 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		print_image(t_vars *vars)
 			color = ray_color(vars->scene);
 			my_mlx_pixel_put(&image, i, vars->scene->canvas.height - 1 - j, write_color(0, &color));
 		}
+		j--;
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, image.img, 0, 0);
 	mlx_key_hook(vars->win, key_hook, vars);
@@ -88,14 +89,15 @@ int			main(int argc, char *argv[])
 
 
 	vars.mlx = mlx_init();
+	
 	if ((argc == 2 || argc == 3) && check_rt(argv[1]) == TRUE)
 	{
-		scene_init( vars.scene, argv[1]);
+		vars.scene = scene_init( argv[1]);
 	}
 	else
 		ft_error("input ERROR\n");
-	printf("aaaa\n");
 	check_window_size(&vars);
 	print_image(&vars);
+	write(1, "bb\n", 3);
 	return (0);
 }	

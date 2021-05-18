@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:51:53 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 11:57:46 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 14:41:33 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define CYL 4
 # define FALSE 0
 # define TRUE 1
-# define LIGHT_POINT 1
-# define CAM 2
+# define LIGHT_POINT 5
+# define CAM 6
 # define EPSILON 1e-6
 
 typedef int		t_bool;

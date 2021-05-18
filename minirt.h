@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 13:55:15 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 14:54:12 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int			exit_hook();
 
 //init
 // t_scene		*scene_init(void);
-void			scene_init(t_scene *scene, char *argv);
+t_scene			*scene_init(char *argv);
 t_color			diffuse_light(t_scene *scene, t_light *light);
 t_color			specular_light(t_scene *scene, t_light *light);
 t_bool				in_shadow(t_light *light, t_scene *scene);
