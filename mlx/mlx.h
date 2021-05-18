@@ -22,7 +22,7 @@
 **
 ** The MinilibX can load XPM and PNG images.
 ** Please note that both image loaders are incomplete, some
-** image may not load.
+** image may not load.	
 **
 ** For historical reasons, the alpha byte represent transparency
 ** instead of opacity.

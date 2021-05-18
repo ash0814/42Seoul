@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:38:42 by ash               #+#    #+#             */
-/*   Updated: 2021/05/17 23:49:24 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 13:07:07 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_bool		hit_sphere(t_object *sp_obj, t_ray *ray, t_hit_record *rec)
 	double		sqrtd;
 	double		root;
 
-	oc = v_sub(ray->origin, sp->center);
 	sp = (t_sphere *)sp_obj->element;
+	oc = v_sub(ray->origin, sp->center);
 	dis = pow(v_dot(oc, ray->dir), 2) - (v_pow(ray->dir) * (v_pow(oc) - sp->radius2));
 	sqrtd = sqrt(dis);
 	root = (-v_dot(oc, ray->dir) - sqrtd) / v_pow(ray->dir);

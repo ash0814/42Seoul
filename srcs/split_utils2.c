@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:28:52 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/16 20:33:11 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/18 12:33:36 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int		ft_strlen(char *s)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(int count, int size)
 {
 	unsigned char	*r;
-	size_t			i;
+	int			i;
 
 	i = -1;
 	r = (unsigned char *)malloc(count * size);
@@ -38,10 +38,10 @@ void	*ft_calloc(size_t count, size_t size)
 	return ((void *)r);
 }
 
-char	**ft_malloc_r(char **r, size_t h, size_t len)
+char	**ft_malloc_r(char **r, int h, int len)
 {
-	size_t i;
-	size_t j;
+	int i;
+	int j;
 
 	if (r == 0)
 		return (0);
@@ -49,7 +49,8 @@ char	**ft_malloc_r(char **r, size_t h, size_t len)
 	while (++i < h)
 		r[i] = (char *)ft_calloc(sizeof(char), len + 1);
 	i = -1;
-	while (i < h)
+	while (++i < h)
+	{
 		if (r[i] == 0)
 		{
 			j = -1;
@@ -58,14 +59,15 @@ char	**ft_malloc_r(char **r, size_t h, size_t len)
 			free(r);
 			return (0);
 		}
+	}
 	return (r);
 }
 
-char	**ft_put_r(const char *s, char c, size_t h, size_t len)
+char	**ft_put_r(const char *s, char c, int h, int len)
 {
-	size_t	i;
-	size_t	n;
-	size_t	j;
+	int	i;
+	int	n;
+	int	j;
 	char	**r;
 
 	i = -1;

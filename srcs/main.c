@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/17 21:17:40 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 14:31:53 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,32 @@ t_bool		check_rt(char *s)
 		return (TRUE);
 }
 
-void			check_window_size(t_vars vars)
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+void			check_window_size(t_vars *vars)
 {
 	int			x;
 	int			y;
 
-	mlx_get_screen_size(vars.mlx, &x, &y);
-	if (vars.scene->canvas.width > x)
-		vars.scene->canvas.width = x;
-	if (vars.scene->canvas.height > y)
-		vars.scene->canvas.height = y;
+	mlx_get_screen_size(vars->mlx, &x, &y);
+	if (vars->scene->canvas.width > x)
+		vars->scene->canvas.width = x;
+	if (vars->scene->canvas.height > y)
+		vars->scene->canvas.height = y;
 }
 
-int			print_image(t_vars *vars)
+int write_color(int t, t_color *pixel_color)
+{
+	return (t << 24 | (int)(255.999 * pixel_color->x) << 16 | (int)(255.999 * pixel_color->y) << 8 | (int)(255.999 * pixel_color->z));
+}
+
+void		print_image(t_vars *vars)
 {
 	t_data	image;
 	t_color color;
@@ -58,7 +71,7 @@ int			print_image(t_vars *vars)
 		{
 			u = (double) (i) / (vars->scene->canvas.width-1);
 			v = (double)(j) / (vars->scene->canvas.height-1);
-			vars->scene->ray = ray_primary(vars->scene->camera, u, v);
+			vars->scene->ray = ray_primary((t_camera *)vars->scene->camera, u, v);
 			color = ray_color(vars->scene);
 			my_mlx_pixel_put(&image, i, vars->scene->canvas.height - 1 - j, write_color(0, &color));
 		}
@@ -71,21 +84,18 @@ int			print_image(t_vars *vars)
 
 int			main(int argc, char *argv[])
 {
-	int fd;
-	char buf[5000000];
 	t_vars vars;
 
 
 	vars.mlx = mlx_init();
 	if ((argc == 2 || argc == 3) && check_rt(argv[1]) == TRUE)
 	{
-		if (!(vars.scene = scene_init()))
-			return (0);
-		parse(argv[1], &vars.scene);
+		scene_init( vars.scene, argv[1]);
 	}
 	else
 		ft_error("input ERROR\n");
-	check_window_size(vars);
+	printf("aaaa\n");
+	check_window_size(&vars);
 	print_image(&vars);
 	return (0);
 }	

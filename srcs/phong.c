@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:23:34 by ash               #+#    #+#             */
-/*   Updated: 2021/05/17 23:30:46 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 12:03:04 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_color			specular_light(t_scene *scene, t_light *light)
 
 	light_dir = v_unit(v_sub(light->origin, scene->rec.p));
 	reflect_dir = v_unit(reflect(scene->ray.dir, scene->rec.normal));
-	spec = pow(fmax(vdot(light_dir, reflect_dir), 0.0), 30);
+	spec = pow(fmax(v_dot(light_dir, reflect_dir), 0.0), 30);
 	specular = vt_mul(vt_mul(light->light_color, 1.5), spec);
 	return (specular);
 }

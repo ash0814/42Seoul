@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:26:38 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 00:32:13 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 12:53:21 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    double_free(char **str)
     int h;
     
     i = 0;
-    h = ft_len_2D;
+    h = ft_len_2D(str);
     while (i < h)
     {
         free(str[i]);
@@ -39,7 +39,7 @@ int     ft_len_2D(char **str)
     int h;
 
     h = 0;
-    while (str[h][0])
+    while (str[h])
         h++;
     return (h);
 }

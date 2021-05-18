@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ash <ash@student.42.fr>                    +#+  +:+       +#+         #
+#    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 19:54:45 by sehyan            #+#    #+#              #
-#    Updated: 2021/05/17 17:01:46 by ash              ###   ########.fr        #
+#    Updated: 2021/05/18 14:32:19 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ NAME	=	minirt
 # SRCS and OBJS
 #
 SRCS_LIB = ./srcs/
-SRCS	=	main.c camera.c canvas.c init.c object_create.c objects.c \
-			parse_object.c parse.c split_utils.c split_utils2.c utils.c \
-			vec_utils.c vec_utils2.c vec_utils3.c
+SRCS	=	camera.c canvas.c ft_atoif.c hit_obj.c hit_obj2.c \
+			hit.c hook.c init.c main.c object_create.c objects.c \
+			parse_object.c parse_object2.c parse.c phong.c ray.c \
+			split_utils.c split_utils2.c utils.c utils2.c vec_utils.c \
+			vec_utils2.c vec_utils3.c
 
 OBJ = $(SRC:.c=.o)
 #
@@ -33,8 +35,8 @@ CLIB	=	-Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 # Rules
 #
 
-test	: re
-			./minirt 1.rt
+# test	: re
+# 			./minirt 1.rt
 
 all		: $(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:26:28 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/17 22:12:54 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 12:39:23 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ char	**ft_split(char const *s, char c)
 	len = ft_check_len(s, c);
 	r = ft_put_r(s, c, h, len);
 	if (r == 0)
+	{
 		return (0);
+	}
 	return (r);
 }
 

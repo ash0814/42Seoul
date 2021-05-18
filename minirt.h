@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 01:56:56 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 13:55:15 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int			key_hook(int keycode, t_vars *vars);
 int			exit_hook();
 
 //init
-t_scene		*scene_init(void);
+// t_scene		*scene_init(void);
+void			scene_init(t_scene *scene, char *argv);
 t_color			diffuse_light(t_scene *scene, t_light *light);
 t_color			specular_light(t_scene *scene, t_light *light);
 t_bool				in_shadow(t_light *light, t_scene *scene);
@@ -97,18 +98,24 @@ void    check_file(char *str, t_scene *scene);
 void	parse_r(char **words, t_scene *scene);
 void	parse_a(char **words, t_scene *scene);
 void	parse_l(char **words, t_scene *scene);
+void	parse_c(char **words, t_scene *scene);
 void	parse_cy(char **words, t_scene *scene);
 void	parse_tr(char **words, t_scene *scene);
 void	parse_sp(char **words, t_scene *scene);
 void	parse_sq(char **words, t_scene *scene);
-void	parse_pl(char **words, t_scene *scene)
+void	parse_pl(char **words, t_scene *scene);
 
 //canvas
 t_canvas	canvas(int	width, int height);
 
 
 //camera
-t_camera	*camera(t_canvas canvas, t_point orig);
+t_camera	*camera(t_canvas canvas, t_point orig, t_vec nor, double fov);
+
+//camera_utils
+t_camera        *cam_oadd(t_camera **list, t_camera *new);
+t_camera        *cam_olast(t_camera *list);
+t_camera        *cam_onext(t_camera *list);
 
 // objects
 t_sphere    *sphere(t_point center, double radius, t_color color);
@@ -125,7 +132,7 @@ t_light     *light_point(t_point l_org, t_color l_color, double bright_ratio);
 
 //utils
 void    ft_error(char *s);
-void    check_three_double(char **tmp);
+void    check_color(char **tmp);
 void    check_three_nor(char **tmp);
 void    double_free(char **str);
 int     ft_len_2D(char **str);

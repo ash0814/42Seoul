@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:51:53 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 01:57:11 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 11:57:46 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct		s_camera
     double			focal_len;
     t_point			left_bottom;
 	double			fov;
+	t_vec			normal;
 }               	t_camera;
 
 typedef struct		s_light

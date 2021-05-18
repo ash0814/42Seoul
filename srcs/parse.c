@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:43:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/17 22:20:33 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/18 13:05:51 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	parse(char *argv, t_scene *scene)
     if ((fd = open(argv, O_RDONLY)) < 0)
         ft_error("FILE OPEN FAIL\n");
     if (read(fd, &buf, 5000000) < 0)
-        ft_error("FILE READ ERROR\n");
-    line_num = ft_check_len(buf, '/n');
+        ft_error("FILE READ ERROR_buf\n");
     if (!(line = ft_split(buf, '\n')))
-        ft_error("PASING ERROR\n");
+        ft_error("PASING ERROR_line\n");
+    line_num = ft_len_2D(line);
     while (i < line_num)
     {
         check_file(line[i], scene);
@@ -41,7 +41,7 @@ void    check_file(char *str, t_scene *scene)
     char    **words;
 
     if (!(words = ft_split_wsp(str)))
-        ft_error("PARSING ERROR\n");
+        ft_error("PARSING ERROR_split\n");
     if (ft_strlen(words[0]) == 1)
     {
         if (words[0][0] == 'R')
@@ -68,7 +68,7 @@ void    check_file(char *str, t_scene *scene)
         else if (words[0][0] == 's' && words[0][1] == 'q')
             parse_sq(words, scene);
     }
-    else
-        ft_error("PASING ERROR\n");
+    // else
+    //     ft_error("PASING ERROR_words\n");
     double_free(words);
 }
