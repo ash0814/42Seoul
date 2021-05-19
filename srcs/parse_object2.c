@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:40:24 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 17:54:39 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/19 17:03:04 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	parse_cy(char **words, t_scene *scene)
 	double_free(tmp);
 	tmp = ft_split(words[2], ',');
 	check_three_nor(tmp);
-	cy_nor = vec(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	cy_nor = v_unit(vec(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2])));
 	double_free(tmp);
 	tmp = ft_split(words[5], ',');
 	check_color(tmp);
-	cy_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	cy_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
 	obj_add_back(&scene->world, 
 					object(CYL, cylinder(cy_center, cy_nor, cy, cy_color)));
@@ -56,7 +56,7 @@ void	parse_pl(char **words, t_scene *scene)
 	double_free(tmp);
 	tmp = ft_split(words[3], ',');
 	check_color(tmp);
-	pl_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	pl_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
 	obj_add_back(&scene->world, object(PLN, plane(pl_point, pl_nor, pl_color)));
 }
@@ -75,11 +75,11 @@ void	parse_sp(char **words, t_scene *scene)
 	double_free(tmp);
 	tmp = ft_split(words[3], ',');
 	check_color(tmp);
-	sp_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	sp_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
 	rad = ft_atof(words[2]);
 	oadd(&scene->world, object(SP, sphere(sp_p, rad, sp_color)));
-	vec_print("sp_org", ((t_sphere *)(scene->world->element))->center);
+	// vec_print("sp_org", ((t_sphere *)(scene->world->element))->center);
 }
 
 void	parse_sq(char **words, t_scene *scene)
@@ -101,7 +101,7 @@ void	parse_sq(char **words, t_scene *scene)
 	double_free(tmp);
 	tmp = ft_split(words[4], ',');
 	check_color(tmp);
-	sq_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	sq_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
 	sq_len = ft_atof(words[3]);
 	obj_add_back(&scene->world, object(SQU, square(sq_p, sq_nor, sq_len, sq_color)));
@@ -126,7 +126,7 @@ void	parse_tr(char **words, t_scene *scene)
 	double_free(tmp);
 	tmp = ft_split(words[4], ',');
 	check_color(tmp);
-	tr_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	tr_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
 	obj_add_back(&scene->world, object(TRI, triangle(tr_p[0], tr_p[1], tr_p[2], tr_color)));
 }

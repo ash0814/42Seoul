@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:43:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/18 17:55:26 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/19 17:08:57 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void    check_file(char *str, t_scene *scene)
         ft_error("PARSING ERROR_split\n");
     if (ft_strlen(words[0]) == 1)
     {
-        printf("test11\n");
+        // printf("test11\n");
         if (words[0][0] == 'R')
             parse_r(words, scene);
         else if (words[0][0] == 'A')
@@ -59,7 +59,7 @@ void    check_file(char *str, t_scene *scene)
     }
     else if (ft_strlen(words[0]) == 2)
     {
-        printf("test22\n");
+        // printf("test22\n");
         if (words[0][0] == 'c' && words[0][1] == 'y')
             parse_cy(words, scene);
         else if (words[0][0] == 'p' && words[0][1] == 'l')

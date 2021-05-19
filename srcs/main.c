@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/18 17:52:42 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:01:33 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void		print_image(t_vars *vars)
 	int		j;
 
 	t_camera *cam = (t_camera *)((t_object *)vars->scene->camera->next)->element;
-	vec_print("org", cam->org);
-	vec_print("normal", cam->normal);
-	printf("{fov : %f}\n", cam->fov);
+	// vec_print("org", cam->org);
+	// vec_print("normal", cam->normal);
+	// printf("{fov : %f}\n", cam->fov);
 
 	vars->win = mlx_new_window(vars->mlx, vars->scene->canvas.width,
 							vars->scene->canvas.height, "ash_world!");
@@ -75,14 +75,14 @@ void		print_image(t_vars *vars)
 	j = vars->scene->canvas.height-1;
 
 
-	int d=0;
-	t_object	*tmp;
-	tmp = vars->scene->world;
-	while (tmp)
-	{
-		printf("test : %d\n",++d);
-		tmp = tmp->next;
-	}
+	// int d=0;
+	// t_object	*tmp;
+	// tmp = vars->scene->world;
+	// while (tmp)
+	// {
+	// 	printf("test : %d\n",++d);
+	// 	tmp = tmp->next;
+	// }
 
 	
 	while (j >= 0)
@@ -98,7 +98,7 @@ void		print_image(t_vars *vars)
 		}
 		j--;
 	}
-	vec_print("orig test", ((t_light *)(vars->scene->light->element))->origin);
+	// vec_print("orig test", ((t_light *)(vars->scene->light->element))->origin);
 	mlx_put_image_to_window(vars->mlx, vars->win, image.img, 0, 0);
 	mlx_key_hook(vars->win, key_hook, vars);
 	mlx_hook(vars->win, 17, (1L << 5), exit_hook, 0);

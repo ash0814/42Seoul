@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 02:05:14 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 01:38:07 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/19 17:28:43 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_square	*square(t_point point, t_vec normal, double len, t_color color)
 	if(!(squ = (t_square *)malloc(sizeof(t_square))))
 		return (NULL);
 	squ->point = point;
-	squ->normal = normal;
+	squ->normal = v_unit(normal);
 	squ->len = len;
 	squ->color = color;
 	return (squ);

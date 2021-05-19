@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:09:02 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 17:55:41 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:24:10 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ t_vec	ray_at(t_ray *ray, double t)
 
 t_color		ray_color(t_scene *scene)
 {
-	double	t;
+	// double	t;
 
 	scene->rec.tmin = EPSILON;
 	scene->rec.tmax = INFINITY;
+	// vec_print("alb", scene->rec.albedo);
 	if (hit(scene->world, &scene->ray, &scene->rec))
 	{
 		return (phong_lighting(scene));
 	}
 	else
 	{
-		t = 0.5 * (scene->ray.dir.y + 1.0);
-		return (color(0, 0, 1));
+		// t = 0.5 * (scene->ray.dir.y + 1.0);
+		return (color(0, 0, 0));
 	}
 }
 

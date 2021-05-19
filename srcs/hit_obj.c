@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:38:42 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 13:07:07 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:03:09 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool		hit_sphere(t_object *sp_obj, t_ray *ray, t_hit_record *rec)
 	rec->t = root;
 	rec->albedo = sp->color;
 	rec->p = ray_at(ray, root);
-	rec->normal = v_div(v_sub(rec->p, sp->center), sp->radius);
+	rec->normal = v_unit(v_sub(rec->p, sp->center));
     set_face_normal(ray, rec);
 	return (TRUE);
 }

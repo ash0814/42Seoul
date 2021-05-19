@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 17:33:41 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:07:34 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,12 @@ t_ray		ray(t_point origin, t_vec dir);
 
 // phong
 t_color			phong_lighting(t_scene *scene);
-t_color			diffuse_light(t_scene *scene, t_light *light);
-t_color			specular_light(t_scene *scene, t_light *light);
-t_bool				in_shadow(t_light *light, t_scene *scene);
+// t_color			diffuse_light(t_scene *scene, t_light *light);
+// t_color			specular_light(t_scene *scene, t_light *light);
+// t_bool				in_shadow(t_light *light, t_scene *scene);
 t_vec				reflect(t_vec v, t_vec n);
+t_bool		in_shadow(t_object *objs, t_ray light_ray, double light_len);
+t_color		point_light_get(t_scene *scene, t_light *light);
 
 // hit
 t_bool		hit(t_object *world, t_ray *ray, t_hit_record *rec);
@@ -85,9 +87,6 @@ int			exit_hook();
 //init
 // t_scene		*scene_init(void);
 t_scene			*scene_init(char *argv);
-t_color			diffuse_light(t_scene *scene, t_light *light);
-t_color			specular_light(t_scene *scene, t_light *light);
-t_bool				in_shadow(t_light *light, t_scene *scene);
 t_vec				reflect(t_vec v, t_vec n);
 
 // parse
