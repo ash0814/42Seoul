@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:40:24 by ash               #+#    #+#             */
-/*   Updated: 2021/05/19 17:03:04 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/19 18:09:19 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	parse_sq(char **words, t_scene *scene)
 	double_free(tmp);
 	tmp = ft_split(words[2], ',');
 	check_three_nor(tmp);
-	sq_nor = vec(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	sq_nor = v_unit(vec(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2])));
 	double_free(tmp);
 	tmp = ft_split(words[4], ',');
 	check_color(tmp);

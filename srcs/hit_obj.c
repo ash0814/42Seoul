@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:38:42 by ash               #+#    #+#             */
-/*   Updated: 2021/05/19 16:03:09 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/19 18:02:17 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ t_bool			hit_square(t_ray *r, t_object *obj, t_hit_record *rec)
 	if (!(-square->len / 2 < a && a < square->len / 2) || !(-square->len / 2 < b && b < square->len / 2))
 		return (FALSE);
 	rec->normal = square->normal;
+	rec->albedo = square->color;
 	return (TRUE);
 }

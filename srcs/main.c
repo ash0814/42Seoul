@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/19 15:01:33 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/19 17:52:24 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int write_color(int t, t_color *pixel_color)
 }
 
 void vec_print(char *str, t_point t) {
-	printf("%s : %.2f %.2f %2.f\n", str, t.x, t.y, t.z);
+	printf("%s : %.2f %.2f %.2f\n", str, t.x, t.y, t.z);
 }
 
 void		print_image(t_vars *vars)

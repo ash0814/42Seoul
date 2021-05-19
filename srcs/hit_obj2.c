@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:49:57 by ash               #+#    #+#             */
-/*   Updated: 2021/05/17 23:53:58 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/19 18:08:19 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_bool			hit_triangle(t_ray *r, t_object *obj, t_hit_record *rec)
 		return (FALSE);
 	rec->t = t;
 	rec->p = p;
-	rec->normal = triangle->normal;
+	rec->normal = v_unit(triangle->normal);
 	rec->albedo = triangle->color;
 	set_face_normal(r, rec);
 	return (TRUE);
