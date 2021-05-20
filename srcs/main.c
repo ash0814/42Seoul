@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/20 15:59:50 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/21 00:40:31 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,6 @@ void		print_image(t_vars *vars)
 	image.addr = mlx_get_data_addr(image.img,
 				&image.bits_per_pixel, &image.line_length, &image.endian);
 	j = vars->scene->canvas.height-1;
-
-
-	// int d=0;
-	// t_object	*tmp;
-	// tmp = vars->scene->world;
-	// while (tmp)
-	// {
-	// 	printf("test : %d\n",++d);
-	// 	tmp = tmp->next;
-	// }
-
-	
 	while (j >= 0)
 	{
 		i = -1;
