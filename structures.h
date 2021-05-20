@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:51:53 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 14:41:33 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/20 15:42:59 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct	s_hit_record
 	double		t;
 	t_bool		front_face;
 	t_color		albedo;
-	double		cy_height;
+	double		t2;
 }				t_hit_record;
 
 typedef struct	s_scene

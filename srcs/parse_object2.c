@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:40:24 by ash               #+#    #+#             */
-/*   Updated: 2021/05/19 18:09:19 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/20 15:37:36 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	parse_cy(char **words, t_scene *scene)
 	check_color(tmp);
 	cy_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
+	cy[0] = ft_atof(words[3]);
+	cy[1] = ft_atof(words[4]);
 	obj_add_back(&scene->world, 
 					object(CYL, cylinder(cy_center, cy_nor, cy, cy_color)));
 }

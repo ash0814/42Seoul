@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:23:34 by ash               #+#    #+#             */
-/*   Updated: 2021/05/19 17:59:24 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/20 15:28:29 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,24 +139,25 @@ t_color		point_light_get(t_scene *scene, t_light *light)
 	double		ksn;
 	double		ks;
 
-	light_dir = v_unit(v_sub(light->origin, scene->rec.p));
+	light_dir = v_sub(light->origin, scene->rec.p);
 	light_len = v_len(light_dir);
-	light_ray = ray(v_add(scene->rec.p, vt_mul(scene->rec.normal, EPSILON)), light_dir);
+	light_dir = v_unit(light_dir);
+	light_ray = ray(v_add(scene->rec.p, vt_mul(v_unit(scene->rec.normal), 
+					EPSILON)), light_dir);
 	if (in_shadow(scene->world, light_ray, light_len))
 		return (color(0,0,0));
-	// light_dir = v_unit(v_sub(light->origin, scene->rec.p)); //교점에서 출발하여 광원을 향하는 벡터(정규화 됨)
-	// cosΘ는 Θ 값이 90도 일 때 0이고 Θ가 둔각이 되면 음수가 되므로 0.0보다 작은 경우는 0.0으로 대체한다.
-	kd = fmax(v_dot(scene->rec.normal, light_dir), 0.0);// (교점에서 출발하여 광원을 향하는 벡터)와 (교점에서의 법선벡터)의 내적값.
+	kd = fmax(v_dot(scene->rec.normal, light_dir), 0.0);
 	diffuse = vt_mul(light->light_color, kd);
-	// diffuse = vt_mul(light->light_color, fmax(v_dot(scene->rec.normal, light_dir), 0.0));
 	view_dir = v_unit(vt_mul(scene->ray.dir, -1));
 	reflect_dir = v_unit(reflect(vt_mul(light_dir, -1), scene->rec.normal));
-	ksn = 99; // shininess value
-	ks = 0.9; // specular strength
+	ksn = 100; // shininess value
+	ks = 0.7; // specular strength
 	spec = pow(fmax(v_dot(view_dir, reflect_dir), 0.0), ksn);
 	specular = vt_mul(vt_mul(light->light_color, ks), spec);
 	// return (specular);
 	// return (diffuse);
+	// vec_print("spc", specular);
+	// vec_print("dif", diffuse);
 	return (v_add(diffuse, specular));
 }
 
@@ -174,10 +175,6 @@ t_color		phong_lighting(t_scene *scene)
 					point_light_get(scene, lights->element));
 		lights = lights->next;
 	}
-	// vec_print("amb", scene->ambient);
 	light_color = v_add(light_color, scene->ambient);
-	// vec_print("ddd = ", vt_mul(vv_mul(light_color, scene->rec.albedo), 0.004));
-	// vec_print("ddd ", (vv_mul(light_color, scene->rec.albedo), 0.004));
-	return (v_min(vt_mul(vv_mul(light_color, scene->rec.albedo), 0.004), color(1, 1, 1)));
-	//모든 광원에 의한 빛의 양을 구한 후, 오브젝트의 반사율과 곱해준다. 그 값이 (1, 1, 1)을 넘으면 (1, 1, 1)을 반환한다.
+	return (v_min(vv_mul(light_color, scene->rec.albedo), color(1, 1, 1)));
 }

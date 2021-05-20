@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:38:42 by ash               #+#    #+#             */
-/*   Updated: 2021/05/19 18:02:17 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/20 14:49:05 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ t_bool			hit_square(t_ray *r, t_object *obj, t_hit_record *rec)
 	else
 		u = vec(0, 1, 0);
 	v = v_unit(v_cross(u, square->normal));
-	a = v_dot(v, v_sub(rec->p, square->point));
-	b = v_dot(u, v_sub(rec->p, square->point));
-	if (!(-square->len / 2 < a && a < square->len / 2) || !(-square->len / 2 < b && b < square->len / 2))
+	a = v_dot(u, v_sub(rec->p, square->point)) / v_dot(u, u);
+	b = v_dot(v, v_sub(rec->p, square->point)) / v_dot(v, v);
+	if ((a < square->len / -2.0) || (a > square->len / 2.0) ||
+		(b < square->len / -2.0) || (b > square->len / 2.0))
 		return (FALSE);
 	rec->normal = square->normal;
 	rec->albedo = square->color;

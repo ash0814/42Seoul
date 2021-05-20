@@ -6,7 +6,7 @@
 #    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 19:54:45 by sehyan            #+#    #+#              #
-#    Updated: 2021/05/18 16:23:42 by sehyan           ###   ########.fr        #
+#    Updated: 2021/05/20 16:00:21 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,20 +15,19 @@ NAME	=	minirt
 #
 # SRCS and OBJS
 #
-SRCS_LIB = ./srcs/
-SRCS	=	camera.c canvas.c ft_atoif.c hit_obj.c hit_obj2.c \
-			hit.c hook.c init.c main.c object_create.c objects.c \
-			parse_object.c parse_object2.c parse.c phong.c ray.c \
-			split_utils.c split_utils2.c utils.c utils2.c vec_utils.c \
-			vec_utils2.c vec_utils3.c
+SRCS	=	./srcs/camera.c ./srcs/canvas.c ./srcs/ft_atoif.c ./srcs/hit_obj.c ./srcs/hit_obj2.c \
+			./srcs/hit.c ./srcs/hook.c ./srcs/init.c ./srcs/main.c ./srcs/object_create.c ./srcs/objects.c \
+			./srcs/parse_object.c ./srcs/parse_object2.c ./srcs/parse.c ./srcs/phong.c ./srcs/ray.c \
+			./srcs/split_utils.c ./srcs/split_utils2.c ./srcs/utils.c ./srcs/utils2.c ./srcs/vec_utils.c \
+			./srcs/vec_utils2.c ./srcs/vec_utils3.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRCS:.c=.o)
 #
 # Compiler and flags
 #
 
 CC		=	clang
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra #-fsanitize=address -g
 CLIB	=	-Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 
 #
@@ -40,17 +39,21 @@ CLIB	=	-Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 
 all		: $(NAME)
 
+bonus	: all
+
 %.o	:%.c
-	$(CC) $(CFLAGS)  -c $< -o $@
+	$(CC) -Imlx $(CFLAGS)  -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(CLIB) $(addprefix $(SRCS_LIB), $(SRCS)) -o $(NAME)
+	$(CC) $(CFLAGS) $(CLIB) $(OBJ) -o $(NAME)
 	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 
 clean	:
-	rm -rf $(OBJS)
+	rm -rf $(OBJ)
 
 fclean	: clean
 	rm -rf	$(NAME)
 
 re		: fclean all
+
+.PHONY: all clean fclean re

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_obj2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:49:57 by ash               #+#    #+#             */
-/*   Updated: 2021/05/19 18:08:19 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/20 15:44:31 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,29 +87,29 @@ t_bool			hit_cylinder(t_ray *r, t_object *obj, t_hit_record *rec)
                 v_sub(r->origin, cyl->point))))) - cyl->radius * cyl->radius;
     d = b * b - a * c;
     rec->t = (-b - sqrt(d)) / a;
+	rec->t2 = (-b + sqrt(d)) / a;
     if (d < 0)
         return (FALSE);
-    if (rec->t < rec->tmin || rec->t > rec->tmax)
-	{
-		rec->t = (-b + sqrt(d)) / a;
-		if (rec->t < rec->tmin || rec->t > rec->tmax)
-        	return (FALSE);
-	}
+	if (rec->t < rec->tmin || rec->t > rec->tmax)
+		if (rec->t2 < rec->tmin || rec->t2 > rec->tmax)
+			return (FALSE);
 	rec->p = ray_at(r, rec->t);
-    rec->normal = v_unit(v_div(v_sub(v_sub(rec->p, cyl->point), vt_mul(cyl->normal,
-                    v_dot(cyl->normal, v_sub(rec->p, cyl->point)))), cyl->radius));
-    set_face_normal(r, rec);
+    // rec->normal = v_unit(v_div(v_sub(v_sub(rec->p, cyl->point), vt_mul(cyl->normal,
+    //                 v_dot(cyl->normal, v_sub(rec->p, cyl->point)))), cyl->radius));
+	rec->normal = v_unit(v_sub(v_sub(rec->p, cyl->point),
+			vt_mul(cyl->normal, v_dot(cyl->normal, v_sub(rec->p, cyl->point)))));
+   
 	double pc2 = v_pow(v_sub(rec->p, cyl->point));
 	double r2 = cyl->radius * cyl->radius;
 	double h = sqrt(pc2 - r2);
-	if (h > rec->cy_height)	//원기둥 길이
+	if (h > cyl->height)	//원기둥 길이
 	{
-		rec->t = (-b + sqrt(d)) / a;
-		rec->p = ray_at(r, rec->t);
+		rec->p = ray_at(r, rec->t2);
 		pc2 = v_pow(v_sub(rec->p, cyl->point));
 		h = sqrt(pc2 - r2);
-		if (h > rec->cy_height)
+		if (h > cyl->height)
 			return (FALSE);
 	}
+	set_face_normal(r, rec);
     return (TRUE);
 }

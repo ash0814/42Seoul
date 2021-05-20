@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:58:13 by ash               #+#    #+#             */
-/*   Updated: 2021/05/18 17:53:03 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:21:44 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parse_a(char **words, t_scene *scene)
 		ft_error("A parsing ERROR\n");
 	tmp = ft_split(words[2], ',');
 	check_color(tmp);
-	amb = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	amb = color(ft_atof(tmp[0])  / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
 	scene->ambient = vt_mul(amb, ft_atof(words[1]));
 }
@@ -71,7 +71,7 @@ void	parse_l(char **words, t_scene *scene)
 	l_point = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	tmp = ft_split(words[3], ',');
-	l_color = color(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
+	l_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
 	check_color(tmp);
 	double_free(tmp);
 	oadd(&scene->light, object(LIGHT_POINT, 

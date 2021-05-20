@@ -1,6 +1,10 @@
 {
 	"files.associations": {
 		"minirt.h": "c",
-		"locale": "c"
+		"locale": "c",
+		"__locale": "c",
+		"__string": "c",
+		"string": "c",
+		"string_view": "c"
 	}
 }
