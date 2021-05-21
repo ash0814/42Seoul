@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:54:02 by ash               #+#    #+#             */
-/*   Updated: 2021/05/20 16:35:10 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/21 13:57:22 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ t_camera	*camera(t_canvas canvas, t_point org, t_vec nor, double fov)
 	cam->viewport_h = cam->viewport_w / canvas.aspect_ratio;
 	cam->focal_len = 1.0;
 	cam->normal = nor;
-	// cam->hrzt = vec(cam->viewport_w, 0, 0);
-	// cam->vrtc = vec(0, cam->viewport_h, 0);
 	vup = vec(0, 1, 0);
 	if (cam->normal.x == 0 && fabs(cam->normal.y) == 1
 								&& cam->normal.z == 0)
@@ -37,8 +35,5 @@ t_camera	*camera(t_canvas canvas, t_point org, t_vec nor, double fov)
 	cam->left_bottom =
 		v_sub(v_sub(v_sub(cam->org, v_div(cam->hrzt, 2)),
 		v_div(cam->vrtc, 2)), vt_mul(cam->normal, -1));
-	// cam->left_bottom = v_sub(v_sub(v_sub(cam->org, v_div(cam->hrzt, 2)),
-	// 							v_div(cam->vrtc, 2)), vt_mul(cam->normal, -1));
-	//카메라의 normal값, fov 는 어디서 어떻게 받는걸까?
 	return (cam);
 }

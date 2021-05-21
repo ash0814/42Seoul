@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/19 15:07:34 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/21 14:37:22 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,7 @@ t_canvas	canvas(int	width, int height);
 t_camera	*camera(t_canvas canvas, t_point orig, t_vec nor, double fov);
 
 //camera_utils
-t_camera        *cam_oadd(t_camera **list, t_camera *new);
-t_camera        *cam_olast(t_camera *list);
-t_camera        *cam_onext(t_camera *list);
+t_object        *cam_onext(t_object *list);
 
 // objects
 t_sphere    *sphere(t_point center, double radius, t_color color);
@@ -146,4 +144,10 @@ double		ft_power(double a, int b);
 double		ft_atof(const char *str);
 
 void vec_print(char *str, t_point t);
+
+t_data		print_image(t_vars *vars);
+int 		write_color(int t, t_color *pixel_color);
+void			check_window_size(t_vars *vars);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_bool		check_rt(char *s);
 #endif

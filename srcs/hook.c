@@ -3,25 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:12:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/21 00:39:59 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/21 15:46:04 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
-void	next_camera(t_vars vars)
+void			next_camera(t_vars vars)
 {
-	vars.scene->camera = olast(vars.scene->camera);
+	vars.scene->camera = cam_onext(vars.scene->camera);
 	if (vars.scene->camera == NULL)
-		vars.scene->camera = vars.scene->camera;
+		vars.scene->camera = vars.scene->head_cam;
+}
+
+t_object        *cam_onext(t_object *list)
+{
+    if (list->next == NULL){
+		printf("ddd");
+	    return (NULL);
+		}
+    if (list->next)
+        return (list->next);
+    return (NULL);
 }
 
 int	key_hook(int keycode, t_vars *vars)
 {
-	(void)vars;
+	t_data image;
+
 	if(keycode == 53)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
@@ -30,8 +42,8 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == 8)
 	{
 		next_camera(*vars);
-		mlx_put_image_to_window(
-			vars->mlx, vars->win, vars->scene->camera, 0, 0);
+		image = print_image(vars);
+		mlx_put_image_to_window(vars->mlx, vars->win, image.img, 0, 0);
 	}
 	return (0);
 }

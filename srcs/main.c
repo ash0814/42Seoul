@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/21 00:40:31 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/21 15:15:04 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void vec_print(char *str, t_point t) {
 	printf("%s : %.2f %.2f %.2f\n", str, t.x, t.y, t.z);
 }
 
-void		print_image(t_vars *vars)
+t_data		print_image(t_vars *vars)
 {
 	t_data	image;
 	t_color color;
@@ -62,12 +62,7 @@ void		print_image(t_vars *vars)
 	int		j;
 
 	t_camera *cam = (t_camera *)((t_object *)vars->scene->camera->next)->element;
-	// vec_print("org", cam->org);
-	// vec_print("normal", cam->normal);
-	// printf("{fov : %f}\n", cam->fov);
-
-	vars->win = mlx_new_window(vars->mlx, vars->scene->canvas.width,
-							vars->scene->canvas.height, "ash_world!");
+	
 	image.img = mlx_new_image(vars->mlx, vars->scene->canvas.width,
 							vars->scene->canvas.height);
 	image.addr = mlx_get_data_addr(image.img,
@@ -86,16 +81,13 @@ void		print_image(t_vars *vars)
 		}
 		j--;
 	}
-	// vec_print("orig test", ((t_light *)(vars->scene->light->element))->origin);
-	mlx_put_image_to_window(vars->mlx, vars->win, image.img, 0, 0);
-	mlx_key_hook(vars->win, key_hook, vars);
-	mlx_hook(vars->win, 17, (1L << 5), exit_hook, 0);
-	mlx_loop(vars->mlx);
+	return(image);
 }
 
 int			main(int argc, char *argv[])
 {
 	t_vars vars;
+	t_data	image;
 
 
 	vars.mlx = mlx_init();
@@ -105,9 +97,13 @@ int			main(int argc, char *argv[])
 		vars.scene = scene_init( argv[1]);
 	}
 	else
-		ft_error("input ERROR\n");
-		
+		ft_error("input ERROR\n");	
 	check_window_size(&vars);
-	print_image(&vars);
+	vars.win = mlx_new_window(vars.mlx, vars.scene->canvas.width, vars.scene->canvas.height, "ash_world!");
+	image = print_image(&vars);
+	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
+	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_hook(vars.win, 17, 0, exit_hook, 0);
+	mlx_loop(vars.mlx);
 	return (0);
 }	

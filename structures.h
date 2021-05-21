@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:51:53 by ash               #+#    #+#             */
-/*   Updated: 2021/05/20 15:42:59 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/21 15:06:06 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct		s_camera
     t_point			left_bottom;
 	double			fov;
 	t_vec			normal;
+	t_data			image;
 }               	t_camera;
 
 typedef struct		s_light
@@ -110,6 +111,7 @@ typedef struct	s_scene
 	t_color			ambient; // 8.4에서 설명할 요소
 	t_ray			ray;
 	t_hit_record	rec;
+	t_object		*head_cam;
 }				t_scene;
 
 typedef struct	s_vars 
