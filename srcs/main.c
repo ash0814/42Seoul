@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/21 15:15:04 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/21 19:50:48 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void			check_window_size(t_vars *vars)
-{
-	int			x;
-	int			y;
-
-	mlx_get_screen_size(vars->mlx, &x, &y);
-	if (vars->scene->canvas.width > x)
-		vars->scene->canvas.width = x;
-	if (vars->scene->canvas.height > y)
-		vars->scene->canvas.height = y;
-}
-
 int write_color(int t, t_color *pixel_color)
 {
 	return (t << 24 | (int)(255.999 * pixel_color->x) << 16 | (int)(255.999 * pixel_color->y) << 8 | (int)(255.999 * pixel_color->z));
@@ -61,7 +49,7 @@ t_data		print_image(t_vars *vars)
 	int 	i;
 	int		j;
 
-	t_camera *cam = (t_camera *)((t_object *)vars->scene->camera->next)->element;
+	t_camera *cam = (t_camera *)vars->scene->camera->element;
 	
 	image.img = mlx_new_image(vars->mlx, vars->scene->canvas.width,
 							vars->scene->canvas.height);
@@ -88,17 +76,17 @@ int			main(int argc, char *argv[])
 {
 	t_vars vars;
 	t_data	image;
-
+	int w;
+	int h;
 
 	vars.mlx = mlx_init();
-	
+	mlx_get_screen_size(vars.mlx, &w, &h);
 	if ((argc == 2 || argc == 3) && check_rt(argv[1]) == TRUE)
 	{
-		vars.scene = scene_init( argv[1]);
+		vars.scene = scene_init(argv[1], w, h);
 	}
 	else
 		ft_error("input ERROR\n");	
-	check_window_size(&vars);
 	vars.win = mlx_new_window(vars.mlx, vars.scene->canvas.width, vars.scene->canvas.height, "ash_world!");
 	image = print_image(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);

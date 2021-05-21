@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:51:53 by ash               #+#    #+#             */
-/*   Updated: 2021/05/21 15:06:06 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/21 19:50:52 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ typedef struct	s_scene
 	t_ray			ray;
 	t_hit_record	rec;
 	t_object		*head_cam;
+	int				h;
+	int				w;
 }				t_scene;
 
 typedef struct	s_vars 

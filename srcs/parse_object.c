@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:58:13 by ash               #+#    #+#             */
-/*   Updated: 2021/05/20 14:21:44 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/21 19:40:54 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 void	parse_r(char **words, t_scene *scene)
 {
+	int w;
+	int h;
+
 	if (ft_len_2D(words) != 3)
 		ft_error("R Parsing ERROR\n");
 	if (ft_atoi(words[1]) <= 0 || ft_atoi(words[2]) <= 0)
 		ft_error("R parsing ERROR\n");
-	scene->canvas = canvas(ft_atoi(words[1]), ft_atoi(words[2]));
+	w = check_max_w(scene, ft_atoi(words[1]));
+	h = check_max_h(scene, ft_atoi(words[2]));
+	scene->canvas = canvas(w, h);
 }
 
 void	parse_a(char **words, t_scene *scene)
@@ -37,7 +42,7 @@ void	parse_a(char **words, t_scene *scene)
 	scene->ambient = vt_mul(amb, ft_atof(words[1]));
 }
 
-void	parse_c(char **words, t_scene *scene)
+void	parse_c(char **words, t_scene *scene, int flag)
 {
 	t_vec		cam_vec;
 	t_point		cam_p;
@@ -57,7 +62,8 @@ void	parse_c(char **words, t_scene *scene)
 	cam_vec = vec(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	oadd(&scene->camera, object(CAM, camera(scene->canvas, cam_p, cam_vec, cam_fov)));
-	// vec_print("test2", ((t_camera *)(scene->camera->element))->org);
+	if (flag == 1)
+		scene->head_cam = scene->camera;
 }
 
 void	parse_l(char **words, t_scene *scene)

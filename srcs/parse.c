@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:43:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/19 17:08:57 by ash              ###   ########.fr       */
+/*   Updated: 2021/05/21 19:22:18 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	parse(char *argv, t_scene *scene)
     int     line_num;
     int     i;
     char    **line;
+    int     flag;
 
     i = 0;
+    flag = 0;
     if ((fd = open(argv, O_RDONLY)) < 0)
         ft_error("FILE OPEN FAIL\n");
     if (read(fd, &buf, 5000000) < 0)
@@ -30,14 +32,14 @@ void	parse(char *argv, t_scene *scene)
     line_num = ft_len_2D(line);
     while (i < line_num)
     {
-        check_file(line[i], scene);
+        check_file(line[i], scene, flag);
         i++;
     }
     double_free(line);
     close(fd);
 }
 
-void    check_file(char *str, t_scene *scene)
+void    check_file(char *str, t_scene *scene, int flag)
 {
     char    **words;
 
@@ -50,8 +52,10 @@ void    check_file(char *str, t_scene *scene)
             parse_r(words, scene);
         else if (words[0][0] == 'A')
             parse_a(words, scene);
-        else if (words[0][0] == 'c')
-            parse_c(words, scene);
+        else if (words[0][0] == 'c'){
+            flag++;
+            parse_c(words, scene, flag);
+        }
         else if (words[0][0] == 'l')
             parse_l(words, scene);
         else if (words[0][0] == '#')

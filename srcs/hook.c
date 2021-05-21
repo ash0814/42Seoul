@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:12:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/21 15:46:04 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/21 19:24:25 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void			next_camera(t_vars vars)
 
 t_object        *cam_onext(t_object *list)
 {
-    if (list->next == NULL){
-		printf("ddd");
+    if (list->next == NULL)
 	    return (NULL);
-		}
     if (list->next)
         return (list->next);
     return (NULL);

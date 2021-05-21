@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/21 14:37:22 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/21 19:50:35 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,18 @@ int			exit_hook();
 
 //init
 // t_scene		*scene_init(void);
-t_scene			*scene_init(char *argv);
+t_scene			*scene_init(char *argv, int w, int h);
 t_vec				reflect(t_vec v, t_vec n);
 
 // parse
 void	parse(char *argv, t_scene *scene);
-void    check_file(char *str, t_scene *scene);
+void    check_file(char *str, t_scene *scene, int flag);
 
 // parse_object
 void	parse_r(char **words, t_scene *scene);
 void	parse_a(char **words, t_scene *scene);
 void	parse_l(char **words, t_scene *scene);
-void	parse_c(char **words, t_scene *scene);
+void	parse_c(char **words, t_scene *scene, int flag);
 void	parse_cy(char **words, t_scene *scene);
 void	parse_tr(char **words, t_scene *scene);
 void	parse_sp(char **words, t_scene *scene);
@@ -136,6 +136,8 @@ void    double_free(char **str);
 int     ft_len_2D(char **str);
 void	set_face_normal(t_ray *r, t_hit_record *rec);
 void    check_zero_to_one(char **tmp);
+int			check_max_w(t_scene *scene, int a);
+int			check_max_h(t_scene *scene, int b);
 
 //ft_atoif
 int			i_atoi(const char *str);
