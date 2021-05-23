@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/21 19:50:35 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 12:57:40 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,4 +152,9 @@ int 		write_color(int t, t_color *pixel_color);
 void			check_window_size(t_vars *vars);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_bool		check_rt(char *s);
+
+// save
+void	save_image(t_scene *scene);
+t_bmp		set_bmp_h(t_scene *scene);
+
 #endif

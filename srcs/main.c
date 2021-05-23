@@ -6,11 +6,23 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/21 19:50:48 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 13:13:01 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
+
+int				ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 || *s2)
+	{
+		if (*s1 != *s2)
+			break ;
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
 
 t_bool		check_rt(char *s)
 {
@@ -89,6 +101,8 @@ int			main(int argc, char *argv[])
 		ft_error("input ERROR\n");	
 	vars.win = mlx_new_window(vars.mlx, vars.scene->canvas.width, vars.scene->canvas.height, "ash_world!");
 	image = print_image(&vars);
+	if ((argc == 3) && (!ft_strcmp(argv[2], "--save") || !ft_strcmp(argv[2], "--s")))
+		save_image(vars.scene);
 	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, 17, 0, exit_hook, 0);

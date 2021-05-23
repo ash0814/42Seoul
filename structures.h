@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:51:53 by ash               #+#    #+#             */
-/*   Updated: 2021/05/21 19:50:52 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 12:44:51 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,47 @@ typedef struct s_cylinder
 	double		height;
 	t_color		color;
 }				t_cylinder;
+
+# pragma pack(push, 1)
+
+typedef	struct	s_color2
+{
+	unsigned char	z;
+	unsigned char	y;
+	unsigned char	x;
+}				t_color2;
+
+typedef	struct	s_fileheader
+{
+	unsigned char	sign1;
+	unsigned char	sign2;
+	unsigned int	file_size;
+	unsigned short	reserved1;
+	unsigned short	reserved2;
+	unsigned int	start_bmp;
+}				t_fileheader;
+
+typedef	struct	s_infoheader
+{
+	unsigned int	size;
+	unsigned int	width;
+	unsigned int	height;
+	unsigned short	planes;
+	unsigned short	bitcount;
+	unsigned int	compression;
+	unsigned int	sizeimage;
+	unsigned int	x_pelspermeter;
+	unsigned int	y_pelspermeter;
+	unsigned int	color_used;
+	unsigned int	color_important;
+}				t_infoheader;
+
+typedef	struct	s_bmp
+{
+	t_fileheader	file_h;
+	t_infoheader	info_h;
+}				t_bmp;
+
+# pragma pack(pop)
 
 #endif

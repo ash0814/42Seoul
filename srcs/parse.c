@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:43:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/21 19:22:18 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 13:10:53 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ void    check_file(char *str, t_scene *scene, int flag)
         else if (words[0][0] == 's' && words[0][1] == 'q')
             parse_sq(words, scene);
     }
-    // else
-    //     ft_error("PASING ERROR_words\n");
-    
+    else
+        ft_error("PASING ERROR_words\n");
     double_free(words);
 }
