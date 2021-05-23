@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 12:23:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/23 16:10:30 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 16:20:06 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void		save_image(t_scene *scene)
 
 	fd = open("minirt.bmp", O_WRONLY | O_CREAT, 0644);
 	bmp_h = set_bmp_h(scene);
-	printf("===MAKE BMP===\n");
 	write(fd, &bmp_h, 54);
 	i[0] = -1;
 	while (++i[0] < scene->canvas.height)
