@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 19:55:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/23 14:43:54 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 16:10:10 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int			main(int argc, char *argv[])
 	if ((argc == 3) && (!ft_strcmp(argv[2], "--save") ||
 				!ft_strcmp(argv[2], "--s")))
 		save_image(vars.scene);
+	printf("===MAKE MINIRT====\n");
 	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, 17, 0, exit_hook, 0);
