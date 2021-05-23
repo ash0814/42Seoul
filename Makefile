@@ -6,7 +6,7 @@
 #    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 19:54:45 by sehyan            #+#    #+#              #
-#    Updated: 2021/05/23 12:53:16 by sehyan           ###   ########.fr        #
+#    Updated: 2021/05/23 13:45:13 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS	=	./srcs/camera.c ./srcs/canvas.c ./srcs/ft_atoif.c ./srcs/hit_obj.c ./srcs
 			./srcs/hit.c ./srcs/hook.c ./srcs/init.c ./srcs/main.c ./srcs/object_create.c ./srcs/objects.c \
 			./srcs/parse_object.c ./srcs/parse_object2.c ./srcs/parse.c ./srcs/phong.c ./srcs/ray.c \
 			./srcs/split_utils.c ./srcs/split_utils2.c ./srcs/utils.c ./srcs/utils2.c ./srcs/vec_utils.c \
-			./srcs/vec_utils2.c ./srcs/vec_utils3.c ./srcs/utils3.c ./srcs/save.c
+			./srcs/vec_utils2.c ./srcs/vec_utils3.c ./srcs/utils3.c ./srcs/save.c ./srcs/image.c
 
 OBJ = $(SRCS:.c=.o)
 #

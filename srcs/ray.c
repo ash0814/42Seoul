@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 21:09:02 by ash               #+#    #+#             */
-/*   Updated: 2021/05/19 16:24:10 by ash              ###   ########.fr       */
+/*   Created: 2021/05/23 15:40:24 by sehyan            #+#    #+#             */
+/*   Updated: 2021/05/23 15:40:27 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
-t_ray	ray(t_point origin, t_vec dir)
+t_ray		ray(t_point origin, t_vec dir)
 {
 	t_ray ray;
 
@@ -21,7 +21,7 @@ t_ray	ray(t_point origin, t_vec dir)
 	return (ray);
 }
 
-t_vec	ray_at(t_ray *ray, double t)
+t_vec		ray_at(t_ray *ray, double t)
 {
 	t_vec out;
 
@@ -33,18 +33,14 @@ t_vec	ray_at(t_ray *ray, double t)
 
 t_color		ray_color(t_scene *scene)
 {
-	// double	t;
-
 	scene->rec.tmin = EPSILON;
 	scene->rec.tmax = INFINITY;
-	// vec_print("alb", scene->rec.albedo);
 	if (hit(scene->world, &scene->ray, &scene->rec))
 	{
 		return (phong_lighting(scene));
 	}
 	else
 	{
-		// t = 0.5 * (scene->ray.dir.y + 1.0);
 		return (color(0, 0, 0));
 	}
 }
@@ -54,6 +50,7 @@ t_ray		ray_primary(t_camera *cam, double u, double v)
 	t_ray	ray;
 
 	ray.origin = cam->org;
-	ray.dir = v_unit(v_sub(v_add(v_add(cam->left_bottom, vt_mul(cam->hrzt, u)), vt_mul(cam->vrtc, v)), cam->org));
+	ray.dir = v_unit(v_sub(v_add(v_add(cam->left_bottom, vt_mul(cam->hrzt, u)),
+					vt_mul(cam->vrtc, v)), cam->org));
 	return (ray);
 }

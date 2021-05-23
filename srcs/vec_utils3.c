@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:14:59 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/16 20:41:38 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 15:20:02 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vec	v_unit(t_vec v)
 	double len;
 
 	len = v_len(v);
-	return (vec(v.x / len, v.y / len , v.z / len));
+	return (vec(v.x / len, v.y / len, v.z / len));
 }
 
 t_vec	v_min(t_vec vec1, t_vec vec2)

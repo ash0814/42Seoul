@@ -6,12 +6,11 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:26:28 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/18 12:39:23 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 15:14:45 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
-
 
 int		ft_check_len(char const *s, char c)
 {
@@ -83,7 +82,7 @@ char	**ft_put_r_wsp(const char *s, int h, int len)
 	return (r);
 }
 
-int	ft_check_len_wsp(char const *s)
+int		ft_check_len_wsp(char const *s)
 {
 	int		i;
 	int		len;
@@ -117,7 +116,7 @@ char	**ft_split_wsp(char const *s)
 	i = -1;
 	while (s[++i])
 	{
-		if (!(9 <= s[i] && s[i] <= 13) && s[i] != ' ' 
+		if (!(9 <= s[i] && s[i] <= 13) && s[i] != ' '
 			&& ((9 <= s[i + 1] && s[i + 1] <= 13)
 			|| s[i + 1] == 32 || s[i + 1] == 0))
 			h++;

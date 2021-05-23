@@ -5,34 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 21:12:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/21 19:24:25 by sehyan           ###   ########.fr       */
+/*   Created: 2021/05/23 15:40:05 by sehyan            #+#    #+#             */
+/*   Updated: 2021/05/23 15:40:11 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
-void			next_camera(t_vars vars)
+void		next_camera(t_vars vars)
 {
 	vars.scene->camera = cam_onext(vars.scene->camera);
 	if (vars.scene->camera == NULL)
 		vars.scene->camera = vars.scene->head_cam;
 }
 
-t_object        *cam_onext(t_object *list)
+t_object	*cam_onext(t_object *list)
 {
-    if (list->next == NULL)
-	    return (NULL);
-    if (list->next)
-        return (list->next);
-    return (NULL);
+	if (list->next == NULL)
+		return (NULL);
+	if (list->next)
+		return (list->next);
+	return (NULL);
 }
 
-int	key_hook(int keycode, t_vars *vars)
+int			key_hook(int keycode, t_vars *vars)
 {
 	t_data image;
 
-	if(keycode == 53)
+	if (keycode == 53)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
@@ -46,7 +46,7 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
-int exit_hook()
+int			exit_hook(void)
 {
 	exit(0);
 }

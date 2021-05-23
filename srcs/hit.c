@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 23:34:38 by ash               #+#    #+#             */
-/*   Updated: 2021/05/20 14:36:33 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 13:45:45 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_bool		hit(t_object *world, t_ray *ray, t_hit_record *rec)
 
 	temp_rec = *rec;
 	hit_anything = FALSE;
-	while(world)
+	while (world)
 	{
 		if (hit_obj(world, ray, &temp_rec))
 		{

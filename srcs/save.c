@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 12:23:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/23 12:59:48 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 15:12:52 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,31 @@ t_color2	color2(double r, double g, double b)
 	return (c);
 }
 
-void	save_image(t_scene *scene)
+void		save_image(t_scene *scene)
 {
-	int fd;
-	int i;
-	int j;
-	t_color pixel_color;
-	t_color2 tmp_color;
-	t_bmp bmp_h;
+	int			fd;
+	int			i[2];
+	t_color		pixel_color;
+	t_color2	tmp_color;
+	t_bmp		bmp_h;
 
 	fd = open("minirt.bmp", O_WRONLY | O_CREAT, 0644);
 	bmp_h = set_bmp_h(scene);
 	write(fd, &bmp_h, 54);
-	i = -1;
-	while (++i < scene->canvas.height)
+	i[0] = -1;
+	while (++i[0] < scene->canvas.height)
 	{
-		j = -1;
-		while (++j < scene->canvas.width)
+		i[1] = -1;
+		while (++i[1] < scene->canvas.width)
 		{
-			scene->ray = ray_primary((t_camera *)(scene->head_cam->element), (double)j
-				/ (scene->canvas.width - 1), (double)i / (scene->canvas.height - 1));
+			scene->ray = ray_primary((t_camera *)(scene->head_cam->element),
+					(double)i[1] / (scene->canvas.width - 1),
+					(double)i[0] / (scene->canvas.height - 1));
 			pixel_color = ray_color(scene);
 			tmp_color = color2(pixel_color.x, pixel_color.y, pixel_color.z);
 			write(fd, &tmp_color, 3);
 		}
 	}
 	close(fd);
-    exit(0);
+	exit(0);
 }

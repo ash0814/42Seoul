@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:58:13 by ash               #+#    #+#             */
-/*   Updated: 2021/05/23 13:14:19 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/23 14:53:35 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	parse_r(char **words, t_scene *scene)
 	int w;
 	int h;
 
-	if (ft_len_2D(words) != 3)
+	if (ft_len_split(words) != 3)
 		ft_error("R Parsing ERROR\n");
 	if (ft_atoi(words[1]) <= 0 || ft_atoi(words[2]) <= 0)
 		ft_error("R parsing ERROR\n");
@@ -31,13 +31,14 @@ void	parse_a(char **words, t_scene *scene)
 	t_color		amb;
 	char		**tmp;
 
-	if (ft_len_2D(words) != 3)
+	if (ft_len_split(words) != 3)
 		ft_error("A Parsing ERROR\n");
 	if (ft_atof(words[1]) < 0.0 || ft_atof(words[1]) > 1.0)
 		ft_error("A parsing ERROR\n");
 	tmp = ft_split(words[2], ',');
 	check_color(tmp);
-	amb = color(ft_atof(tmp[0])  / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
+	amb = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0,
+			ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
 	scene->ambient = vt_mul(amb, ft_atof(words[1]));
 }
@@ -47,9 +48,9 @@ void	parse_c(char **words, t_scene *scene, int flag)
 	t_vec		cam_vec;
 	t_point		cam_p;
 	double		cam_fov;
-	char 		**tmp;
+	char		**tmp;
 
-	if (ft_len_2D(words) != 4)
+	if (ft_len_split(words) != 4)
 		ft_error("C Parsing ERROR\n");
 	if (ft_atof(words[3]) < 0.0 || ft_atof(words[3]) > 180.0)
 		ft_error("FOV value is not in 0 ~ 180\n");
@@ -61,7 +62,8 @@ void	parse_c(char **words, t_scene *scene, int flag)
 	check_three_nor(tmp);
 	cam_vec = vec(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
-	oadd(&scene->camera, object(CAM, camera(scene->canvas, cam_p, cam_vec, cam_fov)));
+	oadd(&scene->camera, object(CAM, camera(scene->canvas, cam_p,
+					cam_vec, cam_fov)));
 	if (flag == 1)
 		scene->head_cam = scene->camera;
 }
@@ -71,15 +73,18 @@ void	parse_l(char **words, t_scene *scene)
 	char	**tmp;
 	t_point	l_point;
 	t_color	l_color;
-	if (ft_len_2D(words) != 4 || ft_atof(words[2]) < 0.0 || ft_atof(words[2]) > 1.0)
+
+	if (ft_len_split(words) != 4 || ft_atof(words[2]) < 0.0 ||
+			ft_atof(words[2]) > 1.0)
 		ft_error("L Parsing ERROR\n");
 	tmp = ft_split(words[1], ',');
 	l_point = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	tmp = ft_split(words[3], ',');
-	l_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0, ft_atof(tmp[2]) / 255.0);
+	l_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0,
+			ft_atof(tmp[2]) / 255.0);
 	check_color(tmp);
 	double_free(tmp);
-	oadd(&scene->light, object(LIGHT_POINT, 
+	oadd(&scene->light, object(LIGHT_POINT,
 					light_point(l_point, l_color, ft_atof(words[2]))));
 }
