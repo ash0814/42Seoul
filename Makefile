@@ -6,36 +6,26 @@
 #    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 19:54:45 by sehyan            #+#    #+#              #
-#    Updated: 2021/05/23 13:45:13 by sehyan           ###   ########.fr        #
+#    Updated: 2021/05/23 15:53:35 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minirt
 
-#
-# SRCS and OBJS
-#
-SRCS	=	./srcs/camera.c ./srcs/canvas.c ./srcs/ft_atoif.c ./srcs/hit_obj.c ./srcs/hit_obj2.c \
-			./srcs/hit.c ./srcs/hook.c ./srcs/init.c ./srcs/main.c ./srcs/object_create.c ./srcs/objects.c \
-			./srcs/parse_object.c ./srcs/parse_object2.c ./srcs/parse.c ./srcs/phong.c ./srcs/ray.c \
-			./srcs/split_utils.c ./srcs/split_utils2.c ./srcs/utils.c ./srcs/utils2.c ./srcs/vec_utils.c \
-			./srcs/vec_utils2.c ./srcs/vec_utils3.c ./srcs/utils3.c ./srcs/save.c ./srcs/image.c
+SRCS	=	./srcs/camera.c ./srcs/canvas.c ./srcs/ft_atoif.c \
+			./srcs/hit_obj.c ./srcs/hit_obj2.c ./srcs/hit.c ./srcs/hook.c \
+			./srcs/init.c ./srcs/main.c ./srcs/object_create.c ./srcs/objects.c \
+			./srcs/parse_object.c ./srcs/parse_object2.c ./srcs/parse.c\
+			./srcs/phong.c ./srcs/ray.c ./srcs/split_utils.c\
+			./srcs/split_utils2.c ./srcs/utils.c ./srcs/utils2.c\
+			./srcs/vec_utils.c ./srcs/vec_utils2.c ./srcs/vec_utils3.c\
+			./srcs/utils3.c ./srcs/save.c ./srcs/image.c
 
 OBJ = $(SRCS:.c=.o)
-#
-# Compiler and flags
-#
 
 CC		=	clang
-CFLAGS	=	-Wall -Werror -Wextra #-fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra
 CLIB	=	-Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
-
-#
-# Rules
-#
-
-# test	: re
-# 			./minirt 1.rt
 
 all		: $(NAME)
 
