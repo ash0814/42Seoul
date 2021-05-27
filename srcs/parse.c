@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:43:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/05/23 15:34:16 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/27 10:28:35 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	parse(char *argv, t_scene *scene)
 		ft_error("FILE READ ERROR_buf\n");
 	if (!(line = ft_split(buf, '\n')))
 		ft_error("PASING ERROR_line\n");
-	while (i < ft_len_split(line))
+	while (i < len_spl(line))
 	{
 		check_file(line[i], scene, flag);
 		i++;

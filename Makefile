@@ -6,11 +6,11 @@
 #    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 19:54:45 by sehyan            #+#    #+#              #
-#    Updated: 2021/05/23 15:53:35 by sehyan           ###   ########.fr        #
+#    Updated: 2021/05/27 14:00:12 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	minirt
+NAME	=	miniRT
 
 SRCS	=	./srcs/camera.c ./srcs/canvas.c ./srcs/ft_atoif.c \
 			./srcs/hit_obj.c ./srcs/hit_obj2.c ./srcs/hit.c ./srcs/hook.c \
@@ -35,11 +35,13 @@ bonus	: all
 	$(CC) -Imlx $(CFLAGS)  -c $< -o $@
 
 $(NAME): $(OBJ)
+	$(MAKE) -C ./mlx
 	$(CC) $(CFLAGS) $(CLIB) $(OBJ) -o $(NAME)
 	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 
 clean	:
 	rm -rf $(OBJ)
+	$(MAKE) -C ./mlx clean
 
 fclean	: clean
 	rm -rf	$(NAME)

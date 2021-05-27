@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:52:01 by ash               #+#    #+#             */
-/*   Updated: 2021/05/23 15:39:30 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/27 10:28:35 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void		ft_error(char *s);
 void		check_color(char **tmp);
 void		check_three_nor(char **tmp);
 void		double_free(char **str);
-int			ft_len_split(char **str);
+int			len_spl(char **str);
 void		set_face_normal(t_ray *r, t_hit_record *rec);
 void		check_zero_to_one(char **tmp);
 int			check_max_w(t_scene *scene, int a);

@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:26:38 by ash               #+#    #+#             */
-/*   Updated: 2021/05/23 15:29:05 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/27 10:28:35 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	double_free(char **str)
 	int h;
 
 	i = 0;
-	h = ft_len_split(str);
+	h = len_spl(str);
 	while (i < h)
 	{
 		free(str[i]);
@@ -34,7 +34,7 @@ void	double_free(char **str)
 	free(str);
 }
 
-int		ft_len_split(char **str)
+int		len_spl(char **str)
 {
 	int h;
 

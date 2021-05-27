@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:58:13 by ash               #+#    #+#             */
-/*   Updated: 2021/05/23 14:53:35 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/27 10:28:35 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	parse_r(char **words, t_scene *scene)
 	int w;
 	int h;
 
-	if (ft_len_split(words) != 3)
+	if (len_spl(words) != 3)
 		ft_error("R Parsing ERROR\n");
 	if (ft_atoi(words[1]) <= 0 || ft_atoi(words[2]) <= 0)
 		ft_error("R parsing ERROR\n");
@@ -31,7 +31,7 @@ void	parse_a(char **words, t_scene *scene)
 	t_color		amb;
 	char		**tmp;
 
-	if (ft_len_split(words) != 3)
+	if (len_spl(words) != 3)
 		ft_error("A Parsing ERROR\n");
 	if (ft_atof(words[1]) < 0.0 || ft_atof(words[1]) > 1.0)
 		ft_error("A parsing ERROR\n");
@@ -50,11 +50,13 @@ void	parse_c(char **words, t_scene *scene, int flag)
 	double		cam_fov;
 	char		**tmp;
 
-	if (ft_len_split(words) != 4)
+	if (len_spl(words) != 4)
 		ft_error("C Parsing ERROR\n");
 	if (ft_atof(words[3]) < 0.0 || ft_atof(words[3]) > 180.0)
 		ft_error("FOV value is not in 0 ~ 180\n");
 	tmp = ft_split(words[1], ',');
+	if (len_spl(tmp) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	cam_p = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	cam_fov = ft_atof(words[3]);
@@ -74,10 +76,12 @@ void	parse_l(char **words, t_scene *scene)
 	t_point	l_point;
 	t_color	l_color;
 
-	if (ft_len_split(words) != 4 || ft_atof(words[2]) < 0.0 ||
+	if (len_spl(words) != 4 || ft_atof(words[2]) < 0.0 ||
 			ft_atof(words[2]) > 1.0)
 		ft_error("L Parsing ERROR\n");
 	tmp = ft_split(words[1], ',');
+	if (len_spl(tmp) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	l_point = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	tmp = ft_split(words[3], ',');

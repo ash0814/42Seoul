@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:40:24 by ash               #+#    #+#             */
-/*   Updated: 2021/05/23 15:36:36 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/05/27 10:30:45 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	parse_cy(char **words, t_scene *scene)
 	t_color	cy_color;
 	double	cy[2];
 
-	if (ft_len_split(words) != 6 || (cy[0] = ft_atof(words[3])) < 0
-								|| (cy[1] = ft_atof(words[4])) < 0)
+	if (len_spl(words) != 6 || ft_atof(words[3]) < 0 || ft_atof(words[4]) < 0)
 		ft_error("CY Parsing ERROR\n");
-	tmp = ft_split(words[1], ',');
+	if (len_spl((tmp = ft_split(words[1], ','))) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	cy_center = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	tmp = ft_split(words[2], ',');
@@ -48,9 +48,11 @@ void	parse_pl(char **words, t_scene *scene)
 	t_vec	pl_nor;
 	t_color	pl_color;
 
-	if (ft_len_split(words) != 4)
+	if (len_spl(words) != 4)
 		ft_error("PL Parsing ERROR\n");
 	tmp = ft_split(words[1], ',');
+	if (len_spl(tmp) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	pl_point = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	tmp = ft_split(words[2], ',');
@@ -72,9 +74,11 @@ void	parse_sp(char **words, t_scene *scene)
 	double	rad;
 	t_color	sp_color;
 
-	if (ft_len_split(words) != 4 || ft_atof(words[2]) <= 0)
+	if (len_spl(words) != 4 || ft_atof(words[2]) <= 0)
 		ft_error("SP Parsing ERROR\n");
 	tmp = ft_split(words[1], ',');
+	if (len_spl(tmp) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	sp_p = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	tmp = ft_split(words[3], ',');
@@ -82,7 +86,7 @@ void	parse_sp(char **words, t_scene *scene)
 	sp_color = color(ft_atof(tmp[0]) / 255.0, ft_atof(tmp[1]) / 255.0,
 			ft_atof(tmp[2]) / 255.0);
 	double_free(tmp);
-	rad = ft_atof(words[2]);
+	rad = ft_atof(words[2]) / 2.0;
 	oadd(&scene->world, object(SP, sphere(sp_p, rad, sp_color)));
 }
 
@@ -94,9 +98,11 @@ void	parse_sq(char **words, t_scene *scene)
 	t_vec	sq_nor;
 	double	sq_len;
 
-	if (ft_len_split(words) != 5 || ft_atof(words[3]) <= 0)
+	if (len_spl(words) != 5 || ft_atof(words[3]) <= 0)
 		ft_error("SQ Parsing ERROR\n");
 	tmp = ft_split(words[1], ',');
+	if (len_spl(tmp) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	sq_p = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	tmp = ft_split(words[2], ',');
@@ -119,15 +125,18 @@ void	parse_tr(char **words, t_scene *scene)
 	t_point	tr_p[3];
 	t_color tr_color;
 
-	if (ft_len_split(words) != 5)
+	if (len_spl(words) != 5)
 		ft_error("TR Parsign ERROR\n");
-	tmp = ft_split(words[1], ',');
+	if (len_spl((tmp = ft_split(words[1], ','))) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	tr_p[0] = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
-	tmp = ft_split(words[2], ',');
+	if (len_spl((tmp = ft_split(words[2], ','))) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	tr_p[1] = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
-	tmp = ft_split(words[3], ',');
+	if (len_spl((tmp = ft_split(words[3], ','))) != 3)
+		ft_error("point, color, vec don't have 3 value\n");
 	tr_p[2] = point(ft_atof(tmp[0]), ft_atof(tmp[1]), ft_atof(tmp[2]));
 	double_free(tmp);
 	tmp = ft_split(words[4], ',');
