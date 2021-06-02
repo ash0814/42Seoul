@@ -9,7 +9,6 @@ RUN	apt-get update && apt-get install -y \
 	nginx \
 	mariadb-server \
 	php-mysql \
-	php-mbstring \
 	openssl \
 	vim \
 	wget \
@@ -20,6 +19,7 @@ COPY	./srcs/run.sh ./
 COPY	./srcs/default ./tmp
 COPY	./srcs/wp-config.php ./tmp
 COPY	./srcs/config.inc.php ./tmp
+COPY	./srcs/phpinfo.php ./tmp
 # HostOS의 파일 또는 디렉토리를 컨테이너 안의 경로로 복사한다.
 
 EXPOSE	80 443
