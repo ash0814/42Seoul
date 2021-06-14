@@ -25,13 +25,16 @@ typedef struct s_node
 	t_node *next;
 }				t_node;
 
-typedef struct s_list
+typedef struct s_stack
 {
 	t_node *head;
 	t_node *tail;
-}				t_list;
+}				t_stack;
 
 int			ft_atoi(const char *str);
-void	addNode(t_list *A, int value);
-
+void	addNode(t_stack *A, int value);
+void    push_head(t_stack *stack, int val);
+void    pop_head(t_stack *stack);
+void    push_tail(t_stack *stack, int val);
+void	pop_tail(t_stack *stack);
 #endif
