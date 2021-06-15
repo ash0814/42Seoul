@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:42:51 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/12 16:26:13 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/15 13:02:12 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	addNode(t_stack *A, int value)
 		A->tail = node;
 		A->tail->next = NULL;
 	}
+}
+
+void	ft_error(char *s)
+{
+	printf("%s\n", s);
+	exit(1);
 }
 
 int		main(int argc, char *argv[])
@@ -66,6 +72,12 @@ int		main(int argc, char *argv[])
 									stack_a->head->next->next->next->value,
 									stack_a->tail->value);
 	pop_tail(stack_a);
+	printf("%d -> %d -> %d -> %d -> %d\n", stack_a->head->value,
+									stack_a->head->next->value,
+									stack_a->head->next->next->value,
+									stack_a->head->next->next->next->value,
+									stack_a->tail->value);
+	sa(stack_a);
 	printf("%d -> %d -> %d -> %d -> %d\n", stack_a->head->value,
 									stack_a->head->next->value,
 									stack_a->head->next->next->value,

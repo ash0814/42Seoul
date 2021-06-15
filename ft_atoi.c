@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:25:10 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/12 15:25:13 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/15 13:31:56 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	i_atoi(const char *str)
 int			ft_atoi(const char *str)
 {
 	int m;
-	int result;
+	long long result;
 	int i;
 
 	m = 1;
@@ -39,10 +39,18 @@ int			ft_atoi(const char *str)
 	}
 	else if (str[i] == '+')
 		i++;
-	while ('0' <= str[i] && str[i] <= '9' && str[i] != '\0')
+	while (str[i] != '\0')
 	{
-		result = result * 10 + str[i] - '0';
-		i++;
+		if ('0' <= str[i] && str[i] <= '9')
+		{
+			result = result * 10 + str[i] - '0';
+			i++;
+		}
+		else
+			ft_error("INPUT ERROR");
 	}
-	return (result * m);
+	result *= m;
+	if (result < -2147483648 || result > 2147483647)
+		ft_error("INPUT VALUE ERROR");
+	return ((int)result);
 }
