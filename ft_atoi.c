@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:25:10 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/15 13:31:56 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/15 15:51:16 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ int			ft_atoi(const char *str)
 		else
 			ft_error("INPUT ERROR");
 	}
-	result *= m;
-	if (result < -2147483648 || result > 2147483647)
+	if (result * m < -2147483648 || result * m > 2147483647)
 		ft_error("INPUT VALUE ERROR");
-	return ((int)result);
+	return ((int)result * m);
 }

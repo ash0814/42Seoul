@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_r.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/15 12:40:37 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/15 15:54:43 by sehyan           ###   ########.fr       */
+/*   Created: 2021/06/15 16:26:47 by sehyan            #+#    #+#             */
+/*   Updated: 2021/06/15 17:27:18 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *a)
+void	free_node(t_node **node)
 {
-	int top;
+	t_node **now;
+	t_node *tmp;
 
-	if (a->size < 2)
-		return ;
-	top = a->head->value;
-	pop_head(a);
-	push_tail(a, top);
+	now = node;
+	// printf("here\n");
+	while (*now)
+	{
+		tmp = *now;
+		*now = (*now)->next;
+		free(tmp);
+		tmp = 0;
+	}
 }
 
-void	rb(t_stack *b)
+void	free_stack(t_stack *a, t_stack *b)
 {
-	int top;
-
-	if (b->size < 2)
-		return ;
-	top = b->head->value;
-	pop_head(b);
-	push_tail(b, top);
-}
-
-void	rr(t_stack *a, t_stack *b)
-{
-	ra(a);
-	rb(b);
+	free_node(&a->head);
+	free(a);
+	a = 0;
+	free(b);
+	b = 0;
 }

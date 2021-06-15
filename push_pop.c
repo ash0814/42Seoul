@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 22:18:50 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/15 12:30:05 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/15 16:15:16 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void    push_head(t_stack *stack, int val)
 {
     t_node *new;
 
+    if (stack->size == 0)
+    {
+        addNode(stack, val);
+        return ;
+    }
     if (!(new = (t_node *)malloc(sizeof(t_node))))
         return ;
     new->value = val;
@@ -36,6 +41,11 @@ void    push_tail(t_stack *stack, int val)
 {
     t_node *new;
 
+    if (stack->size == 0)
+    {
+        addNode(stack, val);
+        return ;
+    }
     if (!(new = (t_node *)malloc(sizeof(t_node))))
         return ;
     new->value = val;
