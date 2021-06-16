@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:08:32 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/15 17:26:42 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/16 16:01:03 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
+void	get_p(t_stack *stack);
+void	q_sort(int left, int right, int *list);
 
 #endif

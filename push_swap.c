@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:42:51 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/15 17:27:38 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/16 15:55:44 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ void	print_stack(t_node *node)
 
 int		main(int argc, char *argv[])
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_stack *a;
+	t_stack *b;
 	int		i;
 
-	stack_a = (t_stack *)malloc(sizeof(t_stack));
-	stack_b = (t_stack *)malloc(sizeof(t_stack));
-	stack_a->head = NULL;
-	stack_a->tail = NULL;
-	stack_b->head = NULL;
-	stack_b->tail = NULL;
+	a = (t_stack *)malloc(sizeof(t_stack));
+	b = (t_stack *)malloc(sizeof(t_stack));
+	a->head = NULL;
+	a->tail = NULL;
+	b->head = NULL;
+	b->tail = NULL;
 	i = 0;
 	while (++i < argc)
-		addNode(stack_a, ft_atoi(argv[i]));
-	check_dup(stack_a);
-	print_stack(stack_a->head);
-
-	free_stack(stack_a, stack_b);
+		addNode(a, ft_atoi(argv[i]));
+	check_dup(a);
+	print_stack(a->head);
+	get_p(a);
+	free_stack(a, b);
 	return (0);
 }
