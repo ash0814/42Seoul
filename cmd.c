@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 22:18:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/15 15:53:36 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/16 21:29:36 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,13 @@ void	pa(t_stack *a, t_stack *b)
 void	pb(t_stack *a, t_stack *b)
 {
 	int a_top;
-
+	
 	if (a->size < 1)
 		return ;
 	a_top = a->head->value;
 	pop_head(a);
 	push_head(b, a_top);
 }
+
+// 8 -> 9
+// 11

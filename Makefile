@@ -6,7 +6,7 @@
 #    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/15 12:30:11 by sehyan            #+#    #+#              #
-#    Updated: 2021/06/16 15:55:56 by sehyan           ###   ########.fr        #
+#    Updated: 2021/06/16 18:36:20 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME	=	push_swap
 CC		=	gcc
 CF		=	-Wall -Wextra -Werror -I ./
 SRC	=	push_swap.c ft_atoi.c push_pop.c cmd.c cmd_r.c cmd_rr.c \
-		utils.c free.c get_p.c
+		utils.c free.c get_p.c \
+		# move.c
 
 SRC_DIR = ./
 

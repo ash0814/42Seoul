@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:08:32 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/16 16:01:03 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/16 19:09:30 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_stack
 	t_node *head;
 	t_node *tail;
 }				t_stack;
+
+void	print_stack(t_node *node);
 
 int		ft_atoi(const char *str);
 
@@ -59,7 +61,9 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
-void	get_p(t_stack *stack);
+int		get_p(t_stack *stack);
 void	q_sort(int left, int right, int *list);
+void	a_to_b(int r, t_stack *a, t_stack *b);
+// void	b_to_a(int r, t_stack *a, t_stack *b);
 
 #endif
