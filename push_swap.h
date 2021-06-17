@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:08:32 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/16 19:09:30 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/17 14:09:52 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
-int		get_p(t_stack *stack);
+int		get_p(t_stack *stack, int r);
 void	q_sort(int left, int right, int *list);
 void	a_to_b(int r, t_stack *a, t_stack *b);
-// void	b_to_a(int r, t_stack *a, t_stack *b);
+void	b_to_a(int r, t_stack *a, t_stack *b);
 
 #endif

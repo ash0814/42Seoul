@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:42:51 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/16 22:13:25 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/17 16:22:46 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ int		main(int argc, char *argv[])
 	while (++i < argc)
 		addNode(a, ft_atoi(argv[i]));
 	check_dup(a);
+	printf("input\n");
 	print_stack(a->head);
+	printf("________\n");
 
 	a_to_b(a->size, a, b);
-	// print_stack(a->head);
+	print_stack(a->head);
+	print_stack(b->head);
 	free_stack(a, b);
 	return (0);
 }
