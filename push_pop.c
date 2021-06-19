@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_pop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 22:18:50 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/17 13:36:10 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/19 16:25:44 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ void    push_head(t_stack *stack, int val)
 
 void    pop_head(t_stack *stack)
 {
+    if (stack->size == 1)
+    {
+        free_node(&stack->head);
+        stack->head = 0;
+        stack->size--;
+        return ;
+    }
     stack->head = stack->head->next;
     stack->head->prev->next = NULL;
     free(stack->head->prev);
@@ -60,6 +67,13 @@ void    push_tail(t_stack *stack, int val)
 
 void    pop_tail(t_stack *stack)
 {
+    if (stack->size == 1)
+    {
+        free_node(&stack->head);
+        stack->head = 0;
+        stack->size--;
+        return ;
+    }
     stack->tail = stack->tail->prev;
     stack->tail->next->prev = NULL;
     free(stack->tail->next);

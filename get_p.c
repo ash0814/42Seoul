@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_p.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 15:49:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/17 18:02:07 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/19 17:01:17 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		get_p(t_stack *stack, int r)
 	t_node *now;
  
 	i = 0;
-	list = (int *)malloc(sizeof(int) * stack->size);
+	list = (int *)malloc(sizeof(int) * r);
 	now = stack->head;
 	while (now && i < r)
 	{
@@ -68,8 +68,10 @@ int		get_p(t_stack *stack, int r)
 		now = now->next;
 		i++;
 	}
-	q_sort(0, stack->size - 1, list);
-	p = list[stack->size / 2];
+	q_sort(0, r - 1, list);
+	// for (int k = 0; k < r; k++)
+	// 	printf("list[%d] = %d\n", k, list[k]);
+	p = list[r / 2];
 	return (p);
 }
 
@@ -80,13 +82,18 @@ void	a_to_b(int r, t_stack *a, t_stack *b)
 	int	ra_t = 0;
 	int pb_t = 0;
 
-	// printf("r = %d\n", r);
-	if (r <= 1)
+	printf("r = %d\n", r);
+	if (r == 1){
+		print_stack(a->head);
+		print_stack(b->head);
+		printf("^^^^^^^atob^^^^^^\n");
+		printf("-----------------fin.----------------\n");
 		return ;
-	// printf("p = %d\n", p);
+	}
+	printf("p = %d\n", p);
 	while (i < r && a->head)
 	{
-		if (a->head->value > p){
+		if (a->head->value >= p){
 			ra(a);
 			ra_t++;
 		}
@@ -98,16 +105,11 @@ void	a_to_b(int r, t_stack *a, t_stack *b)
 		i++;
 	}
 	i = -1;
-	// printf("pb_t = %d\n", pb_t);
-	// print_stack(a->head);
-	// print_stack(b->head);
-	// printf("^^^^^^^^\n");
 	while (++i < ra_t)
 		rra(a);
-	// printf("r = {%d}, p = {%d}, ra_t{%d}\n", r, p, ra_t);
 	print_stack(a->head);
 	print_stack(b->head);
-	printf("=====\n");
+	printf("^^^^^^^atob^^^^^^\n");
 	a_to_b(ra_t, a, b);
 	b_to_a(pb_t, a, b);
 }
@@ -119,23 +121,27 @@ void	b_to_a(int r, t_stack *a, t_stack *b)
 	int	rb_t = 0;
 	int pa_t = 0;
 
-	// printf("r = %d\n", r);
-	if (r <= 2)
+	printf("r = %d\n", r);
+	if (r == 1)
 	{
-		// if (r != 0)
-		// 	pa(a, b);
+		pa(a, b);
+		print_stack(a->head);
+		print_stack(b->head);
+		printf("^^^^^^^^^btoa^^^^^^^^^^^\n");
+		printf("-----------------fin.----------------\n");
 		return ;
 	}
+	printf("p = %d\n", p);
 	while (i < r && a->head)
 	{
-		if (b->head->value > p){
-			rb(b);
-			rb_t++;
+		if (b->head->value >= p){
+			pa(a, b);
+			pa_t++;
 		}
 		else
 		{
-			pa(a, b);
-			pa_t++;
+			rb(b);
+			rb_t++;
 		}
 		i++;
 	}
@@ -144,8 +150,7 @@ void	b_to_a(int r, t_stack *a, t_stack *b)
 		rrb(b);
 	print_stack(a->head);
 	print_stack(b->head);
-	printf("=\n");
-	// printf("here");
+	printf("^^^^^^^^^btoa^^^^^^^^^^^\n");
 	a_to_b(pa_t, a, b);
 	b_to_a(rb_t, a, b);
 }

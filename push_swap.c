@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:42:51 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/17 16:22:46 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/19 16:12:59 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,16 @@ int		main(int argc, char *argv[])
 	check_dup(a);
 	printf("input\n");
 	print_stack(a->head);
-	printf("________\n");
+	print_stack(b->head);
+	printf("=======\n");
 
 	a_to_b(a->size, a, b);
+
+
+	printf("result :\n");
+	printf("A : ");
 	print_stack(a->head);
+	printf("B : ");
 	print_stack(b->head);
 	free_stack(a, b);
 	return (0);

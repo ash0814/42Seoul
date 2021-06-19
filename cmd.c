@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 22:18:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/17 13:38:03 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/19 16:36:23 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void    sa(t_stack *a)
 	pop_head(a);
 	push_head(a, one);
 	push_head(a, two);
+	write(1, "sa\n", 3);
 }
 
 void    sb(t_stack *b)
@@ -40,12 +41,14 @@ void    sb(t_stack *b)
 	pop_head(b);
 	push_head(b, one);
 	push_head(b, two);
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_stack *a, t_stack *b)
 {
     sa(a);
 	sb(b);
+	write(1, "ss\n", 3);
 }
 
 void	pa(t_stack *a, t_stack *b)
@@ -57,6 +60,7 @@ void	pa(t_stack *a, t_stack *b)
 	b_top = b->head->value;
 	pop_head(b);
 	push_head(a, b_top);
+	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack *a, t_stack *b)
@@ -68,4 +72,5 @@ void	pb(t_stack *a, t_stack *b)
 	a_top = a->head->value;
 	pop_head(a);
 	push_head(b, a_top);
+	write(1, "pb\n", 3);
 }

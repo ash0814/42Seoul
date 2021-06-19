@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_r.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 12:40:37 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/17 17:35:34 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/19 14:37:01 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ra(t_stack *a)
 	top = a->head->value;
 	pop_head(a);
 	push_tail(a, top);
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_stack *b)
@@ -32,10 +33,12 @@ void	rb(t_stack *b)
 	top = b->head->value;
 	pop_head(b);
 	push_tail(b, top);
+	write(1, "rb\n", 3);
 }
 
 void	rr(t_stack *a, t_stack *b)
 {
 	ra(a);
 	rb(b);
+	write(1, "rr\n", 3);
 }
