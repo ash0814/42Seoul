@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 15:49:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/19 17:01:17 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/19 20:19:24 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,55 @@ int		get_p(t_stack *stack, int r)
 		i++;
 	}
 	q_sort(0, r - 1, list);
-	// for (int k = 0; k < r; k++)
-	// 	printf("list[%d] = %d\n", k, list[k]);
 	p = list[r / 2];
+	free(list);
 	return (p);
 }
 
 void	a_to_b(int r, t_stack *a, t_stack *b)
 {
-	int p = get_p(a, r);
+	int p;
 	int i = 0;
 	int	ra_t = 0;
 	int pb_t = 0;
 
-	printf("r = %d\n", r);
-	if (r == 1){
-		print_stack(a->head);
-		print_stack(b->head);
-		printf("^^^^^^^atob^^^^^^\n");
-		printf("-----------------fin.----------------\n");
+	if (a->size == 3)
+	{
+		int x = a->head->value;
+		int y = a->head->next->value;
+		int z = a->head->next->next->value;
+		if (x < y && y < z && x < z)
+			;
+		else if (x < y && y > z && z > x)
+		{
+			rra(a);
+			sa(a);
+		}
+		else if (x > y && y < z && z > x)
+			sa(a);
+		else if (x < y && y > z && x > z)
+			rra(a);
+		else if (x > y && x > z && y < z)
+		{
+			rra(a);
+			rra(a);
+		}
+		else if (x > y && x > z && y > z)
+		{
+			ra(a);
+			sa(a);
+		}
 		return ;
 	}
-	printf("p = %d\n", p);
+	if (r < 3)
+	{
+		if (r == 2 && a->head->value > a->head->next->value)
+			sa(a);
+		return ;
+	}
+	p = get_p(a, r);
+	// if (r == 1)
+	// 	return ;
 	while (i < r && a->head)
 	{
 		if (a->head->value >= p){
@@ -107,9 +134,6 @@ void	a_to_b(int r, t_stack *a, t_stack *b)
 	i = -1;
 	while (++i < ra_t)
 		rra(a);
-	print_stack(a->head);
-	print_stack(b->head);
-	printf("^^^^^^^atob^^^^^^\n");
 	a_to_b(ra_t, a, b);
 	b_to_a(pb_t, a, b);
 }
@@ -121,17 +145,22 @@ void	b_to_a(int r, t_stack *a, t_stack *b)
 	int	rb_t = 0;
 	int pa_t = 0;
 
-	printf("r = %d\n", r);
-	if (r == 1)
+	if (r < 3)
 	{
+		if (r == 2)
+		{
+			if (b->head->value < b->head->next->value)
+				sb(b);
+			pa(a, b);
+		}
 		pa(a, b);
-		print_stack(a->head);
-		print_stack(b->head);
-		printf("^^^^^^^^^btoa^^^^^^^^^^^\n");
-		printf("-----------------fin.----------------\n");
 		return ;
 	}
-	printf("p = %d\n", p);
+	// if (r == 1)
+	// {
+	// 	pa(a, b);
+	// 	return ;
+	// }
 	while (i < r && a->head)
 	{
 		if (b->head->value >= p){
@@ -148,9 +177,6 @@ void	b_to_a(int r, t_stack *a, t_stack *b)
 	i = -1;
 	while (++i < rb_t)
 		rrb(b);
-	print_stack(a->head);
-	print_stack(b->head);
-	printf("^^^^^^^^^btoa^^^^^^^^^^^\n");
 	a_to_b(pa_t, a, b);
 	b_to_a(rb_t, a, b);
 }

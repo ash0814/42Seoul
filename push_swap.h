@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:08:32 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/17 14:09:52 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/19 18:59:24 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_stack
 	t_node *tail;
 }				t_stack;
 
-void	print_stack(t_node *node);
+void	print_stack(char *s, t_node *node);
 
 int		ft_atoi(const char *str);
 

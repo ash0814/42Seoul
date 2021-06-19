@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 16:26:47 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/15 17:27:18 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/19 17:29:07 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	free_node(t_node **node)
 	t_node *tmp;
 
 	now = node;
-	// printf("here\n");
 	while (*now)
 	{
 		tmp = *now;
