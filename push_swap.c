@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:42:51 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/19 19:42:31 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/20 13:31:26 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,38 @@ void	print_stack(char *s, t_node *node)
 	printf("\n");
 }
 
+int		check_sort(t_stack *stack)
+{
+	int *list;
+	int i;
+	int j;
+	t_node *now;
+ 
+	i = 0;
+	list = (int *)malloc(sizeof(int) * stack->size);
+	now = stack->head;
+	while (now)
+	{
+		list[i] = now->value;
+		now = now->next;
+		i++;
+	}
+	q_sort(0, i - 1, list);
+	j = 0;
+	now = stack->head;
+	while (now && j < i)
+	{
+		if (list[j] != now->value)
+			return (0);
+		else
+		{
+			j++;
+			now = now->next;
+		}
+	}
+	return (1);
+}
+
 int		main(int argc, char *argv[])
 {
 	t_stack *a;
@@ -45,13 +77,9 @@ int		main(int argc, char *argv[])
 	while (++i < argc)
 		addNode(a, ft_atoi(argv[i]));
 	check_dup(a);
-	// print_stack("====\nA :", a->head);
-	// print_stack("B :", b->head);
-	// write(1, "======\n", 7);
+	if (check_sort(a) == 1)
+		return (0);
 	a_to_b(a->size, a, b);
-	// print_stack("===\nA :", a->head);
-	// print_stack("B :", b->head);
-	// printf("===\nres = %d\n", res);
 	free_stack(a, b);
 	return (0);
 }

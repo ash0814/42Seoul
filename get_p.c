@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_p.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 15:49:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/19 20:19:24 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/20 13:32:00 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	q_sort(int left, int right, int *list)
 	int j;
 	int i;
 
-	// if (left >= right)
-	// 	return ;
 	p = left;
 	i = left + 1;
 	j = right;
@@ -49,8 +47,6 @@ void	q_sort(int left, int right, int *list)
 		q_sort(j + 1, right, list);
 	}
 }
-
-
 
 int		get_p(t_stack *stack, int r)
 {
@@ -116,8 +112,6 @@ void	a_to_b(int r, t_stack *a, t_stack *b)
 		return ;
 	}
 	p = get_p(a, r);
-	// if (r == 1)
-	// 	return ;
 	while (i < r && a->head)
 	{
 		if (a->head->value >= p){
@@ -132,7 +126,7 @@ void	a_to_b(int r, t_stack *a, t_stack *b)
 		i++;
 	}
 	i = -1;
-	while (++i < ra_t)
+	while (++i < ra_t && ra_t != a->size)
 		rra(a);
 	a_to_b(ra_t, a, b);
 	b_to_a(pb_t, a, b);
@@ -156,11 +150,6 @@ void	b_to_a(int r, t_stack *a, t_stack *b)
 		pa(a, b);
 		return ;
 	}
-	// if (r == 1)
-	// {
-	// 	pa(a, b);
-	// 	return ;
-	// }
 	while (i < r && a->head)
 	{
 		if (b->head->value >= p){
@@ -175,7 +164,7 @@ void	b_to_a(int r, t_stack *a, t_stack *b)
 		i++;
 	}
 	i = -1;
-	while (++i < rb_t)
+	while (++i < rb_t && b->size != rb_t)
 		rrb(b);
 	a_to_b(pa_t, a, b);
 	b_to_a(rb_t, a, b);
