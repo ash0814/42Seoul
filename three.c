@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   three.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/15 16:26:47 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/20 19:04:09 by ash              ###   ########.fr       */
+/*   Created: 2021/06/20 17:41:08 by ash               #+#    #+#             */
+/*   Updated: 2021/06/20 17:51:52 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_node(t_node **node)
+void    three_sort(t_stack *a)
 {
-	t_node **now;
-	t_node *tmp;
-
-	now = node;
-	while (*now)
+    int x;
+	int y;
+	int z;
+    
+    x = a->head->value;
+    y = a->head->next->value;
+    z = a->head->next->next->value;
+	if (x > y && y < z && z > x)
+		sa(a);
+	else if (x < y && y > z && x > z)
+		rra(a);
+	else if (x > y && x > z && y < z)
+        ra(a);
+    else if (y > z)
 	{
-		tmp = *now;
-		*now = (*now)->next;
-		free(tmp);
-		tmp = 0;
+	    if (x > y && x > z)
+		    ra(a);
+        else if (x < y && z > x)
+		    rra(a);
+		sa(a);
 	}
-}
-
-void	free_stack(t_stack *a)
-{
-	free_node(&a->head);
-	free(a);
-	a = 0;
+	return ;
 }

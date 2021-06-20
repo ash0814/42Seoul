@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 15:49:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/20 13:32:00 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/20 19:08:23 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,57 +73,28 @@ int		get_p(t_stack *stack, int r)
 void	a_to_b(int r, t_stack *a, t_stack *b)
 {
 	int p;
-	int i = 0;
-	int	ra_t = 0;
-	int pb_t = 0;
+	int i;
+	int	ra_t;
+	int pb_t;
 
-	if (a->size == 3)
+	i = -1;
+	ra_t = 0;
+	pb_t = 0;
+	if (r < 3 || a->size == 3)
 	{
-		int x = a->head->value;
-		int y = a->head->next->value;
-		int z = a->head->next->next->value;
-		if (x < y && y < z && x < z)
-			;
-		else if (x < y && y > z && z > x)
-		{
-			rra(a);
-			sa(a);
-		}
-		else if (x > y && y < z && z > x)
-			sa(a);
-		else if (x < y && y > z && x > z)
-			rra(a);
-		else if (x > y && x > z && y < z)
-		{
-			rra(a);
-			rra(a);
-		}
-		else if (x > y && x > z && y > z)
-		{
-			ra(a);
-			sa(a);
-		}
-		return ;
-	}
-	if (r < 3)
-	{
-		if (r == 2 && a->head->value > a->head->next->value)
+		if (a->size == 3)
+			three_sort(a);
+		else if (r == 2 && a->head->value > a->head->next->value)
 			sa(a);
 		return ;
 	}
 	p = get_p(a, r);
-	while (i < r && a->head)
+	while (++i < r && a->head)
 	{
-		if (a->head->value >= p){
-			ra(a);
-			ra_t++;
-		}
+		if (a->head->value >= p)
+			ra_t += ra(a);
 		else
-		{
-			pb(a, b);
-			pb_t++;
-		}
-		i++;
+			pb_t += pb(a, b);
 	}
 	i = -1;
 	while (++i < ra_t && ra_t != a->size)
@@ -134,11 +105,15 @@ void	a_to_b(int r, t_stack *a, t_stack *b)
 
 void	b_to_a(int r, t_stack *a, t_stack *b)
 {
-	int p = get_p(b, r);
-	int i = 0;
-	int	rb_t = 0;
-	int pa_t = 0;
+	int p;
+	int i;
+	int	rb_t;
+	int pa_t;
 
+	p = get_p(b, r);
+	i = -1;
+	rb_t = 0;
+	pa_t = 0;
 	if (r < 3)
 	{
 		if (r == 2)
@@ -150,18 +125,12 @@ void	b_to_a(int r, t_stack *a, t_stack *b)
 		pa(a, b);
 		return ;
 	}
-	while (i < r && a->head)
+	while (++i < r && a->head)
 	{
-		if (b->head->value >= p){
-			pa(a, b);
-			pa_t++;
-		}
+		if (b->head->value >= p)
+			pa_t += pa(a, b);
 		else
-		{
-			rb(b);
-			rb_t++;
-		}
-		i++;
+			rb_t += rb(b);
 	}
 	i = -1;
 	while (++i < rb_t && b->size != rb_t)

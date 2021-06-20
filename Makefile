@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
+#    By: ash <ash@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/15 12:30:11 by sehyan            #+#    #+#              #
-#    Updated: 2021/06/19 19:41:57 by sehyan           ###   ########.fr        #
+#    Updated: 2021/06/20 17:48:59 by ash              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	push_swap
 CC		=	gcc
 CF		=	-Wall -Wextra -Werror -I ./
 SRC	=	push_swap.c ft_atoi.c push_pop.c cmd.c cmd_r.c cmd_rr.c \
-		utils.c free.c get_p.c \
+		utils.c free.c get_p.c three.c\
 
 SRC_DIR = ./
 

@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:42:51 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/20 13:31:26 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/20 19:10:55 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ void	print_stack(char *s, t_node *node)
 
 int		check_sort(t_stack *stack)
 {
-	int *list;
+	int list[stack->size];
 	int i;
 	int j;
 	t_node *now;
  
 	i = 0;
-	list = (int *)malloc(sizeof(int) * stack->size);
 	now = stack->head;
 	while (now)
 	{
@@ -45,17 +44,14 @@ int		check_sort(t_stack *stack)
 		i++;
 	}
 	q_sort(0, i - 1, list);
-	j = 0;
+	j = -1;
 	now = stack->head;
-	while (now && j < i)
+	while (now && ++j < i)
 	{
 		if (list[j] != now->value)
 			return (0);
 		else
-		{
-			j++;
 			now = now->next;
-		}
 	}
 	return (1);
 }
@@ -67,8 +63,13 @@ int		main(int argc, char *argv[])
 	int		i;
 
 	res = 0;
-	a = (t_stack *)malloc(sizeof(t_stack));
-	b = (t_stack *)malloc(sizeof(t_stack));
+	if (!(a = (t_stack *)malloc(sizeof(t_stack))))
+		return (0);
+	if (!(b = (t_stack *)malloc(sizeof(t_stack))))
+	{
+		free_stack(a);
+		return (0);
+	}
 	a->head = NULL;
 	a->tail = NULL;
 	b->head = NULL;
@@ -80,6 +81,7 @@ int		main(int argc, char *argv[])
 	if (check_sort(a) == 1)
 		return (0);
 	a_to_b(a->size, a, b);
-	free_stack(a, b);
+	free_stack(a);
+	free_stack(b);
 	return (0);
 }
