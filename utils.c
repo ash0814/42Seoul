@@ -6,32 +6,34 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 15:29:30 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/15 16:53:21 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/06/21 11:52:30 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	addNode(t_stack *A, int value)
+void	add_node(t_stack *stack, int value)
 {
-	t_node	*node = (t_node *)malloc(sizeof(t_node));
+	t_node	*node;
 
+	if (!(node = (t_node *)malloc(sizeof(t_node))))
+		ft_error("malloc ERROR");
 	node->value = value;
-	if (A->head == NULL)
+	if (stack->head == NULL)
 	{
-		A->head = node;
-		A->head->prev = NULL;
-		A->tail = node;
-		A->tail->next = NULL;
-		A->size++;
+		stack->head = node;
+		stack->head->prev = NULL;
+		stack->tail = node;
+		stack->tail->next = NULL;
+		stack->size++;
 	}
 	else
 	{
-		A->tail->next = node;
-		node->prev = A->tail;
-		A->tail = node;
-		A->tail->next = NULL;
-		A->size++;
+		stack->tail->next = node;
+		node->prev = stack->tail;
+		stack->tail = node;
+		stack->tail->next = NULL;
+		stack->size++;
 	}
 }
 
@@ -58,9 +60,9 @@ void	ft_error(char *s)
 void	check_dup(t_stack *a)
 {
 	int		*list;
-	t_node *now;
-	int 	i;
-	int 	j;
+	t_node	*now;
+	int		i;
+	int		j;
 
 	list = (int *)malloc(sizeof(int) * (a->size));
 	now = a->head;

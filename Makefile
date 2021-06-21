@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ash <ash@student.42.fr>                    +#+  +:+       +#+         #
+#    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/15 12:30:11 by sehyan            #+#    #+#              #
-#    Updated: 2021/06/20 17:48:59 by ash              ###   ########.fr        #
+#    Updated: 2021/06/21 12:16:03 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,5 @@ fclean	:	clean
 
 
 re		:	fclean	all
-			rm -f $(OBJ) #delete
 
 .PHONY	:	all clean fclean re

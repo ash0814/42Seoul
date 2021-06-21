@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 22:18:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/20 18:18:47 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/21 11:35:58 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-extern int res;
-
-int    sa(t_stack *a)
+int		sa(t_stack *a)
 {
-    int one;
+	int one;
 	int two;
-	
+
 	if (a->size < 2)
 		return (0);
 	one = a->head->value;
@@ -27,14 +25,13 @@ int    sa(t_stack *a)
 	pop_head(a);
 	push_head(a, one);
 	push_head(a, two);
-	res++;
 	write(1, "sa\n", 3);
 	return (1);
 }
 
-int    sb(t_stack *b)
+int		sb(t_stack *b)
 {
-    int one;
+	int one;
 	int two;
 
 	if (b->size < 2)
@@ -45,21 +42,19 @@ int    sb(t_stack *b)
 	pop_head(b);
 	push_head(b, one);
 	push_head(b, two);
-	res++;
 	write(1, "sb\n", 3);
 	return (1);
 }
 
-int	ss(t_stack *a, t_stack *b)
+int		ss(t_stack *a, t_stack *b)
 {
-    sa(a);
+	sa(a);
 	sb(b);
-	res--;
 	write(1, "ss\n", 3);
 	return (1);
 }
 
-int	pa(t_stack *a, t_stack *b)
+int		pa(t_stack *a, t_stack *b)
 {
 	int b_top;
 
@@ -68,21 +63,19 @@ int	pa(t_stack *a, t_stack *b)
 	b_top = b->head->value;
 	pop_head(b);
 	push_head(a, b_top);
-	res++;
 	write(1, "pa\n", 3);
 	return (1);
 }
 
-int	pb(t_stack *a, t_stack *b)
+int		pb(t_stack *a, t_stack *b)
 {
 	int a_top;
-	
+
 	if (a->size < 1)
 		return (0);
 	a_top = a->head->value;
 	pop_head(a);
 	push_head(b, a_top);
-	res++;
 	write(1, "pb\n", 3);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_p.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 15:49:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/20 19:08:23 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/21 12:04:46 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	q_sort(int left, int right, int *list)
 
 int		get_p(t_stack *stack, int r)
 {
-	int p;
-	int *list;
-	int i;
-	t_node *now;
- 
+	int		p;
+	int		*list;
+	int		i;
+	t_node	*now;
+
 	i = 0;
 	list = (int *)malloc(sizeof(int) * r);
 	now = stack->head;
@@ -81,13 +81,7 @@ void	a_to_b(int r, t_stack *a, t_stack *b)
 	ra_t = 0;
 	pb_t = 0;
 	if (r < 3 || a->size == 3)
-	{
-		if (a->size == 3)
-			three_sort(a);
-		else if (r == 2 && a->head->value > a->head->next->value)
-			sa(a);
-		return ;
-	}
+		return (check_three_val(a, r));
 	p = get_p(a, r);
 	while (++i < r && a->head)
 	{
@@ -115,16 +109,7 @@ void	b_to_a(int r, t_stack *a, t_stack *b)
 	rb_t = 0;
 	pa_t = 0;
 	if (r < 3)
-	{
-		if (r == 2)
-		{
-			if (b->head->value < b->head->next->value)
-				sb(b);
-			pa(a, b);
-		}
-		pa(a, b);
-		return ;
-	}
+		return (check_three_val_b(a, b, r));
 	while (++i < r && a->head)
 	{
 		if (b->head->value >= p)

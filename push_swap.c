@@ -3,38 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:42:51 by sehyan            #+#    #+#             */
-/*   Updated: 2021/06/20 19:10:55 by ash              ###   ########.fr       */
+/*   Updated: 2021/06/21 12:54:58 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int res;
-
-void	print_stack(char *s, t_node *node)
-{
-	t_node *now;
-
-	now = node;
-	printf("%s", s);
-	while (now)
-	{
-		printf(" %d", now->value);
-		now = now->next;
-	}
-	printf("\n");
-}
-
 int		check_sort(t_stack *stack)
 {
-	int list[stack->size];
-	int i;
-	int j;
-	t_node *now;
- 
+	int		list[stack->size];
+	int		i;
+	int		j;
+	t_node	*now;
+
 	i = 0;
 	now = stack->head;
 	while (now)
@@ -62,7 +46,6 @@ int		main(int argc, char *argv[])
 	t_stack *b;
 	int		i;
 
-	res = 0;
 	if (!(a = (t_stack *)malloc(sizeof(t_stack))))
 		return (0);
 	if (!(b = (t_stack *)malloc(sizeof(t_stack))))
@@ -76,7 +59,7 @@ int		main(int argc, char *argv[])
 	b->tail = NULL;
 	i = 0;
 	while (++i < argc)
-		addNode(a, ft_atoi(argv[i]));
+		add_node(a, ft_atoi(argv[i]));
 	check_dup(a);
 	if (check_sort(a) == 1)
 		return (0);
