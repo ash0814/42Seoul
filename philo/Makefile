@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ash <ash@student.42.fr>                    +#+  +:+       +#+         #
+#    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 14:40:31 by sehyan            #+#    #+#              #
-#    Updated: 2021/09/03 16:02:31 by ash              ###   ########.fr        #
+#    Updated: 2021/09/06 12:13:19 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philo
 
-CC		=	gcc
+CC		=	gcc -Wall -Wextra -Werror
 CF		=	-lpthread -I ./
 SRC		=	philo.c utils.c
 
