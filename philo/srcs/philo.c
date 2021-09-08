@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:40:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/09/06 19:03:42 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/09/08 10:46:27 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int main(int argc, char **argv)
 		}
 	printf("thread_id = %lu\n", thread_t);
 	pthread_join(thread_t, &status);
+	
 	return (0);
 }
