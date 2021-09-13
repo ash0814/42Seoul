@@ -1,62 +1,46 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 12:08:10 by sehyan            #+#    #+#             */
-/*   Updated: 2021/09/06 13:29:14 by sehyan           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <pthread.h>
-#include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
-
-// 쓰레드 함수
-void *test(void *data)
+#include <stdlib.h>
+ 
+// 뮤텍스 객체 선언
+pthread_mutex_t mutex_lock;
+ 
+int g_count = 0;  // 쓰레드 공유자원.
+ 
+void *t_function(void *data)
 {
     int i;
-    int a = *(int *)data;
-	// void *r;
+    char* thread_name = (char*)data;
 
-    printf("data -> : %d\n", a);
-    for (i = 0; i < 1000000; i++)
+    pthread_mutex_lock(&mutex_lock);
+ 
+    // critical section
+    g_count = 0;   // 쓰레드마다 0부터 시작.
+    for (i = 0; i < 3; i++)
     {
-        printf("%d\n", i*a);
+        printf("%s COUNT %d\n", thread_name, g_count);
+        g_count++;  // 쓰레드 공유자원
+        usleep(50000);
     }
-    return (void *)(size_t)(i * 100);
+ 
+    pthread_mutex_unlock(&mutex_lock);
+    // return NULL;
 }
-
 int main()
 {
-    int a = 100;
-    pthread_t thread_t;
-    int status;
+    pthread_t p_thread1, p_thread2;
+    int *status1;
+    int *status2;
+    // 뮤텍스 객체 초기화, 기본 특성으로 초기화 했음
+    pthread_mutex_init(&mutex_lock, NULL);
+ 
+    pthread_create(&p_thread1, NULL, t_function, (void *)"Thread1");
+    pthread_create(&p_thread2, NULL, t_function, (void *)"Thread2");
 
-    // 쓰레드를 생성한다.
-    if (pthread_create(&thread_t, NULL, test, (void *)&a) < 0)
-    {
-        perror("thread create error:");
-        exit(1);
-    }
-
-	// < 테스트 1 >
-    // ** 쓰레드가 종료되기를 기다린후
-    // ** 쓰레드의 리턴값을 출력한다.
-	// pthread_join(thread_t, (void **)&status);
-
-		// * < 테스트 2 >
-		// ** 쓰레드가 실행되는 도중에 중단시키면 어떤 일이 벌어지는지 확인한다.
-    usleep(1);
-		
-		/* < 결과 출력 >
-		** pthread_join함수를 사용하면, status에는 쓰레드가 실행시킨 함수의 리턴값이 들어간다
-		** 만약 2번 테스트로 중간에 쓰레드를 종료시키면 비어있는 값이 저장된다.
-		*/
-    printf("Thread End %d\n", status); 
-    return 1;
+    pthread_join(p_thread1, (void **)&status1);
+    pthread_join(p_thread2, (void **)&status2);
+    // printf(">> %d\n", status1);
+    // printf(">> %d\n", status2);
+    return 0;
 }
