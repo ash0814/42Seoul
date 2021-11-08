@@ -6,30 +6,44 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/10/12 19:28:09 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/01 20:01:04 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int init_philo(t_philo *philo, int p_cnt)
+int init_philo(t_data *data)
 {
 	int i;
 
 	i = 0;
-	while (i < p_cnt)
+	while (i < data->p_cnt)
 	{
-		philo[i].tid = 0;
+		// phtread_create(&data->philo[i].tid, NULL, f_philo, (void *)data);
+		data->philo[i].eat_count = 0;
+		data->philo[i].last_eat_time = 0;
+		data->philo[i].lfork_idx = i;
+		if (i == 0)
+			data->philo[i].rfork_idx = data->p_cnt - 1;
+		else
+			data->philo[i].rfork_idx = i - 1;
 		i++;
 	}
+	return (1);
 }
 
-int init_fork(t_fork *fork, int p_cnt)
+int init_fork(t_data *data)
 {
+	int i;
 
+	i = 0;
+	while (i < data->p_cnt)
+	{
+		data->fork[i].fid = i;
+		i++;
+	}
+	return (1);
 }
-
-
 
 int init_data(int argc, char **argv, t_data *data)
 {
@@ -40,15 +54,18 @@ int init_data(int argc, char **argv, t_data *data)
 		data->eat_t = ft_atoi(argv[3]);
 		data->sleep_t = ft_atoi(argv[4]);
 		if (argc == 6)
-			data->cnt_eat = ft_atoi(argv[5]);
+			data->must_eat_cnt = ft_atoi(argv[5]);
 		else
-			data->cnt_eat = -1;
-		return (0);
+			data->must_eat_cnt = -1;
 	}
+	else
+		return (0);
 	data->philo = (t_philo *)malloc(sizeof(t_philo) * data->p_cnt);
 	data->fork = (t_fork *)malloc(sizeof(t_fork) * data->p_cnt);
-	init_philo(data->philo, data->p_cnt);
-	init_fork(data->fork, data->p_cnt);
+	if (data->philo == NULL || data->fork == NULL)
+		return (0);
+	init_philo(data);
+	init_fork(data);
 	return (1);
 }
 
