@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/11/01 20:01:04 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/10 17:01:29 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,6 @@ int init_data(int argc, char **argv, t_data *data)
 	return (1);
 }
 
-int	i_atoi(const char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' ||
-		str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
-		i++;
-	return (i);
-}
-
 int			ft_atoi(const char *str)
 {
 	int m;
@@ -88,7 +77,10 @@ int			ft_atoi(const char *str)
 
 	m = 1;
 	result = 0;
-	i = i_atoi(str);
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' ||
+		str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		i++;
 	if (str[i] == '-')
 	{
 		m = -1;

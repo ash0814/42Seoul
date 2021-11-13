@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:38:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/01 16:22:42 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/10 17:05:25 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 typedef struct	s_philo
 {
 	pthread_t		tid;
-	int				eat_count;
-	unsigned int	last_eat_time;
-	int				rfork_idx;
-	int				lfork_idx;
+	int				eat_count;	//먹은 횟수
+	unsigned int	last_eat_time; //마지막으로 먹은 시간
+	int				rfork_idx; //오른쪽 포크 인덱스
+	int				lfork_idx; //왼쪽 포크 인덱스
 }				t_philo;
 
 typedef struct	s_fork
 {
-	int				fid;
-	pthread_mutex_t	mtx;
-	pthread_t		p_tid;
+	int				fid; //포크아이디
+	pthread_mutex_t	mtx; //뮤텍스객체
+	pthread_t		p_tid; //잡고있는 철학자 tid
 }				t_fork;
 
 typedef struct	s_data

@@ -27,6 +27,7 @@ void *t_function(void *data)
     pthread_mutex_unlock(&mutex_lock);
     // return NULL;
 }
+
 int main()
 {
     pthread_t p_thread1, p_thread2;
