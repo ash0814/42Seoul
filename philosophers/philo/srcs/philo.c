@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/01 15:26:16 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/17 18:26:56 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,14 @@ void	*f_philo(void *data)
 {
 	printf("a\n");
 	return NULL;
+}
+
+void 	eating()
+{
+
+}
+
+void	sleeping()
+{
+	
 }

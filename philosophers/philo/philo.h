@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:38:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/10 17:05:25 by ash              ###   ########.fr       */
+/*   Updated: 2021/11/17 16:11:49 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ typedef struct	s_fork
 
 typedef struct	s_data
 {
-	int		p_cnt;
-	int		die_t;
-	int		eat_t;
-	int		sleep_t;
-	int		must_eat_cnt;
+	int		p_cnt;	//철학자 몇명
+	int		die_t;	//안먹으면 죽는 시간
+	int		eat_t;	//먹는 시간
+	int		sleep_t;	//자는 시간
+	int		must_eat_cnt;	//먹으면 끝나는 횟수
 	t_philo	*philo;
 	t_fork	*fork;
 }				t_data;
@@ -52,5 +52,6 @@ int		ft_atoi(const char *str);
 int		init_data(int argc, char **argv, t_data *data);
 int		init_philo(t_data *data);
 void	*f_philo(void *data);
+void	free_data(t_data *data);
 
 #endif
