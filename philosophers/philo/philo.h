@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:38:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/17 16:11:49 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/21 15:39:45 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int		init_data(int argc, char **argv, t_data *data);
 int		init_philo(t_data *data);
 void	*f_philo(void *data);
 void	free_data(t_data *data);
+
+int		start_thread(t_data *data);
 
 #endif
