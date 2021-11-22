@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:38:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/21 15:39:45 by ash              ###   ########.fr       */
+/*   Updated: 2021/11/22 21:33:09 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_data
 	int		eat_t;	//먹는 시간
 	int		sleep_t;	//자는 시간
 	int		must_eat_cnt;	//먹으면 끝나는 횟수
+	unsigned long long start_t;
 	t_philo	*philo;
 	t_fork	*fork;
 }				t_data;

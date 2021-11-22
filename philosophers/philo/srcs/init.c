@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/11/17 18:11:33 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/22 21:33:27 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int init_data(int argc, char **argv, t_data *data)
 		data->die_t = ft_atoi(argv[2]);
 		data->eat_t = ft_atoi(argv[3]);
 		data->sleep_t = ft_atoi(argv[4]);
+		data->start_t = gettime
 		if (argc == 6)
 			data->must_eat_cnt = ft_atoi(argv[5]);
 		else
