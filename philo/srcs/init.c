@@ -3,42 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/11/22 23:47:45 by ash              ###   ########.fr       */
+/*   Updated: 2021/11/29 20:46:38 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int init_philo(t_data *data)
+int init_philo(t_philo *philo)
 {
 	int i;
 
 	i = 0;
-	while (i < data->p_cnt)
+	while (i < philo->data->p_cnt)
 	{
-		data->philo[i].eat_count = 0;
-		data->philo[i].last_eat_time = 0;
-		data->philo[i].lfork_idx = i;
+		philo[i].eat_count = 0;
+		philo[i].last_eat_time = 0;
+		philo[i].lfork_idx = i;
 		if (i == 0)
-			data->philo[i].rfork_idx = data->p_cnt - 1;
+			philo[i].rfork_idx = philo->data->p_cnt - 1;
 		else
-			data->philo[i].rfork_idx = i - 1;
+			philo[i].rfork_idx = i - 1;
 		i++;
 	}
 	return (1);
 }
 
-int init_fork(t_data *data)
+int init_fork(t_fork *fork)
 {
 	int i;
 
 	i = 0;
-	while (i < data->p_cnt)
+	while (i < fork->data->p_cnt)
 	{
-		data->fork[i].fid = i;
+		fork[i].fid = i;
+		fork[i].get_fork = 0;
 		i++;
 	}
 	return (1);
@@ -69,19 +70,18 @@ int init_data(int argc, char **argv, t_data *data)
 		printf("input ERROR\n");
 		return (0);
 	}
-	data->philo = (t_philo *)malloc(sizeof(t_philo) * data->p_cnt);
-	data->fork = (t_fork *)malloc(sizeof(t_fork) * data->p_cnt);
-	if (data->philo == NULL || data->fork == NULL)
-		return (0);
-	init_philo(data);
-	init_fork(data);
+	
+	// if (data->philo == NULL || data->fork == NULL)
+	// 	return (0);
+	// init_philo(data);
+	// init_fork(data);
 	return (1);
 }
 
-void free_data(t_data *data)
+void free_data(t_data *data, t_philo *philo, t_fork *fork)
 {
-	free(data->philo);
-	free(data->fork);
+	free(philo);
+	free(fork);
 	free(data);
 }
 
