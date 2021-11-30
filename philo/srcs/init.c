@@ -6,23 +6,23 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/11/30 17:31:51 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/30 20:40:43 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int init_mutex(pthread_mutex_t *mutex, int num)
+int init_mutex(pthread_mutex_t **mutex, int num)
 {
 	int i;
 
-	mutex = (pthread_mutex_t *)malloc(sizeof(pthread_t) * num);
-	if (!mutex)
+	*mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
+	if (!*mutex)
 		return (1);
 	i = 0;
 	while (i < num)
 	{
-		pthread_mutex_init(&mutex[i], NULL);
+		pthread_mutex_init(&(*mutex)[i], NULL);
 		i++;
 	}
 	return (0);

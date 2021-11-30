@@ -6,13 +6,13 @@
 #    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 14:40:31 by sehyan            #+#    #+#              #
-#    Updated: 2021/11/30 14:54:43 by sehyan           ###   ########.fr        #
+#    Updated: 2021/11/30 19:46:21 by sehyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philo
 
-CC		=	gcc #-Wall -Wextra -Werror
+CC		=	gcc #-g3 -fsanitize=address #-Wall -Wextra -Werror
 CF		=	-lpthread -I ./
 SRC		=	main.c philo.c init.c utils.c
 

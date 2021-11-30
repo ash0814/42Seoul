@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/30 17:47:41 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/30 20:41:06 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	*f_philo(void *philo)
 	t_philo *p;
 
 	p = (t_philo *)philo;
+	printf("<<<<<<%d>>>>>>>>\n", p->philo_num);
+	printf("hihi\n");
 	while (1)
 	{
 		pickup(p);
@@ -57,32 +59,30 @@ void	*f_philo(void *philo)
 		}
 	}
 	write(1, "====================\n", 21);
-	return NULL;
+	return (philo);
 }
 
 int	start_thread(t_philo *philo)
 {
 	int i;
 	pthread_mutex_t *mutex;
-	int *status;
-
-	if (init_mutex(mutex, philo->data->p_cnt))
+	void *status = NULL;
+	
+	if (init_mutex(&mutex, philo->data->p_cnt))
 		return (1);
 	i = -1;
 	while (++i < philo->data->p_cnt)
 	{
 		philo[i].philo_num = i + 1;
 		if (i == 0)
-		philo[i].rfork = &mutex[philo->data->p_cnt - 1];
+			philo[i].rfork = &(mutex[philo->data->p_cnt - 1]);
 		else
-			philo[i].rfork = &mutex[i - 1];
-		philo[i].lfork = &mutex[i];
-		
+			philo[i].rfork = &(mutex[i - 1]);
+		philo[i].lfork = &(mutex[i]);
+
 		if (pthread_create(&(philo[i].tid), NULL, f_philo, &(philo[i])))
-		{
 			return (1);
-		}
-		pthread_join(philo[i].tid, (void **)&status);
+		pthread_join(philo[i].tid, &status);
 	}
 	return (0);
 }

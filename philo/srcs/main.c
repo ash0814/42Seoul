@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:40:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/30 14:57:39 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/30 20:41:26 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int main(int argc, char **argv)
 
 	if (start_thread(philo))
 		return (1);
-	free_data(data, philo);
+	
 	// system("leaks philo");
+	free_data(data, philo);
 	return (0);
 }

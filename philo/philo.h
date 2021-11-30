@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:38:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/30 17:25:51 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/11/30 20:37:57 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	*f_philo(void *philo);
 int		start_thread(t_philo *philo);
 void	free_data(t_data *data, t_philo *philo);
 void	eating(t_philo *philo);
-int init_mutex(pthread_mutex_t *mutex, int num);
+int init_mutex(pthread_mutex_t **mutex, int num);
 /*
 utils
 */
