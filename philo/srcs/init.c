@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/11/30 20:40:43 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/01 19:36:53 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,3 @@ void free_data(t_data *data, t_philo *philo)
 	free(philo);
 	free(data);
 }
-

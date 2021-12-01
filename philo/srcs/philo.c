@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/30 20:41:06 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/01 21:25:51 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	pickup(t_philo *philo)
 {
 	pthread_mutex_lock(philo->rfork);
-	printf("pickup right\n");
+	printf("%d pickup right\n", philo->philo_num);
 	pthread_mutex_lock(philo->lfork);
-	printf("pickup left\n");
+	printf("%d pickup left\n", philo->philo_num);
 	eating(philo);
 	pthread_mutex_unlock(philo->lfork);
 	pthread_mutex_unlock(philo->rfork);
@@ -36,12 +36,12 @@ void	eating(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
-	write(1, "sleeping\n", 9);
+	printf("%d sleeping\n", philo->philo_num);
 }
 
 void	thinking(t_philo *philo)
 {
-	write(1, "thinking\n", 9);
+	printf("%d thinking\n", philo->philo_num);
 }
 
 void	*f_philo(void *philo)
@@ -49,24 +49,37 @@ void	*f_philo(void *philo)
 	t_philo *p;
 
 	p = (t_philo *)philo;
-	printf("<<<<<<%d>>>>>>>>\n", p->philo_num);
-	printf("hihi\n");
 	while (1)
 	{
 		pickup(p);
+		sleeping(p);
+		thinking(p);
 		if (p->eat_count == p->data->must_eat_cnt){
 			break;
 		}
 	}
-	write(1, "====================\n", 21);
+	// write(1, "====================\n", 21);
 	return (philo);
+}
+
+int join_thread(t_philo *philo)
+{
+	int i;
+	void *status;
+
+	i = -1;
+	while (++i < philo->data->p_cnt)
+	{
+		pthread_join(philo[i].tid, &status);
+	}
+	return (0);
 }
 
 int	start_thread(t_philo *philo)
 {
 	int i;
 	pthread_mutex_t *mutex;
-	void *status = NULL;
+	void *status;
 	
 	if (init_mutex(&mutex, philo->data->p_cnt))
 		return (1);
@@ -82,7 +95,8 @@ int	start_thread(t_philo *philo)
 
 		if (pthread_create(&(philo[i].tid), NULL, f_philo, &(philo[i])))
 			return (1);
-		pthread_join(philo[i].tid, &status);
+		// pthread_join(philo[i].tid, &status);
 	}
+	join_thread(philo);
 	return (0);
 }
