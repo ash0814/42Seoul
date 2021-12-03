@@ -6,37 +6,31 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/01 21:25:51 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/03 15:20:01 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	pickup(t_philo *philo)
+void	eating(t_philo *philo)
 {
+	struct timeval tv;
+
 	pthread_mutex_lock(philo->rfork);
 	printf("%d pickup right\n", philo->philo_num);
 	pthread_mutex_lock(philo->lfork);
 	printf("%d pickup left\n", philo->philo_num);
-	eating(philo);
+	printf("%d eating\n", philo->philo_num);
+	usleep(philo->data->eat_t);
+	philo->eat_count++;
 	pthread_mutex_unlock(philo->lfork);
 	pthread_mutex_unlock(philo->rfork);
-}
-
-void	eating(t_philo *philo)
-{
-	char	*str = " eating\n";
-
-	char s = philo->philo_num + 48;
-
-	write(1, &s, 1);
-	write(1, str, ft_strlen(str));
-	philo->eat_count++;
 }
 
 void	sleeping(t_philo *philo)
 {
 	printf("%d sleeping\n", philo->philo_num);
+	usleep(philo->data->sleep_t);
 }
 
 void	thinking(t_philo *philo)
@@ -51,7 +45,7 @@ void	*f_philo(void *philo)
 	p = (t_philo *)philo;
 	while (1)
 	{
-		pickup(p);
+		eating(p);
 		sleeping(p);
 		thinking(p);
 		if (p->eat_count == p->data->must_eat_cnt){
