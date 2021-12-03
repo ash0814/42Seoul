@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:31:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/11/30 14:45:05 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/03 22:47:27 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ int			ft_atoi(const char *str)
 		i++;
 	}
 	return (result * m);
+}
+
+unsigned long long get_time(void)
+{
+	struct timeval		tv;
+	unsigned long long	ret;
+
+	gettimeofday(&tv, NULL);
+	ret = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (ret);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/03 15:20:01 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/03 23:21:19 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,30 @@
 
 void	eating(t_philo *philo)
 {
-	struct timeval tv;
-
 	pthread_mutex_lock(philo->rfork);
-	printf("%d pickup right\n", philo->philo_num);
+	printf("%llums %d pickup right\n", get_time() - philo->data->start_t, philo->philo_num);
 	pthread_mutex_lock(philo->lfork);
-	printf("%d pickup left\n", philo->philo_num);
-	printf("%d eating\n", philo->philo_num);
-	usleep(philo->data->eat_t);
+	printf("%llums %d pickup left\n", get_time() - philo->data->start_t, philo->philo_num);
+	printf(">> %d eating\n", philo->philo_num);
+	usleep(philo->data->eat_t * 1000);
+	philo->last_eat_time = get_time();
+	printf("%d last_eat_time : %llums\n", philo->philo_num, philo->last_eat_time - philo->data->start_t);
 	philo->eat_count++;
 	pthread_mutex_unlock(philo->lfork);
 	pthread_mutex_unlock(philo->rfork);
+	// sleeping(philo);
+	// thinking(philo);
 }
 
 void	sleeping(t_philo *philo)
 {
-	printf("%d sleeping\n", philo->philo_num);
+	printf(">> %d sleeping\n", philo->philo_num);
 	usleep(philo->data->sleep_t);
 }
 
 void	thinking(t_philo *philo)
 {
-	printf("%d thinking\n", philo->philo_num);
+	printf(">> %d thinking\n", philo->philo_num);
 }
 
 void	*f_philo(void *philo)
@@ -50,6 +52,11 @@ void	*f_philo(void *philo)
 		thinking(p);
 		if (p->eat_count == p->data->must_eat_cnt){
 			break;
+		}
+		if (p->last_eat_time - p->data->start_t > p->data->die_t)
+		{
+			printf("%d is dead\n", p->philo_num);
+			exit(1);
 		}
 	}
 	// write(1, "====================\n", 21);
@@ -89,7 +96,6 @@ int	start_thread(t_philo *philo)
 
 		if (pthread_create(&(philo[i].tid), NULL, f_philo, &(philo[i])))
 			return (1);
-		// pthread_join(philo[i].tid, &status);
 	}
 	join_thread(philo);
 	return (0);

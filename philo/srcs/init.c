@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/12/03 15:18:44 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/03 22:47:40 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int init_data(int argc, char **argv, t_data *data)
 		data->die_t = ft_atoi(argv[2]);
 		data->eat_t = ft_atoi(argv[3]);
 		data->sleep_t = ft_atoi(argv[4]);
-		data->start_t = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+		data->start_t = get_time();
 		printf("start_time : %llu\n", data->start_t);
 		if (argc == 6)
 			data->must_eat_cnt = ft_atoi(argv[5]);
