@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:38:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/03 22:52:37 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/04 12:12:05 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ utils
 */
 int	ft_strlen(char *s);
 unsigned long long get_time(void);
+
+int join_thread(t_philo *philo);
 
 #endif

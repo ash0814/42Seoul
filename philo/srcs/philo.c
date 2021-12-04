@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/03 23:21:19 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/04 12:19:49 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,6 @@ void	*f_philo(void *philo)
 		eating(p);
 		sleeping(p);
 		thinking(p);
-		if (p->eat_count == p->data->must_eat_cnt){
-			break;
-		}
-		if (p->last_eat_time - p->data->start_t > p->data->die_t)
-		{
-			printf("%d is dead\n", p->philo_num);
-			exit(1);
-		}
 	}
 	// write(1, "====================\n", 21);
 	return (philo);
@@ -96,7 +88,8 @@ int	start_thread(t_philo *philo)
 
 		if (pthread_create(&(philo[i].tid), NULL, f_philo, &(philo[i])))
 			return (1);
+		pthread_detach(philo[i].tid);
 	}
-	join_thread(philo);
+
 	return (0);
 }
