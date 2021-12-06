@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:40:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/05 16:02:52 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/06 11:28:13 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int monitor_thread(t_philo *philo)
 			now = get_time();
 			if (now > philo[i].data->die_t + philo[i].data->start_t)
 			{
-				printf("%llu : %llu : %llu\n", philo[i].last_eat_time, philo[i].data->start_t, philo[i].data->die_t);
 				printf("%d is dead\n", philo[i].philo_num);
 				return (1);
 			}

@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:38:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/04 12:12:05 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/06 11:30:41 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,5 @@ utils
 */
 int	ft_strlen(char *s);
 unsigned long long get_time(void);
-
-int join_thread(t_philo *philo);
 
 #endif
