@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/04 12:19:49 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/05 15:33:20 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ void	eating(t_philo *philo)
 	pthread_mutex_lock(philo->lfork);
 	printf("%llums %d pickup left\n", get_time() - philo->data->start_t, philo->philo_num);
 	printf(">> %d eating\n", philo->philo_num);
-	usleep(philo->data->eat_t * 1000);
 	philo->last_eat_time = get_time();
+	usleep(philo->data->eat_t * 1000);
 	printf("%d last_eat_time : %llums\n", philo->philo_num, philo->last_eat_time - philo->data->start_t);
 	philo->eat_count++;
 	pthread_mutex_unlock(philo->lfork);
 	pthread_mutex_unlock(philo->rfork);
-	// sleeping(philo);
-	// thinking(philo);
 }
 
 void	sleeping(t_philo *philo)
