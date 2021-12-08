@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/06 11:43:13 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/08 19:41:32 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	eating(t_philo *philo)
 	printf("%llums %d eating\n", get_time() - philo->data->start_t, philo->philo_num);
 	philo->last_eat_time = get_time();
 	usleep(philo->data->eat_t * 1000);
-	// printf("%d last_eat_time : %llums\n", philo->philo_num, philo->last_eat_time - philo->data->start_t);
 	philo->eat_count++;
 	pthread_mutex_unlock(philo->lfork);
 	pthread_mutex_unlock(philo->rfork);

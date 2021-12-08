@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:40:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/06 11:28:13 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/08 17:35:55 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int monitor_thread(t_philo *philo)
 			now = get_time();
 			if (now > philo[i].data->die_t + philo[i].data->start_t)
 			{
-				printf("%d is dead\n", philo[i].philo_num);
+				printf("%llums %d is dead\n", get_time() - philo[i].data->start_t, philo[i].philo_num);
 				return (1);
 			}
 			if (philo[i].eat_count == philo[i].data->must_eat_cnt)
