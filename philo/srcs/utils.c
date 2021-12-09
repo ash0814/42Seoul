@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:31:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/03 22:47:27 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/09 20:07:38 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strlen(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -22,11 +22,11 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int m;
-	int result;
-	int i;
+	int	m;
+	int	result;
+	int	i;
 
 	m = 1;
 	result = 0;
@@ -48,7 +48,7 @@ int			ft_atoi(const char *str)
 	return (result * m);
 }
 
-unsigned long long get_time(void)
+unsigned long long	get_time(void)
 {
 	struct timeval		tv;
 	unsigned long long	ret;
