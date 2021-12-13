@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:57:53 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/09 20:24:58 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/13 20:58:48 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	eating(t_philo *philo)
 {
 	if (philo->philo_num % 2 == 1)
 	{
-		// usleep(200);
 		pthread_mutex_lock(philo->lfork);
 		printf("%llu %d has taken a fork\n",
 			get_time() - philo->data->start_t, philo->philo_num);
@@ -26,7 +25,6 @@ void	eating(t_philo *philo)
 	}
 	else
 	{
-		usleep(200);
 		pthread_mutex_lock(philo->rfork);
 		printf("%llu %d has taken a fork\n",
 			get_time() - philo->data->start_t, philo->philo_num);
@@ -37,7 +35,8 @@ void	eating(t_philo *philo)
 	printf("%llu %d is eating\n",
 		get_time() - philo->data->start_t, philo->philo_num);
 	philo->last_eat_time = get_time();
-	usleep(philo->data->eat_t * 1000);
+	// usleep(philo->data->eat_t * 1000);
+	ssleep(philo->data->eat_t, get_time());
 	philo->eat_count++;
 	pthread_mutex_unlock(philo->lfork);
 	pthread_mutex_unlock(philo->rfork);
@@ -47,7 +46,8 @@ void	sleeping(t_philo *philo)
 {
 	printf("%llu %d is sleeping\n",
 		get_time() - philo->data->start_t, philo->philo_num);
-	usleep(philo->data->sleep_t * 1000);
+	// usleep(philo->data->sleep_t * 1000);
+	ssleep(philo->data->sleep_t, get_time());
 }
 
 void	thinking(t_philo *philo)

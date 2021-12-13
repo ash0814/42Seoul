@@ -6,32 +6,48 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:40:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/09 20:04:13 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/13 20:52:06 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
+int philo_eat_finish(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->data->p_cnt)
+	{
+		if (philo[i].is_finish == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	monitor_thread(t_philo *philo)
 {
 	int					i;
-	unsigned long long	now;
+	long long	now;
 
 	while (1)
 	{
 		i = 0;
 		while (i < philo->data->p_cnt)
 		{
+			if (philo_eat_finish(philo))
+				return (1);
 			now = get_time();
-			if (now > philo[i].data->die_t
-				+ philo[i].last_eat_time && philo[i].last_eat_time != 0)
+			if (now - philo[i].last_eat_time > philo[i].data->die_t
+				&& philo[i].last_eat_time != 0)
 			{
 				printf("%llu %d died\n",
 					now - philo[i].data->start_t, philo[i].philo_num);
 				return (1);
 			}
 			if (philo[i].eat_count == philo[i].data->must_eat_cnt)
-				return (1);
+				philo[i].is_finish = 1;
 			i++;
 		}
 	}

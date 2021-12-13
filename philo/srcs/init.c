@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/12/09 20:02:53 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/13 14:01:13 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	init_philo(t_philo *philo)
 		philo[i].data = philo->data;
 		philo[i].eat_count = 0;
 		philo[i].last_eat_time = 0;
+		philo[i].is_finish = 0;
 		i++;
 	}
 	return (1);
