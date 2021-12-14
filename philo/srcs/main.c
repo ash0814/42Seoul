@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:40:39 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/13 20:52:06 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/14 17:54:57 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ int	monitor_thread(t_philo *philo)
 			if (now - philo[i].last_eat_time > philo[i].data->die_t
 				&& philo[i].last_eat_time != 0)
 			{
+				pthread_mutex_lock(&(philo->data->m_print));
 				printf("%llu %d died\n",
 					now - philo[i].data->start_t, philo[i].philo_num);
 				return (1);
+				pthread_mutex_unlock(&(philo->data->m_print));
 			}
 			if (philo[i].eat_count == philo[i].data->must_eat_cnt)
 				philo[i].is_finish = 1;
