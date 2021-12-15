@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:38:26 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/14 17:39:17 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/15 16:16:40 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,4 @@ int			ft_strlen(char *s);
 long long	get_time(void);
 void		ssleep(long long time, long long begin);
 
-void		s_putstr(char *s);
-void		s_putnbr(int n);
 #endif
