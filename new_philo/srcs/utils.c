@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 19:40:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/17 01:21:01 by sehyan           ###   ########.fr       */
+/*   Created: 2021/12/16 23:44:54 by sehyan            #+#    #+#             */
+/*   Updated: 2021/12/17 01:21:10 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int main(int argc, char **argv)
+int		err_int(char *s)
 {
-	t_data	*data;
-	t_philo	*philo;
+	printf("%s", s);
+	return (1);
+}
 
-	if (argc == 5 || argc == 6)
-	{
-		if (init(data, philo, argv))
-			return (err_int("Init Error\n"));
-		if (start_thread(philo))
-			return (err_int("Philo Error\n"));
-		if (monitor_thread(philo))
-			return (err_int ("Monitor Error\m"));
-		pthread_mutex_lock(data->mutex_exec);
-		exit_philo(philo);
-		return (0);
-	}
-	else
-		return (err_int("Input Error\n"));
+int		get_time(long long *time)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL) == -1)
+		return (1);
+	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (0);
 }

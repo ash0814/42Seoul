@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/15 20:39:24 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/17 01:21:06 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data
 	long long		start_t;
 	int				must_eat_cnt;
 	pthread_mutex_t	mutex_print;
+	pthread_mutex_t	mutex_exec;
 	struct s_philo	*philo_list;
 	int				left_idx;
 	int				right_idx;
@@ -46,6 +47,17 @@ typedef struct s_philo
 	t_data			*data;
 }			t_philo;
 
+/*
+ * init.c
+ */
+
+int		init(t_data *data, t_philo *philo, char **argv);
+
+/*
+ *  utils.c
+ */
+
+int		err_int(char *s);
 
 
 #endif
