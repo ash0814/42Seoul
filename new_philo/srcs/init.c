@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/17 16:04:58 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/18 01:41:34 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 
 int		init_data(t_data *data, char **argv)
 {
+	int	i;
+
 	pthread_mutex_init(data->mutex_print);
 	pthread_mutex_init(data->mutex_exec);
 	pthread_mutex_lock(data->mutex_exec);
@@ -41,9 +43,13 @@ int		init_data(t_data *data, char **argv)
 	get_time(data->start_t);
 	if (!(argc == 6 && data->must_eat_cnt = ft_atoi(argv[5])))
 		data->must_eat_cnt = -1;
+	data->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_cnt);
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
-			|| data->sleep_t < 0 || data->philo_cnt > 200)
+			|| data->sleep_t < 0 || data->philo_cnt > 200 || !data->fork)
 		return (err_int("Input Error\n"));
+	i = -1;
+	while (++i < data->philo_cnt)
+		pthread_mutex_init(&(data->fork[i]), NULL);
 	return (0);
 }
 

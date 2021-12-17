@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/17 21:35:01 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/18 01:41:38 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_data
 	int				must_eat_cnt;
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	mutex_exec;
+	pthread_mutex_t	*fork;
 }			t_data;
 
 typedef struct s_philo
@@ -42,7 +43,6 @@ typedef struct s_philo
 	int				i;
 	int				left;
 	int				right;
-	pthread_mutex_t	*fork;
 	t_data			*data;
 }			t_philo;
 
