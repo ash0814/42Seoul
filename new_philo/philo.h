@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/17 01:21:06 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/17 21:35:01 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ typedef struct s_data
 	int				must_eat_cnt;
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	mutex_exec;
-	struct s_philo	*philo_list;
-	int				left_idx;
-	int				right_idx;
 }			t_data;
 
 typedef struct s_philo
@@ -42,8 +39,10 @@ typedef struct s_philo
 	int				eat_cnt;
 	long long		last_eat_time;
 	int				philo_id;
-	pthread_mutex_t	*rfork;
-	pthread_mutex_t	*lfork;
+	int				i;
+	int				left;
+	int				right;
+	pthread_mutex_t	*fork;
 	t_data			*data;
 }			t_philo;
 
@@ -58,6 +57,7 @@ int		init(t_data *data, t_philo *philo, char **argv);
  */
 
 int		err_int(char *s);
-
-
+int		get_time(long long *time);
+int		ft_atoi(const char *str);
+int		ft_strlen(char *s);
 #endif
