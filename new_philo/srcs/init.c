@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/19 16:43:27 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/20 01:30:02 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ int		init_data(t_data *data, char **argv)
 	data->eat_t = ft_atoi(argv[3]);
 	data->sleep_t = ft_atoi(argv[4]);
 	get_time(&data->start_t);
-	if (!(data->must_eat_cnt = ft_atoi(argv[5])))
+	if (!argv[5])
 		data->must_eat_cnt = -1;
+	else
+		data->must_eat_cnt = ft_atoi(argv[5]);
 	data->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_cnt);
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
 			|| data->sleep_t < 0 || data->philo_cnt > 200 || !data->fork)
@@ -54,8 +56,6 @@ int		init_data(t_data *data, char **argv)
 
 int		init(t_data *data, t_philo *philo, char **argv)
 {
-	// printf("pointer : %p\n", data->philo_cnt);
-	// printf("pointer : %p\n", data);
 	pthread_mutex_init(&data->mutex_print, NULL);
 	pthread_mutex_init(&data->mutex_exec, NULL);
 	pthread_mutex_lock(&data->mutex_exec);

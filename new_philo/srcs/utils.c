@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:44:54 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/19 16:16:08 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/20 01:33:30 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ int		get_time(long long *time)
 		return (1);
 	*time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (0);
+}
+
+void	s_sleep(t_philo *philo, long long time, long long begin)
+{
+	long long now;
+
+	while (true)
+	{
+		get_time(&now);
+		if (now - begin >= time)
+			break;
+		if (usleep(10)== -1)
+			pthread_mutex_unlock(&(philo->data->mutex_exec));
+	}
 }
 
 int	ft_atoi(const char *str)

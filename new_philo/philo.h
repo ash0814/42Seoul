@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/19 16:51:03 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/20 00:56:00 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <time.h>
+# include <stdbool.h>
 
 typedef struct s_data
 {
@@ -62,10 +63,14 @@ int		err_int(char *s);
 int		get_time(long long *time);
 int		ft_atoi(const char *str);
 int		ft_strlen(char *s);
+void	s_sleep(t_philo *philo, long long time, long long begin);
 
 /*
 * philo.c
 */
 int		start_thread(t_philo *philo);
+void	p_think(t_philo *philo);
+void	p_sleep(t_philo *philo);
+void	*p_routine(void *p);
 
 #endif

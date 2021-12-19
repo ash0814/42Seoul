@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:40:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/19 16:55:20 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/19 18:53:42 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 			return (err_int("Philo Error\n"));
 	//	if (monitor_thread(philo))
 	//		return (err_int ("Monitor Error\n"));
-	//	pthread_mutex_lock(&data->mutex_exec);
+		pthread_mutex_lock(&data->mutex_exec);
 	//	exit_philo(philo);
 		// return (0);
 	}
