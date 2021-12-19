@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/18 01:41:38 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/19 16:51:03 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_philo
  * init.c
  */
 
+int		init_philo(t_philo *philo, char **argv, t_data *data);
+int		init_data(t_data *data, char **argv);
 int		init(t_data *data, t_philo *philo, char **argv);
 
 /*
@@ -60,4 +62,10 @@ int		err_int(char *s);
 int		get_time(long long *time);
 int		ft_atoi(const char *str);
 int		ft_strlen(char *s);
+
+/*
+* philo.c
+*/
+int		start_thread(t_philo *philo);
+
 #endif

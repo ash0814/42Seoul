@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/18 01:41:34 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/19 16:43:27 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < data->p_cnt)
+	while (i < data->philo_cnt)
 	{
 		philo[i].data = data;
 		philo[i].eat_cnt = 0;
@@ -25,23 +25,22 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 		philo[i].i = i;
 		philo[i].philo_id = i + 1;
 		philo[i].right = i;
-		philo[i].left = (i + 1) % data->p_cnt;
+		philo[i].left = (i + 1) % data->philo_cnt;
+		i++;
 	}
+	return (0);
 }
 
 int		init_data(t_data *data, char **argv)
 {
 	int	i;
 
-	pthread_mutex_init(data->mutex_print);
-	pthread_mutex_init(data->mutex_exec);
-	pthread_mutex_lock(data->mutex_exec);
 	data->philo_cnt = ft_atoi(argv[1]);
 	data->die_t = ft_atoi(argv[2]);
 	data->eat_t = ft_atoi(argv[3]);
 	data->sleep_t = ft_atoi(argv[4]);
-	get_time(data->start_t);
-	if (!(argc == 6 && data->must_eat_cnt = ft_atoi(argv[5])))
+	get_time(&data->start_t);
+	if (!(data->must_eat_cnt = ft_atoi(argv[5])))
 		data->must_eat_cnt = -1;
 	data->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_cnt);
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
@@ -55,10 +54,12 @@ int		init_data(t_data *data, char **argv)
 
 int		init(t_data *data, t_philo *philo, char **argv)
 {
-	data = (t_data *)malloc(sizeof(t_data));
-	philo = (t_philo *)malloc(sizeof(t_philo));
-	if (!data || !philo)
-		return (1);
+	// printf("pointer : %p\n", data->philo_cnt);
+	// printf("pointer : %p\n", data);
+	pthread_mutex_init(&data->mutex_print, NULL);
+	pthread_mutex_init(&data->mutex_exec, NULL);
+	pthread_mutex_lock(&data->mutex_exec);
 	if (init_data(data, argv) || init_philo(philo, argv, data))
 		return (1);
+	return (0);
 }

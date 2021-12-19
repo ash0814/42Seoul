@@ -6,7 +6,7 @@
 /*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:44:54 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/17 15:38:01 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/19 16:16:08 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		get_time(long long *time)
 
 	if (gettimeofday(&tv, NULL) == -1)
 		return (1);
-	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	*time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (0);
 }
 
