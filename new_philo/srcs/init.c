@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/20 01:30:02 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/21 02:23:28 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 	int	i;
 
 	i = 0;
+	philo->data = data;
 	while (i < data->philo_cnt)
 	{
 		philo[i].data = data;
