@@ -6,7 +6,7 @@
 #    By: ash <ash@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 14:40:31 by sehyan            #+#    #+#              #
-#    Updated: 2021/12/19 16:54:50 by ash              ###   ########.fr        #
+#    Updated: 2021/12/21 21:07:20 by ash              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	philo
 
 CC		=	gcc #-g3 -fsanitize=address
 CF		=	-lpthread -I ./
-SRC		=	main.c init.c utils.c philo.c
+SRC		=	main.c init.c utils.c philo.c monitor.c
 
 SRC_DIR = ./srcs/
 

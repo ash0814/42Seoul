@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:44:54 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/20 01:33:30 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/22 02:16:27 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,19 @@ int	ft_strlen(char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+int		mutex_init(pthread_mutex_t **fork, int size)
+{
+	int		i;
+
+	i = -1;
+	*fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * size);
+	if (!*fork)
+		return (1);
+	while (++i < size){
+		pthread_mutex_init(&(*fork)[i], NULL);
+		printf("{%d} = %p\n", i, (*fork)[i]);
+	}
+	return (0);
 }

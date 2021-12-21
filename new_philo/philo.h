@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/20 00:56:00 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/22 01:29:30 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		get_time(long long *time);
 int		ft_atoi(const char *str);
 int		ft_strlen(char *s);
 void	s_sleep(t_philo *philo, long long time, long long begin);
+int		mutex_init(pthread_mutex_t **fork, int size);
 
 /*
 * philo.c
@@ -72,5 +73,11 @@ int		start_thread(t_philo *philo);
 void	p_think(t_philo *philo);
 void	p_sleep(t_philo *philo);
 void	*p_routine(void *p);
+
+/*
+ *  monitor.c
+ */
+
+
 
 #endif

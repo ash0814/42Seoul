@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/21 02:23:28 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/22 01:53:02 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 		philo[i].left = (i + 1) % data->philo_cnt;
 		i++;
 	}
+	// printf("a = %p\n", philo[0].data->fork[0]);
+	// printf("b = %p\n", philo[0].data->fork[0]);
+	// printf("c = %p\n", philo[0].data->fork[0]);
+	// printf("d = %p\n", philo[0].data->fork[0]);
 	return (0);
 }
 
@@ -45,13 +49,15 @@ int		init_data(t_data *data, char **argv)
 		data->must_eat_cnt = -1;
 	else
 		data->must_eat_cnt = ft_atoi(argv[5]);
-	data->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_cnt);
+	if (mutex_init(&(data->fork), data->philo_cnt))
+		return (err_int("mutex init error\n"));
+	// printf("printf %d\n", data->fork[0]);
+	// printf("printf %d\n", data->fork[0]);
+	// printf("printf %d\n", data->fork);
+	// printf("printf %d\n", data->fork);
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
-			|| data->sleep_t < 0 || data->philo_cnt > 200 || !data->fork)
+			|| data->sleep_t < 0 || data->philo_cnt > 200)
 		return (err_int("Input Error\n"));
-	i = -1;
-	while (++i < data->philo_cnt)
-		pthread_mutex_init(&(data->fork[i]), NULL);
 	return (0);
 }
 
