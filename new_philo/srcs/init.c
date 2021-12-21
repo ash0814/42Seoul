@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/22 01:53:02 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/22 03:19:36 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,6 @@ int		init_data(t_data *data, char **argv)
 		data->must_eat_cnt = -1;
 	else
 		data->must_eat_cnt = ft_atoi(argv[5]);
-	if (mutex_init(&(data->fork), data->philo_cnt))
-		return (err_int("mutex init error\n"));
-	// printf("printf %d\n", data->fork[0]);
-	// printf("printf %d\n", data->fork[0]);
-	// printf("printf %d\n", data->fork);
-	// printf("printf %d\n", data->fork);
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
 			|| data->sleep_t < 0 || data->philo_cnt > 200)
 		return (err_int("Input Error\n"));
@@ -66,7 +60,11 @@ int		init(t_data *data, t_philo *philo, char **argv)
 	pthread_mutex_init(&data->mutex_print, NULL);
 	pthread_mutex_init(&data->mutex_exec, NULL);
 	pthread_mutex_lock(&data->mutex_exec);
-	if (init_data(data, argv) || init_philo(philo, argv, data))
+	if (init_data(data, argv))
+		return (1);
+	if (mutex_init(&(data->fork), data->philo_cnt))
+		return (err_int("mutex init error\n"));
+	if (init_philo(philo, argv, data))
 		return (1);
 	return (0);
 }
