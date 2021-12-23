@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 16:17:58 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/22 01:16:24 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/23 16:34:37 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	p_sleep(t_philo *philo)
 	long long	now;
 
 	get_time(&now);
-	printf("%lld %d is sleep\n",  now - philo->data->start_t, philo->philo_id);
+	printf("%lld %d is sleeping\n",  now - philo->data->start_t, philo->philo_id);
 	s_sleep(philo, philo->data->sleep_t, now);
 }
 
@@ -33,16 +33,16 @@ void	pickup(pthread_mutex_t *fork, t_philo *philo)
 {
 	long long	now;
 
-	get_time(&now);
 	pthread_mutex_lock(fork);
-	printf("%lld %d has taken a fork\n",  now - philo->data->start_t, philo->philo_id);
+	get_time(&now);
+	printf("%lld %d has taken a fork\n",
+			now - philo->data->start_t, philo->philo_id);
 }
 
 void	p_eat(t_philo *philo)
 {
 	long long time;
 
-	get_time(&time);
 	if (philo->i % 2 == 0)
 	{
 		pickup(&(philo->data->fork[philo->right]), philo);
@@ -53,12 +53,15 @@ void	p_eat(t_philo *philo)
 		pickup(&(philo->data->fork[philo->left]), philo);
 		pickup(&(philo->data->fork[philo->right]), philo);
 	}
+	get_time(&time);
 	philo->last_eat_time = time;
 	printf("%lld %d is eating\n", time - philo->data->start_t, philo->philo_id);
 	philo->eat_cnt++;
 	s_sleep(philo, philo->data->eat_t, time);
+	get_time(&time);
 	pthread_mutex_unlock(&(philo->data->fork[philo->right]));
 	pthread_mutex_unlock(&(philo->data->fork[philo->left]));
+
 }
 
 void	*p_routine(void *p)
@@ -73,7 +76,6 @@ void	*p_routine(void *p)
 		p_sleep(philo);
 		p_think(philo);
 	}
-	// printf("left = %d, i = %d, right = %d\n", philo->left, philo->i, philo->right);
 	return NULL;
 }
 
@@ -82,10 +84,6 @@ int		start_thread(t_philo *philo)
 	int	i;
 
 	i = 0;
-	// printf("a = %p\n", philo[0].data->fork[philo[1].right]);
-	// printf("b = %p\n", philo[0].data->fork[philo[1].right]);
-	// printf("c = %p\n", philo[0].data->fork[philo[1].right]);
-	// printf("d = %p\n", philo[0].data->fork[philo[1].right]);
 	while (i < philo->data->philo_cnt)
 	{
 		if (pthread_create(&(philo[i].tid), NULL, p_routine, (void *)(&philo[i])))
@@ -93,6 +91,5 @@ int		start_thread(t_philo *philo)
 		pthread_detach(philo[i].tid);
 		i++;
 	}
-	// printf("%d   %d\n", philo[0].left, philo[1].right);
 	return (0);
 }

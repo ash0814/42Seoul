@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/22 03:19:36 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/23 16:34:48 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 {
 	int	i;
 
+	if (!philo)
+		return (err_int("Malloc Error\n"));
 	i = 0;
-	philo->data = data;
 	while (i < data->philo_cnt)
 	{
 		philo[i].data = data;
@@ -29,17 +30,16 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 		philo[i].left = (i + 1) % data->philo_cnt;
 		i++;
 	}
-	// printf("a = %p\n", philo[0].data->fork[0]);
-	// printf("b = %p\n", philo[0].data->fork[0]);
-	// printf("c = %p\n", philo[0].data->fork[0]);
-	// printf("d = %p\n", philo[0].data->fork[0]);
 	return (0);
 }
 
 int		init_data(t_data *data, char **argv)
 {
-	int	i;
-
+	if (!data)
+		return (err_int("Malloc Error\n"));
+	pthread_mutex_init(&data->mutex_print, NULL);
+	pthread_mutex_init(&data->mutex_exec, NULL);
+	pthread_mutex_lock(&data->mutex_exec);
 	data->philo_cnt = ft_atoi(argv[1]);
 	data->die_t = ft_atoi(argv[2]);
 	data->eat_t = ft_atoi(argv[3]);
@@ -49,6 +49,8 @@ int		init_data(t_data *data, char **argv)
 		data->must_eat_cnt = -1;
 	else
 		data->must_eat_cnt = ft_atoi(argv[5]);
+	if (mutex_init(&(data->fork), data->philo_cnt))
+		return (err_int("mutex init error\n"));
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
 			|| data->sleep_t < 0 || data->philo_cnt > 200)
 		return (err_int("Input Error\n"));
@@ -62,8 +64,6 @@ int		init(t_data *data, t_philo *philo, char **argv)
 	pthread_mutex_lock(&data->mutex_exec);
 	if (init_data(data, argv))
 		return (1);
-	if (mutex_init(&(data->fork), data->philo_cnt))
-		return (err_int("mutex init error\n"));
 	if (init_philo(philo, argv, data))
 		return (1);
 	return (0);

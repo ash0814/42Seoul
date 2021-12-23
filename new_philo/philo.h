@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/22 01:29:30 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/23 16:34:39 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*p_routine(void *p);
 /*
  *  monitor.c
  */
-
+int		monitor_thread(t_philo *philo);
 
 
 #endif
