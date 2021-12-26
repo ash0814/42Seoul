@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 21:06:44 by ash               #+#    #+#             */
-/*   Updated: 2021/12/26 17:31:19 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 19:51:31 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	monitor_thread(t_philo *philo)
 	while (true)
 	{
 		i = 0;
+		usleep(50);
 		while (i < philo->data->philo_cnt)
 		{
 			if (get_time() - philo[i].last_eat_time > philo[i].data->die_t)
@@ -42,16 +43,12 @@ int	monitor_thread(t_philo *philo)
 				pthread_mutex_lock(&philo->data->mutex_print);
 				printf("%lld %d is died\n",
 					get_time() - philo->data->start_t, philo->philo_id);
-				pthread_mutex_unlock(&(philo->data->mutex_exec));
 				return (0);
 			}
 			i++;
 		}
 		if (is_finish(philo) == 1)
-		{
-			pthread_mutex_unlock(&(philo->data->mutex_exec));
 			return (0);
-		}
 	}
 	return (1);
 }

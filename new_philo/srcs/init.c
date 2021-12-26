@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 17:31:55 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 19:52:40 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	init_data(t_data *data, char **argv)
 	if (!data)
 		return (err_int("Malloc Error\n"));
 	pthread_mutex_init(&data->mutex_print, NULL);
-	pthread_mutex_init(&data->mutex_exec, NULL);
-	pthread_mutex_lock(&data->mutex_exec);
 	data->philo_cnt = ft_atoi(argv[1]);
 	data->die_t = ft_atoi(argv[2]);
 	data->eat_t = ft_atoi(argv[3]);
@@ -49,10 +47,10 @@ int	init_data(t_data *data, char **argv)
 		data->must_eat_cnt = -1;
 	else
 		data->must_eat_cnt = ft_atoi(argv[5]);
-	if (mutex_init(&(data->fork), data->philo_cnt))
-		return (err_int("Mutex init error\n"));
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
 		|| data->sleep_t < 0 || data->philo_cnt > 200)
 		return (err_int("Input Error\n"));
+	if (mutex_init(&(data->fork), data->philo_cnt))
+		return (err_int("Mutex init error\n"));
 	return (0);
 }

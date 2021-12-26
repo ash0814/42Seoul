@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 16:47:06 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:49:23 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/26 19:50:24 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	p_sleep(t_philo *philo)
 	printf("%lld %d is sleeping\n",
 		get_time() - philo->data->start_t, philo->philo_id);
 	pthread_mutex_unlock(&(philo->data->mutex_print));
-	s_sleep(philo, philo->data->sleep_t, get_time());
+	s_sleep(philo->data->sleep_t, get_time());
 }
 
 void	p_think(t_philo *philo)
@@ -56,7 +56,7 @@ void	p_eat(t_philo *philo)
 	pthread_mutex_unlock(&(philo->data->mutex_print));
 	philo->eat_cnt++;
 	philo->last_eat_time = get_time();
-	s_sleep(philo, philo->data->eat_t, get_time());
+	s_sleep(philo->data->eat_t, get_time());
 	pthread_mutex_unlock(&(philo->data->fork[philo->right]));
 	pthread_mutex_unlock(&(philo->data->fork[philo->left]));
 }

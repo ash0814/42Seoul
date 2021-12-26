@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 16:17:58 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 17:35:18 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 19:49:28 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ void	*p_routine(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo *)p;
+	if (philo->i % 2)
+	{
+		usleep(100);
+	}
 	while (true)
 	{
-		if (usleep(10) == -1)
+		if (usleep(50) == -1)
 		{
 			printf("usleep Error\n");
-			pthread_mutex_unlock(&philo->data->mutex_exec);
 			return (NULL);
 		}
 		p_eat(philo);
