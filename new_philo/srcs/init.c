@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/23 16:34:48 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 15:52:15 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 	{
 		philo[i].data = data;
 		philo[i].eat_cnt = 0;
-		philo[i].last_eat_time = 0;
+		philo[i].last_eat_time = get_time();
 		philo[i].i = i;
 		philo[i].philo_id = i + 1;
 		philo[i].right = i;
@@ -44,7 +44,8 @@ int		init_data(t_data *data, char **argv)
 	data->die_t = ft_atoi(argv[2]);
 	data->eat_t = ft_atoi(argv[3]);
 	data->sleep_t = ft_atoi(argv[4]);
-	get_time(&data->start_t);
+	// get_time(&data->start_t);
+	data->start_t = get_time();
 	if (!argv[5])
 		data->must_eat_cnt = -1;
 	else

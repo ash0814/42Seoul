@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 21:06:44 by ash               #+#    #+#             */
-/*   Updated: 2021/12/26 14:03:01 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 16:33:48 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ int		is_finish(t_philo *philo)
 
 int		monitor_thread(t_philo *philo)
 {
-	int i;
-	long long now;
+	int		i;
 
 	while (1)
 	{
 		i = 0;
 		while (i < philo->data->philo_cnt)
 		{
-			get_time(&now);
-			if (now - philo[i].last_eat_time >= philo[i].data->die_t && philo[i].last_eat_time){
-				mu_print(philo, i, "is died");
+			if (get_time() - philo[i].last_eat_time > philo[i].data->die_t)
+			{
+				pthread_mutex_lock(&philo->data->mutex_print);
+				printf("%lld %d is died\n", get_time() - philo->data->start_t, philo->philo_id);
 				pthread_mutex_unlock(&(philo->data->mutex_exec));
 				return (0);
 			}

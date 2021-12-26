@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:44:54 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 13:49:05 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 16:31:26 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,22 @@ int		err_int(char *s)
 	return (1);
 }
 
-int		get_time(long long *time)
+long long		get_time(void)
 {
 	struct timeval	tv;
+	long long time;
 
 	if (gettimeofday(&tv, NULL) == -1)
-		return (1);
-	*time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (0);
+		return (err_int("timeval ERROR"));
+	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (time);
 }
 
 void	s_sleep(t_philo *philo, long long time, long long begin)
 {
-	long long now;
-
 	while (true)
 	{
-		get_time(&now);
-		if (now - begin >= time)
+		if (get_time() - begin >= time)
 			break;
 		if (usleep(10) == -1)
 			pthread_mutex_unlock(&(philo->data->mutex_exec));
@@ -90,13 +88,4 @@ int		mutex_init(pthread_mutex_t **fork, int size)
 		pthread_mutex_init(&(*fork)[i], NULL);
 	}
 	return (0);
-}
-
-void	mu_print(t_philo *philo, int i, char *s)
-{
-	long long now;
-
-	pthread_mutex_lock(&philo->data->mutex_print);
-	get_time(&now);
-	printf("%lld %d %s\n", now - philo->data->start_t, i + 1, s);
 }
