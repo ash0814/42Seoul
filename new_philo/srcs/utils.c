@@ -6,22 +6,22 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:44:54 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:31:26 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 16:52:54 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int		err_int(char *s)
+int	err_int(char *s)
 {
 	printf("%s", s);
 	return (1);
 }
 
-long long		get_time(void)
+long long	get_time(void)
 {
 	struct timeval	tv;
-	long long time;
+	long long		time;
 
 	if (gettimeofday(&tv, NULL) == -1)
 		return (err_int("timeval ERROR"));
@@ -34,7 +34,7 @@ void	s_sleep(t_philo *philo, long long time, long long begin)
 	while (true)
 	{
 		if (get_time() - begin >= time)
-			break;
+			break ;
 		if (usleep(10) == -1)
 			pthread_mutex_unlock(&(philo->data->mutex_exec));
 	}
@@ -66,26 +66,15 @@ int	ft_atoi(const char *str)
 	return (result * m);
 }
 
-int	ft_strlen(char *s)
+int	mutex_init(pthread_mutex_t **fork, int size)
 {
 	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int		mutex_init(pthread_mutex_t **fork, int size)
-{
-	int		i;
 
 	i = -1;
 	*fork = malloc(sizeof(pthread_mutex_t) * size);
 	if (!*fork)
 		return (1);
-	while (++i < size){
+	while (++i < size)
 		pthread_mutex_init(&(*fork)[i], NULL);
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:31:32 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 16:51:47 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int		mutex_init(pthread_mutex_t **fork, int size);
 * philo.c
 */
 int		start_thread(t_philo *philo);
+void	p_eat(t_philo *philo);
+void	pickup(pthread_mutex_t *fork, t_philo *philo);
 void	p_think(t_philo *philo);
 void	p_sleep(t_philo *philo);
 void	*p_routine(void *p);

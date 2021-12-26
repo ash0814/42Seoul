@@ -6,13 +6,13 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 15:52:15 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 16:44:32 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int		init_philo(t_philo *philo, char **argv, t_data *data)
+int	init_philo(t_philo *philo, char **argv, t_data *data)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ int		init_philo(t_philo *philo, char **argv, t_data *data)
 	return (0);
 }
 
-int		init_data(t_data *data, char **argv)
+int	init_data(t_data *data, char **argv)
 {
 	if (!data)
 		return (err_int("Malloc Error\n"));
@@ -44,7 +44,6 @@ int		init_data(t_data *data, char **argv)
 	data->die_t = ft_atoi(argv[2]);
 	data->eat_t = ft_atoi(argv[3]);
 	data->sleep_t = ft_atoi(argv[4]);
-	// get_time(&data->start_t);
 	data->start_t = get_time();
 	if (!argv[5])
 		data->must_eat_cnt = -1;
@@ -53,12 +52,12 @@ int		init_data(t_data *data, char **argv)
 	if (mutex_init(&(data->fork), data->philo_cnt))
 		return (err_int("mutex init error\n"));
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
-			|| data->sleep_t < 0 || data->philo_cnt > 200)
+		|| data->sleep_t < 0 || data->philo_cnt > 200)
 		return (err_int("Input Error\n"));
 	return (0);
 }
 
-int		init(t_data *data, t_philo *philo, char **argv)
+int	init(t_data *data, t_philo *philo, char **argv)
 {
 	pthread_mutex_init(&data->mutex_print, NULL);
 	pthread_mutex_init(&data->mutex_exec, NULL);

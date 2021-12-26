@@ -6,13 +6,13 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:40:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:33:36 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 16:38:03 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	*data;
 	t_philo	*philo;

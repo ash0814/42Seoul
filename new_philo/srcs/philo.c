@@ -6,63 +6,18 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 16:17:58 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:32:28 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 16:50:33 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	p_sleep(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->data->mutex_print);
-	printf("%lld %d is sleeping\n", get_time() - philo->data->start_t, philo->philo_id);
-	pthread_mutex_unlock(&(philo->data->mutex_print));
-	s_sleep(philo, philo->data->sleep_t, get_time());
-}
-
-void	p_think(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->data->mutex_print);
-	printf("%lld %d is thinking\n", get_time() - philo->data->start_t, philo->philo_id);
-	pthread_mutex_unlock(&(philo->data->mutex_print));
-}
-
-void	pickup(pthread_mutex_t *fork, t_philo *philo)
-{
-	pthread_mutex_lock(fork);
-	pthread_mutex_lock(&philo->data->mutex_print);
-	printf("%lld %d has taken a fork\n", get_time() - philo->data->start_t, philo->philo_id);
-	pthread_mutex_unlock(&(philo->data->mutex_print));
-}
-
-void	p_eat(t_philo *philo)
-{
-	if (philo->i % 2 == 0)
-	{
-		pickup(&(philo->data->fork[philo->right]), philo);
-		pickup(&(philo->data->fork[philo->left]), philo);
-	}
-	else
-	{
-		pickup(&(philo->data->fork[philo->left]), philo);
-		pickup(&(philo->data->fork[philo->right]), philo);
-	}
-	pthread_mutex_lock(&philo->data->mutex_print);
-	printf("%lld %d is eating\n", get_time() - philo->data->start_t, philo->philo_id);
-	pthread_mutex_unlock(&(philo->data->mutex_print));
-	philo->eat_cnt++;
-	philo->last_eat_time = get_time();
-	s_sleep(philo, philo->data->eat_t, get_time());
-	pthread_mutex_unlock(&(philo->data->fork[philo->right]));
-	pthread_mutex_unlock(&(philo->data->fork[philo->left]));
-}
-
 void	*p_routine(void *p)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)p;
-	while(true)
+	while (true)
 	{
 		if (usleep(10) == -1)
 			return (NULL);
@@ -73,14 +28,15 @@ void	*p_routine(void *p)
 	return (NULL);
 }
 
-int		start_thread(t_philo *philo)
+int	start_thread(t_philo *philo)
 {
 	int	i;
 
 	i = 0;
 	while (i < philo->data->philo_cnt)
 	{
-		if (pthread_create(&(philo[i].tid), NULL, p_routine, (void *)(&philo[i])))
+		if (pthread_create(&(philo[i].tid), NULL,
+				p_routine, (void *)(&philo[i])))
 			return (1);
 		pthread_detach(philo[i].tid);
 		i++;

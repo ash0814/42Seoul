@@ -6,21 +6,21 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 21:06:44 by ash               #+#    #+#             */
-/*   Updated: 2021/12/26 16:33:48 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 16:46:36 by sehyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int		is_finish(t_philo *philo)
+int	is_finish(t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < philo->data->philo_cnt && philo->data->must_eat_cnt != -1)
 	{
 		if (philo[i].eat_cnt < philo[i].data->must_eat_cnt)
-			break;
+			break ;
 		i++;
 	}
 	if (i == philo->data->philo_cnt)
@@ -28,9 +28,9 @@ int		is_finish(t_philo *philo)
 	return (0);
 }
 
-int		monitor_thread(t_philo *philo)
+int	monitor_thread(t_philo *philo)
 {
-	int		i;
+	int	i;
 
 	while (1)
 	{
@@ -40,7 +40,8 @@ int		monitor_thread(t_philo *philo)
 			if (get_time() - philo[i].last_eat_time > philo[i].data->die_t)
 			{
 				pthread_mutex_lock(&philo->data->mutex_print);
-				printf("%lld %d is died\n", get_time() - philo->data->start_t, philo->philo_id);
+				printf("%lld %d is died\n",
+					get_time() - philo->data->start_t, philo->philo_id);
 				pthread_mutex_unlock(&(philo->data->mutex_exec));
 				return (0);
 			}
@@ -49,7 +50,7 @@ int		monitor_thread(t_philo *philo)
 		if (is_finish(philo) == 1)
 		{
 			pthread_mutex_unlock(&(philo->data->mutex_exec));
-				return (0);
+			return (0);
 		}
 	}
 	return (1);
