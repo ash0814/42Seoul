@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:35:41 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/23 16:34:39 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/24 00:22:30 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		ft_atoi(const char *str);
 int		ft_strlen(char *s);
 void	s_sleep(t_philo *philo, long long time, long long begin);
 int		mutex_init(pthread_mutex_t **fork, int size);
+void	mu_print(t_philo *philo, int i, char *s);
 
 /*
 * philo.c
