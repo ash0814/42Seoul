@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:44:54 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:52:54 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/26 17:37:03 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	s_sleep(t_philo *philo, long long time, long long begin)
 		if (get_time() - begin >= time)
 			break ;
 		if (usleep(10) == -1)
+		{
+			printf("usleep Error\n");
 			pthread_mutex_unlock(&(philo->data->mutex_exec));
+		}
 	}
 }
 

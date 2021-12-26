@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 16:17:58 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:50:33 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/26 17:35:18 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	*p_routine(void *p)
 	while (true)
 	{
 		if (usleep(10) == -1)
+		{
+			printf("usleep Error\n");
+			pthread_mutex_unlock(&philo->data->mutex_exec);
 			return (NULL);
+		}
 		p_eat(philo);
 		p_sleep(philo);
 		p_think(philo);

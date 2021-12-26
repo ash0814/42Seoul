@@ -6,13 +6,13 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:44:32 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/26 17:31:55 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	init_philo(t_philo *philo, char **argv, t_data *data)
+int	init_philo(t_philo *philo, t_data *data)
 {
 	int	i;
 
@@ -50,21 +50,9 @@ int	init_data(t_data *data, char **argv)
 	else
 		data->must_eat_cnt = ft_atoi(argv[5]);
 	if (mutex_init(&(data->fork), data->philo_cnt))
-		return (err_int("mutex init error\n"));
+		return (err_int("Mutex init error\n"));
 	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
 		|| data->sleep_t < 0 || data->philo_cnt > 200)
 		return (err_int("Input Error\n"));
-	return (0);
-}
-
-int	init(t_data *data, t_philo *philo, char **argv)
-{
-	pthread_mutex_init(&data->mutex_print, NULL);
-	pthread_mutex_init(&data->mutex_exec, NULL);
-	pthread_mutex_lock(&data->mutex_exec);
-	if (init_data(data, argv))
-		return (1);
-	if (init_philo(philo, argv, data))
-		return (1);
 	return (0);
 }

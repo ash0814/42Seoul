@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:40:34 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 16:38:03 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/26 17:04:59 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		if (init_data(data, argv))
 			return (1);
 		philo = (t_philo *)malloc(sizeof(t_philo) * data->philo_cnt);
-		if (init_philo(philo, argv, data))
+		if (init_philo(philo, data))
 			return (1);
 		if (start_thread(philo))
 			return (err_int("Philo Error\n"));

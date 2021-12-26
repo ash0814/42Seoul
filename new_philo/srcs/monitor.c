@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 21:06:44 by ash               #+#    #+#             */
-/*   Updated: 2021/12/26 16:46:36 by sehyan           ###   ########.fr       */
+/*   Updated: 2021/12/26 17:31:19 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	monitor_thread(t_philo *philo)
 {
 	int	i;
 
-	while (1)
+	while (true)
 	{
 		i = 0;
 		while (i < philo->data->philo_cnt)
