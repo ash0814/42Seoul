@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 16:17:58 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 13:53:17 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 14:04:23 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	p_sleep(t_philo *philo)
 	long long	now;
 
 	get_time(&now);
-	// printf("%lld %d is sleeping\n",  now - philo->data->start_t, philo->philo_id);
 	mu_print(philo, philo->i, "is sleeping");
 	pthread_mutex_unlock(&(philo->data->mutex_print));
 	s_sleep(philo, philo->data->sleep_t, now);
@@ -25,22 +24,13 @@ void	p_sleep(t_philo *philo)
 
 void	p_think(t_philo *philo)
 {
-	long long	now;
-
-	get_time(&now);
-	// printf("%lld %d is thinking\n", now - philo->data->start_t, philo->philo_id);
 	mu_print(philo, philo->i, "is thinking");
 	pthread_mutex_unlock(&(philo->data->mutex_print));
 }
 
 void	pickup(pthread_mutex_t *fork, t_philo *philo)
 {
-	long long	now;
-
 	pthread_mutex_lock(fork);
-	get_time(&now);
-	// printf("%lld %d has taken a fork\n",
-	// 		now - philo->data->start_t, philo->philo_id);
 	mu_print(philo, philo->i, "has taken a fork");
 	pthread_mutex_unlock(&(philo->data->mutex_print));
 }
@@ -59,17 +49,14 @@ void	p_eat(t_philo *philo)
 		pickup(&(philo->data->fork[philo->left]), philo);
 		pickup(&(philo->data->fork[philo->right]), philo);
 	}
-	get_time(&time);
-	philo->last_eat_time = time;
-	// printf("%lld %d is eating\n", time - philo->data->start_t, philo->philo_id);
 	mu_print(philo, philo->i, "is eating");
 	pthread_mutex_unlock(&(philo->data->mutex_print));
 	philo->eat_cnt++;
-	s_sleep(philo, philo->data->eat_t, time);
 	get_time(&time);
+	philo->last_eat_time = time;
+	s_sleep(philo, philo->data->eat_t, time);
 	pthread_mutex_unlock(&(philo->data->fork[philo->right]));
 	pthread_mutex_unlock(&(philo->data->fork[philo->left]));
-
 }
 
 void	*p_routine(void *p)
