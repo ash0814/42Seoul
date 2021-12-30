@@ -11,4 +11,4 @@
 |2|ft_server|Success|Dockerfile|100|
 |2|miniRT|Success|Mini RayTracing|100|
 |3|minishell|Success|Create a simple Shell|100|
-|3|Philosophers|Ongoing|Basics of threading a process||
+|3|Philosophers|Success|Basics of threading a process|100|
