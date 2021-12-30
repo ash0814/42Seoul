@@ -3,23 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:31:42 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/14 15:52:27 by sehyan           ###   ########.fr       */
+/*   Created: 2021/12/16 23:44:54 by sehyan            #+#    #+#             */
+/*   Updated: 2021/12/26 21:47:06 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	ft_strlen(char *s)
+int	err_int(char *s)
 {
-	int	i;
+	printf("%s", s);
+	return (1);
+}
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+long long	get_time(void)
+{
+	struct timeval	tv;
+	long long		time;
+
+	if (gettimeofday(&tv, NULL) == -1)
+		return (err_int("timeval ERROR"));
+	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (time);
+}
+
+void	s_sleep(long long time, long long begin)
+{
+	while (true)
+	{
+		// usleep(300 * 1000);
+		if (get_time() - begin >= time)
+			break ;
+		if (usleep(300) == -1)
+		{
+			printf("usleep Error\n");
+			return ;
+		}
+	}
 }
 
 int	ft_atoi(const char *str)
@@ -48,22 +70,15 @@ int	ft_atoi(const char *str)
 	return (result * m);
 }
 
-long long	get_time(void)
+int	mutex_init(pthread_mutex_t **fork, int size)
 {
-	struct timeval		tv;
-	long long	ret;
+	int	i;
 
-	gettimeofday(&tv, NULL);
-	ret = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (ret);
-}
-
-void	ssleep(long long time, long long begin)
-{
-	while (1)
-	{
-		if (get_time() - begin >= time)
-			break;
-		usleep(10);
-	}
+	i = -1;
+	*fork = malloc(sizeof(pthread_mutex_t) * size);
+	if (!*fork)
+		return (1);
+	while (++i < size)
+		pthread_mutex_init(&(*fork)[i], NULL);
+	return (0);
 }

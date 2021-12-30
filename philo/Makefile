@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+         #
+#    By: ash <ash@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 14:40:31 by sehyan            #+#    #+#              #
-#    Updated: 2021/12/15 16:16:24 by sehyan           ###   ########.fr        #
+#    Updated: 2021/12/26 19:54:02 by ash              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philo
 
-CC		=	gcc # -g3 -fsanitize=address #-Wall -Wextra -Werror
+CC		=	gcc -Wall -Wextra -Werror
 CF		=	-lpthread -I ./
-SRC		=	main.c philo.c init.c utils.c
+SRC		=	main.c init.c utils.c philo.c monitor.c routine.c
 
 SRC_DIR = ./srcs/
 
@@ -29,7 +29,6 @@ all		:	$(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CF) $(SRCS) -o $(NAME)
-	make clean
 
 clean	:
 			rm -f $(OBJ)

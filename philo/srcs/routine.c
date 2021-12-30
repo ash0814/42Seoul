@@ -6,7 +6,7 @@
 /*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 16:47:06 by sehyan            #+#    #+#             */
-/*   Updated: 2021/12/26 19:50:24 by ash              ###   ########.fr       */
+/*   Updated: 2021/12/26 21:56:39 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	p_sleep(t_philo *philo)
 		get_time() - philo->data->start_t, philo->philo_id);
 	pthread_mutex_unlock(&(philo->data->mutex_print));
 	s_sleep(philo->data->sleep_t, get_time());
+	// usleep(philo->data->sleep_t);
 }
 
 void	p_think(t_philo *philo)
@@ -57,6 +58,7 @@ void	p_eat(t_philo *philo)
 	philo->eat_cnt++;
 	philo->last_eat_time = get_time();
 	s_sleep(philo->data->eat_t, get_time());
+	// usleep(philo->data->eat_t);
 	pthread_mutex_unlock(&(philo->data->fork[philo->right]));
 	pthread_mutex_unlock(&(philo->data->fork[philo->left]));
 }

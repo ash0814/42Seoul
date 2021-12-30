@@ -3,81 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehyan <sehyan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ash <ash@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/03 15:44:29 by ash               #+#    #+#             */
-/*   Updated: 2021/12/15 20:39:20 by sehyan           ###   ########.fr       */
+/*   Created: 2021/12/16 23:33:16 by sehyan            #+#    #+#             */
+/*   Updated: 2021/12/26 19:52:40 by ash              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	init_mutex(pthread_mutex_t **mutex, int num)
+int	init_philo(t_philo *philo, t_data *data)
 {
 	int	i;
 
-	*mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
-	if (!*mutex)
-		return (1);
+	if (!philo)
+		return (err_int("Malloc Error\n"));
 	i = 0;
-	while (i < num)
+	while (i < data->philo_cnt)
 	{
-		pthread_mutex_init(&(*mutex)[i], NULL);
+		philo[i].data = data;
+		philo[i].eat_cnt = 0;
+		philo[i].last_eat_time = get_time();
+		philo[i].i = i;
+		philo[i].philo_id = i + 1;
+		philo[i].right = i;
+		philo[i].left = (i + 1) % data->philo_cnt;
 		i++;
 	}
 	return (0);
 }
 
-int	init_philo(t_philo *philo)
+int	init_data(t_data *data, char **argv)
 {
-	int	i;
-
-	i = 0;
-	while (i < philo->data->p_cnt)
-	{
-		philo[i].data = philo->data;
-		philo[i].eat_count = 0;
-		philo[i].last_eat_time = 0;
-		philo[i].is_finish = 0;
-		i++;
-	}
-	return (1);
-}
-
-int	init_data(int argc, char **argv, t_data *data)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	if (argc == 5 || argc == 6)
-	{
-		data->p_cnt = ft_atoi(argv[1]);
-		data->die_t = ft_atoi(argv[2]);
-		data->eat_t = ft_atoi(argv[3]);
-		data->sleep_t = ft_atoi(argv[4]);
-		data->start_t = get_time();
-		pthread_mutex_init(&(data->m_print), NULL);
-		if (argc == 6)
-			data->must_eat_cnt = ft_atoi(argv[5]);
-		else
-			data->must_eat_cnt = -1;
-		if (data->p_cnt < 0 || data->die_t < 0 || data->eat_t < 0
-			|| data->sleep_t < 0)
-		{
-			printf("input ERROR\n");
-			return (0);
-		}
-	}
+	if (!data)
+		return (err_int("Malloc Error\n"));
+	pthread_mutex_init(&data->mutex_print, NULL);
+	data->philo_cnt = ft_atoi(argv[1]);
+	data->die_t = ft_atoi(argv[2]);
+	data->eat_t = ft_atoi(argv[3]);
+	data->sleep_t = ft_atoi(argv[4]);
+	data->start_t = get_time();
+	if (!argv[5])
+		data->must_eat_cnt = -1;
 	else
-	{
-		printf("input ERROR\n");
-		return (0);
-	}
-	return (1);
-}
-
-void	free_data(t_data *data, t_philo *philo)
-{
-	free(philo);
-	free(data);
+		data->must_eat_cnt = ft_atoi(argv[5]);
+	if (data->philo_cnt < 0 || data->die_t < 0 || data->eat_t < 0
+		|| data->sleep_t < 0 || data->philo_cnt > 200)
+		return (err_int("Input Error\n"));
+	if (mutex_init(&(data->fork), data->philo_cnt))
+		return (err_int("Mutex init error\n"));
+	return (0);
 }
