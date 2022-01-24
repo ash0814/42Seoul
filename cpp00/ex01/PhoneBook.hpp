@@ -1,6 +1,14 @@
 #include <iostream>
 #include <iomanip>
 
+enum Cmd
+{
+	ADD,
+	SEARCH,
+	EXIT,
+	ERROR
+};
+
 class PhoneBook
 {
 private:
@@ -10,7 +18,9 @@ private:
 	std::string phoneNumber[8];
 	std::string darkestSecret[8];
 public:
-	void addFirstName(std::string str,int idx);
+	void addFirstName(int idx);
+	void printName(void);
+	int getIdx(void);
 	PhoneBook();
 	~PhoneBook();
 };

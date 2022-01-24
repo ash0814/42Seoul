@@ -1,7 +1,7 @@
 NAME	=	PhoneBook
 
 CC		=	clang++ -Wall -Wextra -Werror
-SRC		=	PhoneBook.cpp
+SRC		=	PhoneBook.cpp main.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
