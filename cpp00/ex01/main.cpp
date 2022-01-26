@@ -26,7 +26,7 @@ int main(void)
 		switch (cmd)
 		{
 		case (ADD):
-			pb.addFirstName(pb.getIdx());
+			pb.addInfo(pb.getIdx());
 			break;
 		case (SEARCH):
 			std::cout << "SEARCH" << std::endl;

@@ -18,7 +18,7 @@ private:
 	std::string phoneNumber[8];
 	std::string darkestSecret[8];
 public:
-	void addFirstName(int idx);
+	void addInfo(int idx);
 	void printName(void);
 	int getIdx(void);
 	PhoneBook();
