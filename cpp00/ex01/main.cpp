@@ -29,10 +29,10 @@ int main(void)
 			pb.addInfo(pb.getIdx());
 			break;
 		case (SEARCH):
-			std::cout << "SEARCH" << std::endl;
+			pb.printName();
 			break;
 		case (EXIT):
-			pb.printName();
+			std::cout << "EXIT" << std::endl;
 			return (0);
 		default:
 			std::cout << "Command Error" << std::endl;

@@ -17,10 +17,17 @@ void PhoneBook::addInfo(int idx)
 void PhoneBook::printName(void)
 {
 	std::cout << "===" << std::endl;
-	for (int i = 0; i < getIdx(); i++){
+	for (int i = 0; i < getIdx(); i++) {
 		std::cout.width(10);
-		std::cout << firstName[i] << " | " << lastName[i] << " | " << nickName[i]
-		<< " | " << phoneNumber[i] << " | " << darkestSecret[i] <<  std::endl;
+		std::cout << firstName[i] << "|";
+		std::cout.width(10);
+		std::cout << lastName[i] << "|";
+		std::cout.width(10);
+		std::cout << nickName[i] << "|";
+		std::cout.width(10);
+		std::cout << phoneNumber[i] << "|";
+		std::cout.width(10);
+		std::cout << darkestSecret[i] <<  std::endl;
 	}
 }
 

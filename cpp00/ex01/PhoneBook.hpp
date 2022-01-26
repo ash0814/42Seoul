@@ -12,11 +12,11 @@ enum Cmd
 class PhoneBook
 {
 private:
-	std::string firstName[8];
-	std::string lastName[8];
-	std::string nickName[8];
-	std::string phoneNumber[8];
-	std::string darkestSecret[8];
+	std::string firstName[9];
+	std::string lastName[9];
+	std::string nickName[9];
+	std::string phoneNumber[9];
+	std::string darkestSecret[9];
 public:
 	void addInfo(int idx);
 	void printName(void);
