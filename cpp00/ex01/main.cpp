@@ -1,10 +1,18 @@
 #include "./PhoneBook.hpp"
 
-void getCmd(Cmd *cmd)
+int getCmd(Cmd *cmd)
 {
 	std::string command;
 	// std::cin >> command;
 	std::getline(std::cin, command);
+	if (!std::cin)
+	{
+		if (std::cin.eof()){
+			std::cin.clear();
+			std::cin.ignore(32767, '\n');
+			return (1);
+		}
+	}
 	if (!command.compare("ADD") || !command.compare("add"))
 		*cmd = ADD;
 	else if (!command.compare("SEARCH") || !command.compare("search"))
@@ -13,8 +21,9 @@ void getCmd(Cmd *cmd)
 		*cmd = EXIT;
 	else
 		*cmd = ERROR;
+	return (0);
 }
-
+#include <unistd.h>
 int main(void)
 {
 	PhoneBook pb;
@@ -24,7 +33,13 @@ int main(void)
 	while (1)
 	{
 		std::cout << "Enter Command (ADD, SEARCH, EXIT) : ";
-		getCmd(&cmd);
+		if (getCmd(&cmd))
+		{
+			std::cout<<"eof\n";
+			std::cin.clear();
+			sleep(2);
+			continue;
+		}
 
 		switch (cmd)
 		{
@@ -36,6 +51,12 @@ int main(void)
 			pb.printName();
 			std::cout << "Enter Search Index : ";
 			std::cin >> searchIdx;
+			if (std::cin.fail()) {
+				std::cout<<"input fail\n";
+				std::cin.clear();
+				std::cin.ignore(32767, '\n');
+				break;
+			}
 			std::cin.ignore(32767, '\n');
 			pb.printIdxInfo(searchIdx);
 			break;
@@ -47,6 +68,6 @@ int main(void)
 			break;
 		}
 	}
-	pb.printName();
+	// pb.printName();
 	return (0);
 }

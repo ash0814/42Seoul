@@ -27,9 +27,14 @@ void PhoneBook::printName(void)
 
 	if (index >= 8)
 		index = 8;
-	std::cout << "===" << std::endl;
+	std::cout << std::setw(10) << std::right << "Index" << "|" 
+		<< std::setw(10) << std::right << "First Name" << "|" <<
+		std::setw(10) << std::right << "Last Name" << "|" << std::setw(10) << std::right 
+		<< "nick Name" << std::endl;
 	for (int i = 0; i < index; i++) {
-		std::cout << i << "|" << std::setw(10) << std::right << firstName[i] << "|" << lastName[i] << "|" 
+		std::cout << std::setw(10) << std::right 
+		<< i << "|" << std::setw(10) << std::right << firstName[i] << "|" <<
+		std::setw(10) << std::right << lastName[i] << "|" << std::setw(10) << std::right 
 		<< nickName[i] << std::endl;
 	}
 }
@@ -37,9 +42,10 @@ void PhoneBook::printName(void)
 void PhoneBook::printIdxInfo(int i)
 {
 	i = i % 8;
-	std::cout << i << "|" << firstName[i] << "|" << lastName[i] << "|" 
-		<< nickName[i] << "|" << phoneNumber[i] << "|" 
-		<< darkestSecret[i] <<  std::endl;
+	
+	std::cout <<"Fist Name : " << firstName[i] << "\n" << "Last Name : " << lastName[i] << "\n" 
+		<< "Nick Name : " << nickName[i] << "\n" << "Phone Number : " << phoneNumber[i] << "\n" 
+		<< "Darkest Secret : " << darkestSecret[i] <<  std::endl;
 }
 
 int PhoneBook::getIdx(void)
