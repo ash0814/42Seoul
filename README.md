@@ -12,3 +12,4 @@
 |2|miniRT|Success|Mini RayTracing|100|
 |3|minishell|Success|Create a simple Shell|100|
 |3|Philosophers|Success|Basics of threading a process|100|
+|4|CPP Module|Ongoing|C++|-|
