@@ -1,19 +1,55 @@
-#include "./PhoneBook.hpp"
-#include <unistd.h>
+# include "PhoneBook.hpp"
 
-void PhoneBook::addInfo(int i) 
+int Contacts::addInfo(void)
 {
-	i = i % 8;
 	std::cout << "first name : ";
-	std::getline(std::cin, firstName[i]);
+	if (!std::getline(std::cin, firstName))
+		return (1);
 	std::cout << "last name : ";
-	std::getline(std::cin,lastName[i]);
+	if (!std::getline(std::cin,lastName))
+		return (1);
 	std::cout << "nick name : ";
-	std::getline(std::cin,nickName[i]);
+	if (!std::getline(std::cin, nickName))
+		return (1);
 	std::cout << "phone number : ";
-	std::getline(std::cin,phoneNumber[i]);
+	if (!std::getline(std::cin, phoneNumber))
+		return (1);
 	std::cout << "darkest secret : ";
-	std::getline(std::cin,darkestSecret[i]);
+	if (!std::getline(std::cin, darkestSecret))
+		return (1);
+	return (0);
+}
+
+void Contacts::printStr(void)
+{
+	std::cout << firstName << std::endl;
+	std::cout << lastName << std::endl;
+	std::cout << nickName << std::endl;
+}
+
+void PhoneBook::addContacts(Contacts ct, int i)
+{
+	contacts[i] = ct;
+	idx++;
+}
+
+void PhoneBook::printContacts(void)
+{
+	int len;
+
+	if (idx >= 8)
+		len = 8;
+	else
+		len = idx;
+	for (int i = 0; i < len; i++) {
+		std::cout << "[" << i << "] : ";
+		contacts[i].printStr();
+	}
+}
+
+int PhoneBook::getIdx(void)
+{
+	return idx;
 }
 
 void PhoneBook::plusIdx(void)
@@ -21,39 +57,12 @@ void PhoneBook::plusIdx(void)
 	idx++;
 }
 
-void PhoneBook::printName(void)
+Contacts::Contacts(/* args */)
 {
-	int index = getIdx();
-
-	if (index >= 8)
-		index = 8;
-	std::cout << std::setw(10) << std::right << "Index" << "|" 
-		<< std::setw(10) << std::right << "First Name" << "|" <<
-		std::setw(10) << std::right << "Last Name" << "|" << std::setw(10) << std::right 
-		<< "nick Name" << std::endl;
-	for (int i = 0; i < index; i++) {
-		std::cout << std::setw(10) << std::right 
-		<< i << "|" << std::setw(10) << std::right << firstName[i] << "|" <<
-		std::setw(10) << std::right << lastName[i] << "|" << std::setw(10) << std::right 
-		<< nickName[i] << std::endl;
-	}
 }
 
-void PhoneBook::printIdxInfo(int i)
+Contacts::~Contacts()
 {
-	i = i % 8;
-	
-	std::cout <<"Fist Name : " << firstName[i] << "\n" << "Last Name : " << lastName[i] << "\n" 
-		<< "Nick Name : " << nickName[i] << "\n" << "Phone Number : " << phoneNumber[i] << "\n" 
-		<< "Darkest Secret : " << darkestSecret[i] <<  std::endl;
-}
-
-int PhoneBook::getIdx(void)
-{
-	int i;
-
-	i = idx;
-	return i;
 }
 
 PhoneBook::PhoneBook(/* args */)

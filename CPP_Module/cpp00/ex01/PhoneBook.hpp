@@ -1,30 +1,33 @@
-#include <iostream>
-#include <iomanip>
+# include <iostream>
+# include <string>
+# include <iomanip>
 
-enum Cmd
+class Contacts
 {
-	ADD,
-	SEARCH,
-	EXIT,
-	ERROR
+private:
+	std::string firstName;
+	std::string lastName;
+	std::string nickName;
+	std::string phoneNumber;
+	std::string darkestSecret;
+public:
+	int addInfo(void);
+	void printStr(void);
+	Contacts(/* args */);
+	~Contacts();
 };
+
 
 class PhoneBook
 {
 private:
-	std::string firstName[8];
-	std::string lastName[8];
-	std::string nickName[8];
-	std::string phoneNumber[8];
-	std::string darkestSecret[8];
-	int			idx;
+	Contacts contacts[8];
+	int idx;
 public:
-	void addInfo(int i);
-	void printName(void);
+	void addContacts(Contacts ct, int i);
+	void printContacts(void);
 	int getIdx(void);
 	void plusIdx(void);
-	void printIdxInfo(int i);
-	PhoneBook();
+	PhoneBook(/* args */);
 	~PhoneBook();
 };
-
