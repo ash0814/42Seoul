@@ -1,57 +1,32 @@
 # include "PhoneBook.hpp"
 
-int getCmd(Cmd *cmd)
-{
-	std::string command;
-
-	if (!std::getline(std::cin, command))
-		return (1);
-	if (!command.compare("ADD") || !command.compare("add"))
-		*cmd = ADD;
-	else if (!command.compare("SEARCH") || !command.compare("search"))
-		*cmd = SEARCH;
-	else if (!command.compare("EXIT") || !command.compare("exit"))
-		*cmd = EXIT;
-	else
-		*cmd = ERROR;
-	return (0);
-}
-
 int main(void)
 {
 	PhoneBook pb;
 	Contacts ct;
-	Cmd cmd;
+	std::string cmd;
 
-	// ct.addInfo();
-	// pb.addContacts(ct, pb.getIdx());
-	// pb.printContacts();
 	while (1)
 	{
 		std::cout << "Enter Command (ADD, SEARCH, EXIT) : ";
-		if (getCmd(&cmd))
-			break;
-		switch (cmd)
-		{
-		case (ADD):
+		if (!std::getline(std::cin, cmd))
+			return (1);
+		if (cmd == "ADD" || cmd == "add") {
 			std::cout << "ADD" << std::endl;
-			if (!ct.addInfo()) {
+			if (ct.addInfo()) {
 				std::cout << "input Error" << std::endl;
 			}
 			pb.addContacts(ct, pb.getIdx());
-			break;
-		case (SEARCH):
+		} else if (cmd == "SEARCH" || cmd == "search") {
 			std::cout << "SEARCH" << std::endl;
 			pb.printContacts();
-			break;
-		case (EXIT):
+		} else if (cmd == "EXIT" || cmd == "exit") {
 			std::cout << "EXIT" << std::endl;
 			return (0);
-		default:
+		} else {
 			std::cout << "Command Error" << std::endl;
-			break;
+			continue;
 		}
 	}
 	return (0);
-
 }

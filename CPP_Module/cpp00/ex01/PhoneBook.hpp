@@ -1,31 +1,7 @@
 # include <iostream>
 # include <string>
 # include <iomanip>
-
-enum Cmd
-{
-	ADD,
-	SEARCH,
-	EXIT,
-	ERROR
-};
-
-class Contacts
-{
-private:
-	std::string firstName;
-	std::string lastName;
-	std::string nickName;
-	std::string phoneNumber;
-	std::string darkestSecret;
-public:
-	int addInfo(void);
-	void printStr(void);
-	std::string checkStr(std::string str);
-	Contacts(/* args */);
-	~Contacts();
-};
-
+# include "Contacts.hpp"
 
 class PhoneBook
 {

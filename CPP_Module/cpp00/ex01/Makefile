@@ -1,17 +1,17 @@
 NAME	=	PhoneBook
 
-CC		=	c++ -Wall -Wextra -Werror
-SRC		=	PhoneBook.cpp main.cpp
+CXX		=	c++ -Wall -Wextra -Werror -std=c++98
+SRC		=	PhoneBook.cpp Contacts.cpp main.cpp 
 
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)
 
 %.o		:	./%.cpp
-			$(CC) -c $<  -o $@
+			$(CXX) -c $<  -o $@
 
 $(NAME)	:	$(OBJ)
-	$(CC) $(SRC) -o $(NAME)
+	$(CXX) $(SRC) -o $(NAME)
 	make clean
 
 clean	:	
