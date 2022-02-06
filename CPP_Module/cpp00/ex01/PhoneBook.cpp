@@ -1,12 +1,20 @@
 # include "PhoneBook.hpp"
 
-void PhoneBook::addContacts(Contacts ct, int i)
+bool PhoneBook::addContacts()
 {
-	contacts[i] = ct;
+	Contacts ct;
+
+	if (!ct.addInfo())
+	{
+		// std::cout << "\nInput Error" << std::endl;
+		return (false);
+	}
+	contacts[getIdx()] = ct;
 	idx++;
+	return true;
 }
 
-void PhoneBook::printContacts(void)
+void PhoneBook::printPreview(void)
 {
 	int len;
 
@@ -24,14 +32,16 @@ void PhoneBook::printContacts(void)
 	}
 }
 
+bool PhoneBook::printContacts(void)
+{
+	std::string index;
+
+
+}
+
 int PhoneBook::getIdx(void)
 {
 	return idx;
-}
-
-void PhoneBook::plusIdx(void)
-{
-	idx++;
 }
 
 PhoneBook::PhoneBook(/* args */)

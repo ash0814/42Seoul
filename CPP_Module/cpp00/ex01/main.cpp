@@ -3,7 +3,6 @@
 int main(void)
 {
 	PhoneBook pb;
-	Contacts ct;
 	std::string cmd;
 
 	while (1)
@@ -12,14 +11,12 @@ int main(void)
 		if (!std::getline(std::cin, cmd))
 			return (1);
 		if (cmd == "ADD" || cmd == "add") {
-			std::cout << "ADD" << std::endl;
-			if (ct.addInfo()) {
-				std::cout << "input Error" << std::endl;
-			}
-			pb.addContacts(ct, pb.getIdx());
+			if (!pb.addContacts())
+				return (0);
 		} else if (cmd == "SEARCH" || cmd == "search") {
-			std::cout << "SEARCH" << std::endl;
-			pb.printContacts();
+			pb.printPreview();
+			if (!pb.printContacts())
+				return (0);
 		} else if (cmd == "EXIT" || cmd == "exit") {
 			std::cout << "EXIT" << std::endl;
 			return (0);

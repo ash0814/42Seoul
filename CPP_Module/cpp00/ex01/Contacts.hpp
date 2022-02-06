@@ -11,7 +11,7 @@ private:
 	std::string phoneNumber;
 	std::string darkestSecret;
 public:
-	int addInfo(void);
+	bool addInfo(void);
 	void preview(void);
 	std::string checkStr(std::string str);
 	Contacts(/* args */);

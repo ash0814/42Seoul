@@ -1,23 +1,23 @@
 # include "Contacts.hpp"
 
-int Contacts::addInfo(void)
+bool Contacts::addInfo(void)
 {
 	std::cout << "first name : ";
 	if (!std::getline(std::cin, firstName))
-		return (1);
+		return (false);
 	std::cout << "last name : ";
 	if (!std::getline(std::cin,lastName))
-		return (1);
+		return (false);
 	std::cout << "nick name : ";
 	if (!std::getline(std::cin, nickName))
-		return (1);
+		return (false);
 	std::cout << "phone number : ";
 	if (!std::getline(std::cin, phoneNumber))
-		return (1);
+		return (false);
 	std::cout << "darkest secret : ";
 	if (!std::getline(std::cin, darkestSecret))
-		return (1);
-	return (0);
+		return (false);
+	return (true);
 }
 
 std::string Contacts::checkStr(std::string str)
