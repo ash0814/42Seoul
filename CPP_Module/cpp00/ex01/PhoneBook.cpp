@@ -20,11 +20,26 @@ int Contacts::addInfo(void)
 	return (0);
 }
 
+std::string Contacts::checkStr(std::string str)
+{
+	std::string ret;
+
+	if (str.length() <= 10) {
+		ret = str;
+	} else {
+		str[9] = '.';
+		for (int i = 10; i < (int)str.length(); i++)
+			str[i] = '\0';
+		ret = str;
+	}
+	return ret;
+}
+
 void Contacts::printStr(void)
 {
-	std::cout << firstName << std::endl;
-	std::cout << lastName << std::endl;
-	std::cout << nickName << std::endl;
+	std::cout << std::setw(10) << checkStr(firstName) << "|";
+	std::cout << std::setw(10) << checkStr(lastName) << "|";
+	std::cout << std::setw(10) << checkStr(nickName) << std::endl;
 }
 
 void PhoneBook::addContacts(Contacts ct, int i)
@@ -41,8 +56,12 @@ void PhoneBook::printContacts(void)
 		len = 8;
 	else
 		len = idx;
+	std::cout << std::setw(10) << "Index" << "|";
+	std::cout << std::setw(10) << "First Name" << "|";
+	std::cout<< std::setw(10) << "Last Name" << "|";
+	std::cout << std::setw(10) << "nick Name" << std::endl;
 	for (int i = 0; i < len; i++) {
-		std::cout << "[" << i << "] : ";
+		std::cout << std::setw(10) << i << "|";
 		contacts[i].printStr();
 	}
 }

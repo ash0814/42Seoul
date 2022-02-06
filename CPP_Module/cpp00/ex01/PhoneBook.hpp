@@ -2,6 +2,14 @@
 # include <string>
 # include <iomanip>
 
+enum Cmd
+{
+	ADD,
+	SEARCH,
+	EXIT,
+	ERROR
+};
+
 class Contacts
 {
 private:
@@ -13,6 +21,7 @@ private:
 public:
 	int addInfo(void);
 	void printStr(void);
+	std::string checkStr(std::string str);
 	Contacts(/* args */);
 	~Contacts();
 };
