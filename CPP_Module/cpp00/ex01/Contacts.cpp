@@ -40,6 +40,15 @@ void Contacts::preview(void)
 	std::cout << std::setw(10) << checkStr(nickName) << std::endl;
 }
 
+void Contacts::printAll(void)
+{
+	std::cout << "First Name     :" << firstName << std::endl;
+	std::cout << "Last Name      :" << lastName << std::endl;
+	std::cout << "Nick Name      :" << nickName << std::endl;
+	std::cout << "Phone Number   :" << phoneNumber << std::endl;
+	std::cout << "Darkest Secret :" << darkestSecret << std::endl;
+}
+
 Contacts::Contacts(/* args */)
 {
 }

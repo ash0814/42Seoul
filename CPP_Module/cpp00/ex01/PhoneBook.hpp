@@ -13,6 +13,6 @@ public:
 	void printPreview(void);
 	bool printContacts(void);
 	int getIdx(void);
-	PhoneBook(/* args */);
+	PhoneBook();
 	~PhoneBook();
 };

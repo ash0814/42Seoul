@@ -10,10 +10,12 @@ private:
 	std::string nickName;
 	std::string phoneNumber;
 	std::string darkestSecret;
+
+	std::string checkStr(std::string str);
 public:
 	bool addInfo(void);
 	void preview(void);
-	std::string checkStr(std::string str);
-	Contacts(/* args */);
+	void printAll(void);
+	Contacts();
 	~Contacts();
 };
