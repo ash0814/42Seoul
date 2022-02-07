@@ -6,7 +6,7 @@ bool PhoneBook::addContacts()
 
 	if (!ct.addInfo())
 		return (false);
-	contacts[getIdx()] = ct;
+	contacts[idx % 8] = ct;
 	idx++;
 	return true;
 }
@@ -32,34 +32,29 @@ void PhoneBook::printPreview(void)
 bool PhoneBook::printContacts(void)
 {
 	std::string index;
-	int idx = -1;
+	int i = -1;
 
-	std::cout << "Enter Index (0~7) : ";
-	while (1)
+	std::cout << "Enter Index (0~7 | EXIT) : ";
+	while (true)
 	{
 		if (!std::getline(std::cin, index))
 			return (false);
 		if (index == "exit" || index == "EXIT")
 			break;
 		if (index.length() != 1) {
-			std::cout << "Error!\nEnter Index (0~7) : ";
+			std::cout << "Error!\nEnter Index (0~7 | EXIT) : ";
 			continue;
 		}
-		idx = index[0] - '0';
-		if (idx > 7 || idx < 0) {
-			std::cout << "Error!\nEnter Index (0~7) : ";
+		i = index[0] - '0';
+		if (i > 7 || i < 0) {
+			std::cout << "Error!\nEnter Index (0~7 | EXIT) : ";
 			continue;
 		}
 		break;
 	}
-	if (idx != -1)
-		this->contacts[idx].printAll(); 
+	if (i != -1)
+		this->contacts[i].printAll(); 
 	return (true);
-}
-
-int PhoneBook::getIdx(void)
-{
-	return idx;
 }
 
 PhoneBook::PhoneBook(/* args */)

@@ -8,7 +8,7 @@ OBJ		=	$(SRC:.cpp=.o)
 all		:	$(NAME)
 
 %.o		:	./%.cpp
-			$(CXX) -c $<  -o $@
+			$(CXX) -c $< -o $@
 
 $(NAME)	:	$(OBJ)
 	$(CXX) $(SRC) -o $(NAME)
