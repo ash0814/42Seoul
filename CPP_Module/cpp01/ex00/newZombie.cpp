@@ -2,9 +2,8 @@
 
 Zombie* Zombie::newZombie(std::string name)
 {
-	Zombie *zb;
+	Zombie *zb = new Zombie;
 
-	zb = new Zombie;
-	zb->_name = name;
+	(*zb)._name = name;
 	return zb;
 }

@@ -3,7 +3,9 @@
 int main(void)
 {
 	Zombie z;
-	z.randomChump("Day6");
+	z.randomChump("zzz");
 	z.~Zombie();
+	Zombie a;
+	a.randomChump("aaa");
 	return (0);
 }
