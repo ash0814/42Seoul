@@ -1,3 +1,6 @@
+#ifndef CONTACTS_HPP
+# define CONTACTS_HPP
+
 # include <iostream>
 # include <string>
 # include <iomanip>
@@ -20,3 +23,4 @@ public:
 	Contacts();
 	~Contacts();
 };
+ #endif
