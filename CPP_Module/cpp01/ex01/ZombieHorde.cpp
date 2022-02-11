@@ -7,7 +7,8 @@ Zombie* zombieHorde(int N, std::string name)
 	zb = new Zombie[N];
 	for (int i = 0; i < N; i++)
 	{
-		zb[i].makeName(name);
+		std::string zbname = name + " " + static_cast<char>(i + 1 + '0');
+		zb[i].makeName(zbname);
 		zb[i].announce();
 	}
 	return zb;
