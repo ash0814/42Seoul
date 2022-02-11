@@ -1,7 +1,7 @@
 NAME	=	Human
 
 CC		=	c++ -Wall -Wextra -Werror
-SRC		=	main.cpp
+SRC		=	main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
