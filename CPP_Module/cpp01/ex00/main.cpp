@@ -3,8 +3,8 @@
 int main(void)
 {
 	randomChump("random");
-	Zombie *nz = newZombie("day6");
+	Zombie *nz = newZombie("new Zombie");
 	nz->announce();
-	nz->~Zombie();
+	delete nz;
 	return (0);
 }
