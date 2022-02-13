@@ -6,9 +6,10 @@ const std::string& Weapon::getType(void) const
 	return typeREF;
 }
 
-void Weapon::setType(const char *type)
+void Weapon::setType(std::string type)
 {
-	_type = type;
+	this->_type = type;
+	std::cout << "setType : " << _type << std::endl;
 }
 
 Weapon::Weapon(const char *weaponType)
