@@ -25,9 +25,9 @@ int main(int argc, char **argv)
 		resFind = line.std::string::find(origin, 0);
 		while ((int)resFind != -1)
 		{
-			for (int i = 0; i < (int)change.length(); i++) {
-				line[resFind++] = change[i];
-			}
+			std::string front = line.substr(0, resFind);
+			std::string back = line.substr(resFind + origin.length(), line.length());
+			line = front + change + back;
 			resFind = line.std::string::find(origin, 0);
 		}
 		ofs << line << "\n";
