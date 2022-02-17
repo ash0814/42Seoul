@@ -19,15 +19,10 @@ int main(int argc, char **argv)
 	ifs.open(argv[1]);
 	if (ifs.is_open())
 	{
-		ofs.open("replace");
-		char c;
-		std::string str;
-		while (ifs.get(c))
-		{
-			str += c;
-		}
-		// size_t n = str.std::string::find(argv[2], 0);
-		// str.substr(n);
+		std::string rpFileName = argv[1];
+		rpFileName += ".replace";
+		ofs.open(rpFileName);
+		std::string str = "replace success";
 		if (ofs.is_open())
 			ofs.write(str.c_str(), str.length());
 	}
