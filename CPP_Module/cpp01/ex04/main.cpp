@@ -4,33 +4,33 @@
 
 int main(int argc, char **argv)
 {
-	std::string a;
-	std::string b;
 	std::ifstream ifs;
 	std::ofstream ofs;
-
-	if (argc != 4 || !argv[2][0] || !argv[3][0])
-	{
+	std::string rpFileName;
+	if (argc != 4 || !argv[2][0] || !argv[3][0]) {
 		std::cout << "Input Error" << std::endl;
 		return (1);
 	}
-	a = argv[2];
-	b = argv[3];
+	std::string origin = argv[2];
+	std::string change = argv[3];
 	ifs.open(argv[1]);
-	if (ifs.is_open())
+	rpFileName = argv[1];
+	rpFileName += ".replace";
+	ofs.open(rpFileName);
+	while (ifs.peek() != EOF)
 	{
-		std::string rpFileName = argv[1];
-		rpFileName += ".replace";
-		ofs.open(rpFileName);
-		std::string str = "replace success";
-		if (ofs.is_open())
-			ofs.write(str.c_str(), str.length());
+		std::string line;
+		std::getline(ifs, line);
+		size_t resFind;
+		resFind = line.std::string::find(origin, 0);
+		while ((int)resFind != -1)
+		{
+			for (int i = 0; i < (int)change.length(); i++) {
+				line[resFind++] = change[i];
+			}
+			resFind = line.std::string::find(origin, 0);
+		}
+		ofs << line << "\n";
 	}
-	else
-	{
-		std::cout << "Open Error" << std::endl;
-		return (1);
-	}
-	ifs.close();
 	return (0);
 }
