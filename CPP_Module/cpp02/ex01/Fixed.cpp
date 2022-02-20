@@ -35,3 +35,13 @@ void Fixed::setRawBits(int const raw)
 {
 	this->value = raw;
 }
+
+float Fixed::toFloat(void) const
+{
+
+}
+
+int Fixed::toInt(void) const
+{
+	
+}
