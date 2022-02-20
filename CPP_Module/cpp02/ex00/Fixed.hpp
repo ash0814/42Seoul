@@ -5,7 +5,7 @@ class Fixed
 {
 private:
 	int value;
-	int fractBit;
+	static const int fractBit = 8;
 public:
 	Fixed(/* args */);
 	~Fixed();
