@@ -54,12 +54,12 @@ void Fixed::setRawBits(int const raw)
 	this->value = raw;
 }
 
-// float Fixed::toFloat(void) const
-// {
+float Fixed::toFloat(void) const
+{
+	return this->value;
+}
 
-// }
-
-// int Fixed::toInt(void) const
-// {
-
-// }
+int Fixed::toInt(void) const
+{
+	return this->value;
+}
