@@ -4,7 +4,7 @@ int main(void)
 {
 	Zombie *main;
    
-	main = zombieHorde(5, "zombie");
+	main = zombieHorde(132, "zombie");
 	delete[] main;
 	return (0);
 }
