@@ -14,12 +14,16 @@ public:
 	Fixed(int value);
 	Fixed(float fvalue);
 	Fixed(const Fixed &fix);
-	Fixed &operator=(const Fixed &fix);
-	friend std::ostream& operator<<(std::ostream &os, const Fixed &fix);
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 	float toFloat( void ) const;
 	int toInt( void ) const;
+
+	static Fixed& min(Fixed &a, Fixed &b);
+	static Fixed& max(Fixed &a, Fixed &b);
+
+	Fixed &operator=(const Fixed &fix);
+	friend std::ostream& operator<<(std::ostream &os, const Fixed &fix);
 };
 
 
