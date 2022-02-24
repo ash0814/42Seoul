@@ -15,12 +15,12 @@ public:
 	Fixed(float fvalue);
 	Fixed(const Fixed &fix);
 	Fixed &operator=(const Fixed &fix);
-	friend std::ostream& operator<<(std::ostream &os, const Fixed &fix);
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 	float toFloat( void ) const;
 	int toInt( void ) const;
 };
+std::ostream& operator<<(std::ostream &os, const Fixed &fix);
 
 
 #endif

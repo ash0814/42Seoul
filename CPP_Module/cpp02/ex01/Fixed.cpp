@@ -40,7 +40,7 @@ Fixed& Fixed::operator=(const Fixed &fix)
 
 std::ostream& operator<<(std::ostream &os, const Fixed &fix)
 {
-	os << (float)(fix.getRawBits()) / (1 << fix.fractBit);
+	os << (float)(fix.getRawBits()) / (1 << 8);
 	return os;
 }
 
