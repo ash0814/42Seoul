@@ -31,14 +31,14 @@ Fixed::Fixed(const Fixed &fix)
 	*this = fix;
 }
 
-Fixed& Fixed::operator=(const Fixed &fix)
+Fixed &Fixed::operator=(const Fixed &fix)
 {
 	std::cout << "Assignation operator called" << std::endl;
 	this->value = fix.getRawBits();
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream &os, const Fixed &fix)
+std::ostream &operator<<(std::ostream &os, const Fixed &fix)
 {
 	os << (float)(fix.getRawBits()) / (1 << fix.fractBit);
 	return os;
@@ -62,4 +62,28 @@ float Fixed::toFloat(void) const
 int Fixed::toInt(void) const
 {
 	return this->value >> this->fractBit;
+}
+
+static Fixed &min(const Fixed &a, const Fixed &b)
+{
+	// if (a.getRawBits() > b.getRawBits())
+	// 	return b;
+	// return a;
+}
+
+static Fixed &max(const Fixed &a, const Fixed &b)
+{
+}
+
+Fixed &Fixed::operator*(const Fixed &fix)
+{
+	
+}
+
+Fixed &Fixed::operator++()
+{
+}
+
+Fixed &Fixed::operator++(int)
+{
 }

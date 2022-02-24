@@ -19,10 +19,13 @@ public:
 	float toFloat( void ) const;
 	int toInt( void ) const;
 
-	static Fixed& min(Fixed &a, Fixed &b);
-	static Fixed& max(Fixed &a, Fixed &b);
+	static Fixed& min(const Fixed &a, const Fixed &b);
+	static Fixed& max(const Fixed &a, const Fixed &b);
 
 	Fixed &operator=(const Fixed &fix);
+	Fixed &operator*(const Fixed &fix);
+	Fixed &operator++();
+	Fixed &operator++(int);
 	friend std::ostream& operator<<(std::ostream &os, const Fixed &fix);
 };
 
