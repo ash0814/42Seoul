@@ -91,9 +91,9 @@ Fixed &Fixed::operator++()
 	return *this;
 }
 
-Fixed Fixed::operator++(int)
+const Fixed Fixed::operator++(int)
 {
-	Fixed tmp(this->toFloat());
+	Fixed const tmp(this->toFloat());
 	++(*this);
 	return tmp;
 }
@@ -104,9 +104,9 @@ Fixed &Fixed::operator--()
 	return *this;
 }
 
-Fixed Fixed::operator--(int)
+const Fixed Fixed::operator--(int)
 {
-	Fixed tmp(this->toFloat());
+	Fixed const tmp(this->toFloat());
 	--(*this);
 	return tmp;
 }
