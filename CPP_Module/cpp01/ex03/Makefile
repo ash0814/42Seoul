@@ -12,7 +12,6 @@ all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
 	$(CXX) $(SRC) -o $(NAME)
-	make clean
 
 clean	:	
 			rm -f $(OBJ)

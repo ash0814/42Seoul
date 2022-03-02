@@ -30,16 +30,32 @@ void Karen::complain(std::string level)
 
 	std::string lv[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
+	int cmd;
 	for (int i = 0; i < 4; i++){
 		if (level == lv[i]) {
-			for (int j = i; j < 4; j++)
-				(this->*ptr[j])();
+			cmd = i;
 		}
+	}
+	switch (cmd)
+	{
+	case 0:
+		(this->*ptr[0])();
+	case 1:
+		(this->*ptr[1])();
+		cmd--;
+	case 2:
+		(this->*ptr[2])();
+		cmd--;
+	case 3:
+		(this->*ptr[3])();
+		cmd--;
+	default:
+		break;
 	}
 	std::cout << std::endl;
 }
 
-Karen::Karen(/* args */)
+Karen::Karen()
 {
 }
 
