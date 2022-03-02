@@ -1,6 +1,6 @@
 NAME	=	Zombie
 
-CC		=	c++ -Wall -Wextra -Werror
+CXX		=	c++ -Wall -Wextra -Werror -std=c++98
 SRC		=	Zombie.cpp main.cpp ZombieHorde.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
@@ -8,10 +8,10 @@ OBJ		=	$(SRC:.cpp=.o)
 all		:	$(NAME)
 
 %.o		:	./%.cpp
-			$(CC) -c $<  -o $@
+			$(CXX) -c $<  -o $@
 
 $(NAME)	:	$(OBJ)
-	$(CC) $(SRC) -o $(NAME)
+	$(CXX) $(SRC) -o $(NAME)
 	make clean
 
 clean	:	
