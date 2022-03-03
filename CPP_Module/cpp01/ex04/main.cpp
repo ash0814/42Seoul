@@ -2,6 +2,12 @@
 #include <string>
 #include <fstream>
 
+// 개행은 안바뀌는 점 : getline 함수가 아니라 read 이용하기, tellg?
+// 파일 권한에 따라 에러 처리 확실하게 하기
+// 없는 파일일때 처리
+// ./replace ' (enter) ' 'a' (enter)
+//0000 -> 00
+
 int main(int argc, char **argv)
 {
 	std::ifstream ifs;
