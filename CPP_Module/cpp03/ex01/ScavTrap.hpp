@@ -8,19 +8,17 @@ class ScavTrap : ClapTrap
 private:
 	/* data */
 public:
-	ScavTrap(/* args */);
+	ScavTrap(std::string const & name);
 	~ScavTrap();
 };
 
-ScavTrap::ScavTrap(/* args */)
+ScavTrap::ScavTrap(std::string const & name) : ClapTrap(name)
 {
+	std::cout << "ScavTrap Created" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
 }
-
-
-
 
 #endif
