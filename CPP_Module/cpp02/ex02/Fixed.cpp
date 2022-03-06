@@ -1,7 +1,6 @@
 #include "./Fixed.hpp"
 #include <iostream>
 #include <cmath>
-#include <limits>
 
 Fixed::Fixed()
 {

@@ -7,7 +7,7 @@ private:
 	int value;
 	static const int fractBit = 8;
 public:
-	Fixed(/* args */);
+	Fixed();
 	~Fixed();
 	Fixed(Fixed &fix);
 	Fixed &operator= (Fixed &fix);
