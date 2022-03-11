@@ -1,22 +1,18 @@
-#ifndef "FRAGTRAP_HPP"
-# define "FRAGTRAP_HPP"
-#include "ClapTrap.hpp"
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
-class FragTrap
+#include "./ClapTrap.hpp"
+
+class FragTrap : ClapTrap
 {
 private:
 	/* data */
 public:
-	FragTrap(/* args */);
+	FragTrap(std::string const &name);
 	~FragTrap();
+	void highFivesGuys(void);
 };
 
-FragTrap::FragTrap(/* args */)
-{
-}
 
-FragTrap::~FragTrap()
-{
-}
 
 #endif

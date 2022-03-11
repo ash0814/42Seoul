@@ -19,12 +19,12 @@ void ClapTrap::beRepaired(unsigned int amount)
 ClapTrap::ClapTrap(std::string const & name) : name(name)
 {
 	std::cout << "Clap Trap Created" << std::endl;
-	hitPoints = 100;
-	energyPoints = 50;
-	attackDamage = 20;
+	hitPoints = 10;
+	energyPoints = 10;
+	attackDamage = 0;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap Broken" << std::endl;
+	std::cout << "ClapTrap has Broken" << std::endl;
 }
