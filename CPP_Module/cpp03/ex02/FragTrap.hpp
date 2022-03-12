@@ -8,8 +8,11 @@ class FragTrap : ClapTrap
 private:
 	/* data */
 public:
-	FragTrap(std::string const &name);
+	FragTrap(std::string name);
+	FragTrap();
 	~FragTrap();
+	FragTrap(FragTrap &ft);
+	FragTrap &operator=(FragTrap &ft);
 	void highFivesGuys(void);
 };
 

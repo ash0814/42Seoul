@@ -3,8 +3,8 @@
 
 int main()
 {
-	ClapTrap A("ET");
-	ScavTrap B("HI");
+	ClapTrap A("CT");
+	ScavTrap B("HIHI");
 	FragTrap C("FRAG");
 
 
