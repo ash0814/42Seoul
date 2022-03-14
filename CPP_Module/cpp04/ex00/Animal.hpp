@@ -12,7 +12,7 @@ public:
 	Animal(/* args */);
 	~Animal();
 	std::string getType();
-	void makeSound();
+	virtual void makeSound() = 0;
 };
 
 //추상 클래스, 인터페이스, 다형성
