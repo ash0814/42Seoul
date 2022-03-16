@@ -1,16 +1,18 @@
 #include "./ScavTrap.hpp"
 
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string name)
 {
 	std::cout << "ScavTrap " << name << " Created" << std::endl;
-	hitPoints = 100;
-	energyPoints = 50;
-	attackDamage = 20;
+	this->name = name;
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->attackDamage = 20;
 }
 
 ScavTrap::ScavTrap()
 {
+	std::cout << "ScavTrap Default constructor Created" << std::endl;
 }
 
 ScavTrap::ScavTrap(ScavTrap &st)
@@ -20,10 +22,13 @@ ScavTrap::ScavTrap(ScavTrap &st)
 
 ScavTrap &ScavTrap::operator=(ScavTrap &st)
 {
-	this->name = st.name;
-	this->hitPoints = st.hitPoints;
-	this->energyPoints = st.energyPoints;
-	this->attackDamage = st.attackDamage;
+	if (&st != this)
+	{
+		this->name = st.name;
+		this->hitPoints = st.hitPoints;
+		this->energyPoints = st.energyPoints;
+		this->attackDamage = st.attackDamage;
+	}
 	return *this;
 }
 
@@ -35,4 +40,9 @@ ScavTrap::~ScavTrap()
 void ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << name << " have enterred in Gate keeper mode" << std::endl;
+}
+
+void ScavTrap::attack(std::string target)
+{
+	std::cout << "ScavTrap " << name << " attack " << target << ", causing " << attackDamage << " points of damage!" << std::endl;
 }

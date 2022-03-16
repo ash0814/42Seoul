@@ -6,9 +6,11 @@ int main()
 	ScavTrap B("HI");
 
 	B.guardGate();
-	B.guardGate();
-	// B.attack("DEVIL");
-	// B.takeDamage(5);
-	// B.beRepaired(30);
+	// B.printState();
+	B.attack("DEVIL");
+	B.takeDamage(5);
+	// B.printState();
+	B.beRepaired(30);
+	// B.printState();
 	return (0);
 }

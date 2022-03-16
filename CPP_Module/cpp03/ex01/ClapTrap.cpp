@@ -6,13 +6,13 @@ void ClapTrap::attack(std::string target)
 }
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "ClapTrap " << this->name << " take " << amount << " point of Damage" << std::endl;
-	this->hitPoints -= amount;
+	std::cout << this->name << " take " << amount << " point of Damage" << std::endl;
+	this->hitPoints  = std::max(hitPoints - (int)amount, 0);
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	std::cout << "ClapTrap " << this->name << " is Repaired " << amount << " point" << std::endl;
+	std::cout << this->name << " is Repaired " << amount << " point" << std::endl;
 	this->hitPoints += amount;
 }
 
@@ -51,3 +51,13 @@ ClapTrap::~ClapTrap()
 {
 	std::cout << "ClapTrap has Broken" << std::endl;
 }
+
+// void ClapTrap::printState(void)
+// {
+// 	std::cout << "=========" << std::endl;
+// 	std::cout << name << std::endl;
+// 	std::cout << "HP : " << hitPoints << std::endl;
+// 	std::cout << "EP : " << energyPoints << std::endl;
+// 	std::cout << "Damage : " << attackDamage << std::endl;
+// 	std::cout << "=========" << std::endl;
+// }

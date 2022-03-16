@@ -15,6 +15,8 @@ public:
 	void attack(std::string target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
+	// void printState(void);
+
 	ClapTrap(std::string name);
 	ClapTrap();
 	ClapTrap(ClapTrap &ct);

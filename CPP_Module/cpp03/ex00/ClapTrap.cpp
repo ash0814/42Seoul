@@ -18,7 +18,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "Clap Trap " << name << " Created" << std::endl;
+	std::cout << "ClapTrap " << name << " Created" << std::endl;
 	this->name = name;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
@@ -27,7 +27,7 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "ClapTrap default constructor called" << std::endl; 
+	std::cout << "ClapTrap Default constructor Created" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap &ct)
