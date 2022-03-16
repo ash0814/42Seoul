@@ -7,13 +7,13 @@ void ClapTrap::attack(std::string target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	std::cout << "ClapTrap " << this->name << " take " << amount << " point of Damage" << std::endl;
-	this->energyPoints -= amount;
+	this->hitPoints -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	std::cout << "ClapTrap " << this->name << " is Repaired " << amount << " point" << std::endl;
-	this->energyPoints += amount;
+	this->hitPoints += amount;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -27,6 +27,7 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::ClapTrap()
 {
+	std::cout << "ClapTrap Default constructor Created" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap &ct)
@@ -36,10 +37,13 @@ ClapTrap::ClapTrap(ClapTrap &ct)
 
 ClapTrap &ClapTrap::operator= (ClapTrap &ct)
 {
-	this->name = ct.name;
-	this->hitPoints = ct.hitPoints;
-	this->energyPoints = ct.energyPoints;
-	this->attackDamage = ct.attackDamage;
+	if (&ct != this)
+	{
+		this->name = ct.name;
+		this->hitPoints = ct.hitPoints;
+		this->energyPoints = ct.energyPoints;
+		this->attackDamage = ct.attackDamage;
+	}
 	return *this;
 }
 
