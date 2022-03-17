@@ -7,7 +7,10 @@ void ClapTrap::attack(std::string target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	std::cout << "ClapTrap " << this->name << " take " << amount << " point of Damage" << std::endl;
-	this->hitPoints  = std::max(hitPoints - (int)amount, 0);
+	if (hitPoints - (int)amount < 0)
+		this->hitPoints = 0;
+	else
+		this->hitPoints -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
