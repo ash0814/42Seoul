@@ -11,6 +11,7 @@ private:
 public:
 	Brain();
 	void setBrain(std::string id);
+	std::string getBrain(int n);
 	~Brain();
 };
 

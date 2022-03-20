@@ -20,9 +20,11 @@ Cat::Cat(const Cat &c)
 
 Cat &Cat::operator=(const Cat &c)
 {
-	if (this != &c)
+	type = c.type;
+	if (this->brain != NULL)
 	{
-		type = c.type;
+		delete this->brain;
+		this->brain = NULL;
 	}
 	return *this;
 }

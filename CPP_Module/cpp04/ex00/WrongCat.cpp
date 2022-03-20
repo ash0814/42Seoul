@@ -2,7 +2,7 @@
 
 WrongCat::WrongCat()
 {
-	std::cout << "Wrong Animal created" << std::endl;
+	std::cout << "Wrong Cat created" << std::endl;
 	type = "wrong";
 }
 

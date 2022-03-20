@@ -18,10 +18,7 @@ Cat::Cat(const Cat &c)
 
 Cat &Cat::operator=(const Cat &c)
 {
-	if (this != &c)
-	{
-		type = c.type;
-	}
+	type = c.type;
 	return *this;
 }
 
