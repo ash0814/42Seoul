@@ -1,7 +1,7 @@
 NAME	=	a.out
 
 CXX		=	c++ -Wall -Wextra -Werror -std=c++98
-SRC		=	ClapTrap.cpp main.cpp 
+SRC		=	main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
