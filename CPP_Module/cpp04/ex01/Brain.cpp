@@ -15,7 +15,6 @@ Brain::Brain(const Brain &b)
 
 Brain &Brain::operator=(const Brain &b)
 {
-	std::cout << "Brain operator" << std::endl;
 	for (int i = 0; i < 100; i++) {
 		this->ideas[i] = b.ideas[i];
 	}

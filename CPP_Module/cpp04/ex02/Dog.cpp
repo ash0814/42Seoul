@@ -15,7 +15,6 @@ Dog::~Dog()
 
 Dog::Dog(const Dog &d)
 {
-	std::cout << "Dog copy" << std::endl;
 	brain = new Brain();
 	*this = d;
 }
@@ -24,7 +23,6 @@ Dog &Dog::operator=(const Dog &d)
 {
 	if (this != &d)
 	{
-		std::cout << "Dog operator" << std::endl;
 		type = d.type;
 		delete this->brain;
 		this->brain = new Brain();
