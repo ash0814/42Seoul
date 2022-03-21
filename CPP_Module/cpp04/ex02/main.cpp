@@ -8,6 +8,7 @@ int main()
 	const Animal *i = new Cat();
 
 	const Animal *meta = j;
+	// const Animal *m = new Animal();
 	meta->makeSound();
 
 	delete j;
