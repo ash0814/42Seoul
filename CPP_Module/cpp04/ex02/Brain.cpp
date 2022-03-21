@@ -5,7 +5,7 @@
 Brain::Brain()
 {
 	std::cout << "I have soooo many IDEAs!!" << std::endl;
-	this->setBrain("IDEA");
+	this->setIdea("Default Ideas");
 }
 
 Brain::Brain(const Brain &b)
@@ -15,22 +15,23 @@ Brain::Brain(const Brain &b)
 
 Brain &Brain::operator=(const Brain &b)
 {
+	std::cout << "Brain operator" << std::endl;
 	for (int i = 0; i < 100; i++) {
 		this->ideas[i] = b.ideas[i];
 	}
 	return *this;
 }
 
-void Brain::setBrain(std::string id)
+void Brain::setIdea(std::string id)
 {
 	for (int i = 0; i < 100; i++) {
 		std::stringstream ss;
-		ss << i + 1;
+		ss << i;
 		ideas[i] = id + " [" + ss.str() + "]";
 	}
 }
 
-std::string Brain::getBrain(int n)
+std::string Brain::getIdea(int n)
 {
 	return ideas[n];
 }

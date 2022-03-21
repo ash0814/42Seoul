@@ -15,23 +15,28 @@ Cat::~Cat()
 
 Cat::Cat(const Cat &c)
 {
+	brain = new Brain();
 	*this = c;
 }
 
 Cat &Cat::operator=(const Cat &c)
 {
-	type = c.type;
-	if (this->brain != NULL)
+	if (this != &c)
 	{
+		type = c.type;
 		delete this->brain;
-		this->brain = NULL;
+		this->brain = new Brain();
+		this->brain = c.brain;
 	}
-	this->brain = new Brain();
-	this->brain = c.brain;
 	return *this;
 }
 
 void Cat::makeSound() const
 {
 	std::cout << "MEWWWWWWW" << std::endl;
+}
+
+Brain *Cat::getBrain(void)
+{
+	return this->brain;
 }
