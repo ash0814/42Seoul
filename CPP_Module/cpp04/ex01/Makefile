@@ -1,6 +1,6 @@
 NAME	=	a.out
 
-CXX		=	c++ -Wall -Wextra -Werror -std=c++98
+CXX		=	c++ -Wall -Wextra -Werror -std=c++98 # -fsanitize=address -g
 SRC		=	main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
@@ -12,7 +12,6 @@ all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
 	$(CXX) $(SRC) -o $(NAME)
-	make clean
 
 clean	:	
 			rm -f $(OBJ)
