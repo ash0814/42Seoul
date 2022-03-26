@@ -72,3 +72,9 @@ void Bureaucrat::signForm(Form &f)
 		" has too low grade to sign this form." << std::endl;
 	}
 }
+
+void Bureaucrat::executeForm(Form const & form)
+{
+	// <bureaucrat> executed <form>
+	std::cout << this->getName() << " executed " << form.getName() << std::endl;
+}

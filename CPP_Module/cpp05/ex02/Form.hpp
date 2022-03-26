@@ -20,7 +20,7 @@ public:
 	Form();
 	Form(std::string, bool, int, int);
 	Form(const Form& f);
-	~Form();
+	virtual ~Form();
 
 	Form &operator=(const Form &);
 
@@ -28,7 +28,13 @@ public:
 
 	std::string getName() const;
 	bool getRights() const;
-	
+	void setRights(bool rights);
+
+	int getSignGrade() const;
+	int getExecGrade() const;
+
+	virtual void execute(Bureaucrat const & executor) const = 0;
+
 	class GradeTooHighException : public std::exception
 	{
 	public:
@@ -42,6 +48,14 @@ public:
 	public:
 		const char* what() const throw() {
 			return ("EXCEPTION: Grade Too Low");
+		}
+	};
+
+	class HaveNoSign : public std::exception
+	{
+	public:
+		const char* what() const throw() {
+			return ("EXCEPTION: Have No Sign to Excute this Form");
 		}
 	};
 };

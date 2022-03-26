@@ -28,6 +28,8 @@ public:
 
 	std::string getName() const;
 	bool getRights() const;
+	int getSignGrade() const;
+	int getExecGrade() const;
 	
 	class GradeTooHighException : public std::exception
 	{

@@ -1,7 +1,8 @@
 #include "./Form.hpp"
 
-Form::Form() : fname("noname"), signRights(false), signGrade(1), execGrade(1)
+Form::Form() : fname("noname"), signRights(false), signGrade(150), execGrade(150)
 {
+	std::cout << "create : Default noname Form" << std::endl;
 }
 
 Form::Form(const std::string _name, bool _rights, const int _sign, const int _exec) 
@@ -11,15 +12,18 @@ Form::Form(const std::string _name, bool _rights, const int _sign, const int _ex
 		throw GradeTooLowException();
 	if (signGrade < 1 || execGrade < 1)
 		throw GradeTooHighException();
+	std::cout << "create Form : " << this->fname << std::endl;
 }
 
 Form::Form(const Form& f)
 	: fname(f.fname), signRights(f.signRights), signGrade(f.signGrade), execGrade(f.execGrade)
 {
+	std::cout << "create Form : " << this->fname << std::endl;
 }
 
 Form::~Form()
 {
+	std::cout << "Delete Form : " << this->fname << std::endl;
 }
 
 Form &Form::operator=(const Form &f)
@@ -30,10 +34,10 @@ Form &Form::operator=(const Form &f)
 
 void Form::beSigned(Bureaucrat &br)
 {
-	if (br.getGrade() <= this->signGrade)
-		this->signRights = true;
-	else {
-		this->signRights = false;
+	if (br.getGrade() <= this->signGrade) {
+		this->setRights(true);
+	} else {
+		this->setRights(false);
 		throw GradeTooLowException();
 	}
 }
@@ -46,6 +50,21 @@ std::string Form::getName() const
 bool Form::getRights() const
 {
 	return signRights;
+}
+
+void Form::setRights(bool rights)
+{
+	this->signRights = rights;
+}
+
+int Form::getSignGrade() const
+{
+	return signGrade;
+}
+
+int Form::getExecGrade() const
+{
+	return execGrade;
 }
 
 std::ostream& operator<<(std::ostream& os, const Form &f)

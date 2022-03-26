@@ -2,6 +2,9 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 #include "./Form.hpp"
+#include <fstream>
+
+class Bureaucrat;
 
 class ShrubberyCreationForm : public Form
 {
@@ -11,6 +14,10 @@ public:
 	ShrubberyCreationForm(const ShrubberyCreationForm &scf);
 	~ShrubberyCreationForm();
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &scf);
+
+	void execute(Bureaucrat const & executor) const;
+
+	
 };
 
 

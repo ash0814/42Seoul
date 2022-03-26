@@ -1,11 +1,14 @@
 NAME	=	a.out
 
 CXX		=	c++ -Wall -Wextra -Werror -std=c++98
-SRC		=	Bureaucrat.cpp main.cpp
+SRC		=	Bureaucrat.cpp main.cpp Form.cpp\
+			RobotomyRequestForm.cpp \
+			ShrubberyCreationForm.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)
+			make clean
 
 %.o		:	./%.cpp
 			$(CXX) -c $< -o $@

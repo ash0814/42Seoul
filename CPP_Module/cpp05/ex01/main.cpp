@@ -25,6 +25,7 @@ int main()
 		Bureaucrat a("aaaaa", 149);
 		a.decrementGrade(1);
 		std::cout << a << std::endl;
+
 		Form ff("testError", false, 151, 0);
 	}
 	catch (std::exception &e)
