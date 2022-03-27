@@ -1,4 +1,6 @@
 #include "./RobotomyRequestForm.hpp"
+#include <ctime>
+#include <cstdlib>
 
 RobotomyRequestForm::RobotomyRequestForm() : Form("noname", false, 72, 45)
 {
@@ -30,6 +32,16 @@ RobotomyRequestForm::~RobotomyRequestForm()
 	std::cout << "Delete type: Shrubbery, name: " << this->getName() << std::endl;
 }
 
+void RobotomyRequestForm::action() const
+{
+	srand((unsigned int)time(NULL));
+	if (rand() % 2) {
+		std::cout << this->getName() << " has been robotomized" << std::endl;
+	} else {
+		std::cout << this->getName() << " failed robotomized" << std::endl;
+	}
+}
+
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	if (this->getRights() != true) {
@@ -37,7 +49,7 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	} else {
 		if (this->getExecGrade() >= executor.getGrade()) {
 			std::cout << "Drilllllll....." << std::endl;
-			// 50%확률로 로봇 생성하기
+			this->action();
 		} else {
 			throw GradeTooLowException();
 		}

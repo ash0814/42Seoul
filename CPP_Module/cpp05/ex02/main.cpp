@@ -1,37 +1,48 @@
 #include "./ShrubberyCreationForm.hpp"
 #include "./RobotomyRequestForm.hpp"
+#include "./PresidentialPardonForm.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat b("sehyan", 10);
-		// Form testForm("test", false, 15, 20);
-		b.incrementGrade(1);
-		std::cout << b << std::endl;
-		// testForm.beSigned(b);
-		// b.signForm(testForm);
-		b.decrementGrade(20);
-		std::cout << b << std::endl;
-		// testForm.beSigned(b);
-		// b.signForm(testForm);
+		Form *shr = new ShrubberyCreationForm("sehyan");
+		Bureaucrat A("HI", 10);
+		A.signForm(*shr);
+		shr->execute(A);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
 	
-	try
-	{
-		Bureaucrat a("aaaaa", 149);
-		a.decrementGrade(1);
-		std::cout << a << std::endl;
+	// try
+	// {
+	// 	Form *robot = new RobotomyRequestForm("RRbot");
+	// 	Form *AAbot = new RobotomyRequestForm("AAbot");
+	// 	Bureaucrat B("BBB", 10);
+	// 	B.signForm(*robot);
+	// 	B.signForm(*AAbot);
+	// 	robot->execute(B);
+	// 	AAbot->execute(B);
+	// }
+	// catch(const std::exception& e)
+	// {
+	// 	std::cerr << e.what() << '\n';
+	// }
 
-		// Form ff("testError", false, 151, 0);
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-
+	// try
+	// {
+	// 	Form *presi = new PresidentialPardonForm("pardonForm");
+	// 	Bureaucrat P("President", 1);
+	// 	P.signForm(*presi);
+	// 	presi->execute(P);
+	// }
+	// catch(const std::exception& e)
+	// {
+	// 	std::cerr << e.what() << '\n';
+	// }
+	
+	
+	return (0);
 }

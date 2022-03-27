@@ -30,14 +30,34 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 	std::cout << "Delete type: Shrubbery, name: " << this->getName() << std::endl;
 }
 
+void ShrubberyCreationForm::action() const
+{
+	std::string fileName = this->getName() + "_shrubbery";
+	std::ofstream file(fileName);
+	file << "\n\n    oxoxoo    ooxoo\n";
+	file << "  ooxoxo oo  oxoxooo\n";
+	file << " oooo xxoxoo ooo ooox\n";
+	file << " oxo o oxoxo  xoxxoxo\n";
+	file << "  oxo xooxoooo o ooo\n";
+	file << "    ooo\\oo\\  /o/o\n";
+	file << "        \\  \\/ /\n";
+	file << "         |   /\n";
+	file << "         |  |\n";
+	file << "         | D|\n";
+	file << "         |  |\n";
+	file << "         |  |\n";
+	file << "  ______/____\\____\n";
+	file << "\n\n===  [" << this->getName() << "_shrubbery]\n";
+	file.close();
+}
+
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (this->getRights() != true) {
 		throw HaveNoSign();
 	} else {
 		if (this->getExecGrade() >= executor.getGrade()) {
-			//executor, ascii tree 만들기
-			
+			this->action();
 			std::cout << "Form <" << this->getName() << "> executing..." << std::endl;
 		} else {
 			throw GradeTooLowException();

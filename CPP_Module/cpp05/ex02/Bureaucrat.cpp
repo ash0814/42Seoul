@@ -64,12 +64,11 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 
 void Bureaucrat::signForm(Form &f)
 {
-	if (f.getRights() == true) {
-		std::cout << this->name << " signed " << f.getName() << std::endl;
+	if (this->getGrade() <= f.getSignGrade()) {
+		f.setRights(true);
 	} else {
-		std::cout << this->name << " couldn't sign " 
-		<< f.getName() << " because "<< this->name << 
-		" has too low grade to sign this form." << std::endl;
+		f.setRights(false);
+		throw GradeTooLowException();
 	}
 }
 

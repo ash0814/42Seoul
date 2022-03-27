@@ -16,8 +16,7 @@ public:
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &scf);
 
 	void execute(Bureaucrat const & executor) const;
-
-	
+	void action() const;
 };
 
 

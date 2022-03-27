@@ -15,6 +15,7 @@ public:
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &scf);
 
 	void execute(Bureaucrat const & executor) const;
+	void action() const;
 };
 
 #endif

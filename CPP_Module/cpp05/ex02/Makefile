@@ -3,7 +3,8 @@ NAME	=	a.out
 CXX		=	c++ -Wall -Wextra -Werror -std=c++98
 SRC		=	Bureaucrat.cpp main.cpp Form.cpp\
 			RobotomyRequestForm.cpp \
-			ShrubberyCreationForm.cpp
+			ShrubberyCreationForm.cpp \
+			PresidentialPardonForm.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -21,6 +22,7 @@ clean	:
 
 fclean	:	clean
 			rm -f $(NAME)
+			rm -f *_shrubbery
 
 re		:	fclean all
 
