@@ -6,16 +6,15 @@ int main()
 {
 	try
 	{
-		Form *shr = new ShrubberyCreationForm("sehyan");
-		Bureaucrat A("HI", 10);
-		A.signForm(*shr);
-		shr->execute(A);
+		ShrubberyCreationForm shr("Home");
+		Bureaucrat A("sehyan", 150);
+		A.signForm(shr);
+		A.executeForm(shr);
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << "Form Creation Fail because " << e.what() << std::endl;
 	}
-	
 	// try
 	// {
 	// 	Form *robot = new RobotomyRequestForm("RRbot");
@@ -42,7 +41,5 @@ int main()
 	// {
 	// 	std::cerr << e.what() << '\n';
 	// }
-	
-	
 	return (0);
 }

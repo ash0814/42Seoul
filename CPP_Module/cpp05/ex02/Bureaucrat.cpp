@@ -64,16 +64,27 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 
 void Bureaucrat::signForm(Form &f)
 {
-	if (this->getGrade() <= f.getSignGrade()) {
-		f.setRights(true);
-	} else {
-		f.setRights(false);
-		throw GradeTooLowException();
+	try
+	{
+		f.beSigned(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << this->getName() << " couldn't sign " << f.getName() <<
+		" because " << e.what() << std::endl;
 	}
 }
 
 void Bureaucrat::executeForm(Form const & form)
 {
-	// <bureaucrat> executed <form>
-	std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << this->getName() << " couldn't excute " << form.getName()
+		<< " because " << e.what() << std::endl;
+	}
 }

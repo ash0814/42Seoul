@@ -34,11 +34,11 @@ Form &Form::operator=(const Form &f)
 
 void Form::beSigned(Bureaucrat &br)
 {
-	if (this->getRights() == true) {
-		std::cout << br.getName() << " signed " << this->getName() << std::endl;
+	if (br.getGrade() <= this->getSignGrade()) {
+		this->setRights(true);
 	} else {
-			std::cout << br.getName() << " couldn't sign " 
-		<< this->getName() << " because it has too low grade to sign this form." << std::endl;
+		this->setRights(false);
+		throw GradeTooLowException();
 	}
 }
 
