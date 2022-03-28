@@ -27,9 +27,9 @@ Form *Intern::makeForm(std::string a, std::string b)
 		{"shrubbery creation", "robotomy request", "presidential pardon"};
 	int formName = 0;
 
-	for (int i = 0; i < 3; i++) {
-		if (a == formNameList[i]){
-			formName = i;
+	for (; formName < 3; formName++) {
+		if (a == formNameList[formName]){
+			break;
 		}
 	}
 	switch (formName)

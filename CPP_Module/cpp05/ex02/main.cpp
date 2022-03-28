@@ -7,7 +7,7 @@ int main()
 	try
 	{
 		ShrubberyCreationForm shr("Home");
-		Bureaucrat A("sehyan", 150);
+		Bureaucrat A("sehyan", 10);
 		A.signForm(shr);
 		A.executeForm(shr);
 	}
@@ -15,31 +15,33 @@ int main()
 	{
 		std::cout << "Form Creation Fail because " << e.what() << std::endl;
 	}
-	// try
-	// {
-	// 	Form *robot = new RobotomyRequestForm("RRbot");
-	// 	Form *AAbot = new RobotomyRequestForm("AAbot");
-	// 	Bureaucrat B("BBB", 10);
-	// 	B.signForm(*robot);
-	// 	B.signForm(*AAbot);
-	// 	robot->execute(B);
-	// 	AAbot->execute(B);
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
-
-	// try
-	// {
-	// 	Form *presi = new PresidentialPardonForm("pardonForm");
-	// 	Bureaucrat P("President", 1);
-	// 	P.signForm(*presi);
-	// 	presi->execute(P);
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
+	std::cout << "\n======\n" << std::endl;
+	try
+	{
+		srand((unsigned int)time(NULL));
+		Form *robot = new RobotomyRequestForm("RRbot");
+		Form *AAbot = new RobotomyRequestForm("AAbot");
+		Bureaucrat B("BBB", 10);
+		B.signForm(*robot);
+		B.signForm(*AAbot);
+		robot->execute(B);
+		AAbot->execute(B);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << "\n======\n" << std::endl;
+	try
+	{
+		Form *presi = new PresidentialPardonForm("pardonForm");
+		Bureaucrat P("President", 1);
+		P.signForm(*presi);
+		presi->execute(P);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return (0);
 }

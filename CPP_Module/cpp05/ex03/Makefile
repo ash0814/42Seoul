@@ -10,7 +10,6 @@ SRC		=	Bureaucrat.cpp main.cpp Form.cpp\
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)
-			make clean
 
 %.o		:	./%.cpp
 			$(CXX) -c $< -o $@

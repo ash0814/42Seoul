@@ -32,12 +32,17 @@ Form &Form::operator=(const Form &f)
 	return *this;
 }
 
+void Form::setRights(bool rights)
+{
+	this->signRights = rights;
+}
+
 void Form::beSigned(Bureaucrat &br)
 {
-	if (br.getGrade() <= this->signGrade)
-		this->signRights = true;
-	else {
-		this->signRights = false;
+	if (br.getGrade() <= this->getSignGrade()) {
+		this->setRights(true);
+	} else {
+		this->setRights(false);
 		throw GradeTooLowException();
 	}
 }

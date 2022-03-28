@@ -5,16 +5,16 @@ int main()
 	try
 	{
 		Bureaucrat b("sehyan", 1);
-		b.incrementGrade(1);
-		std::cout << b << std::endl;
 		b.decrementGrade(20);
+		std::cout << b << std::endl;
+		b.incrementGrade(1);
 		std::cout << b << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << "Bureaucrat Fail : " << e.what() << '\n';
 	}
-	
+
 	try
 	{
 		Bureaucrat a("aaaaa", 149);
@@ -23,7 +23,7 @@ int main()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << "Bureaucrat Fail : " << e.what() << '\n';
 	}
 
 	return (0);

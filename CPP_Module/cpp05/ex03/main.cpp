@@ -4,7 +4,7 @@ int main()
 {
 	Intern someRandomIntern;
 	Form *rrf;
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
 
 	Bureaucrat br("brName", 10);
 	br.signForm(*rrf);

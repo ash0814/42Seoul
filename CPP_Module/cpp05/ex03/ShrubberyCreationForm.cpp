@@ -2,14 +2,14 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() : Form("noname", false, 145, 137)
 {
-	std::cout << "create type: Shrubbery, name: noname, sign: "<< this->getRights() << std::endl;
+	std::cout << "create type: Shrubbery, name: noname" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string _name) 
 : Form(_name, false, 145, 137)
 {
 	std::cout << "create type: Shrubbery, name: " << this->getName() 
-	<< ", sign: "<< this->getRights() << std::endl;
+	<< std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf) 
@@ -34,7 +34,7 @@ void ShrubberyCreationForm::action() const
 {
 	std::string fileName = this->getName() + "_shrubbery";
 	std::ofstream file(fileName);
-	file << "\n\n    oxoxoo    ooxoo\n";
+	file << "\n    oxoxoo    ooxoo\n";
 	file << "  ooxoxo oo  oxoxooo\n";
 	file << " oooo xxoxoo ooo ooox\n";
 	file << " oxo o oxoxo  xoxxoxo\n";

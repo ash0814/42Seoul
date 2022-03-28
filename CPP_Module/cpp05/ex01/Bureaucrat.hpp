@@ -32,7 +32,7 @@ public:
 	{
 	public:
 		const char* what() const throw() {
-			return ("EXCEPTION: Grade Too High");
+			return ("Bureaucrat Grade Too High");
 		}
 	};
 
@@ -40,7 +40,7 @@ public:
 	{
 	public:
 		const char* what() const throw() {
-			return ("EXCEPTION: Grade Too Low");
+			return ("Bureaucrat Grade Too Low");
 		}
 	};
 };

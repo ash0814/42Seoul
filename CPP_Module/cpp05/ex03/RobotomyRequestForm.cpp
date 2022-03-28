@@ -4,21 +4,21 @@
 
 RobotomyRequestForm::RobotomyRequestForm() : Form("noname", false, 72, 45)
 {
-	std::cout << "create type: Shrubbery, name: noname, sign: "<< this->getRights() << std::endl;
+	std::cout << "create type: RobotomyRequest name: noname" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string _name) 
 : Form(_name, false, 72, 45)
 {
-	std::cout << "create type: Shrubbery, name: " << this->getName() 
-	<< ", sign: "<< this->getRights() << std::endl;
+	std::cout << "create type: RobotomyRequest name: " << this->getName() 
+	<< std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &scf) 
 : Form(scf.getName(), scf.getRights() , 72, 45)
 {
-	std::cout << "create type: Shrubbery, name: " << this->getName() 
-	<< ", sign: "<< this->getRights() << std::endl;
+	std::cout << "create type: RobotomyRequest name: " << this->getName() 
+	<< std::endl;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &scf)
@@ -29,12 +29,11 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &s
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	std::cout << "Delete type: Shrubbery, name: " << this->getName() << std::endl;
+	std::cout << "Delete type: RobotomyRequest name: " << this->getName() << std::endl;
 }
 
 void RobotomyRequestForm::action() const
 {
-	srand((unsigned int)time(NULL));
 	if (rand() % 2) {
 		std::cout << this->getName() << " has been robotomized" << std::endl;
 	} else {

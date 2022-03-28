@@ -2,21 +2,19 @@
 
 PresidentialPardonForm::PresidentialPardonForm() : Form("noname", false, 25, 5)
 {
-	std::cout << "create type: Shrubbery, name: noname, sign: "<< this->getRights() << std::endl;
+	std::cout << "create type: PresidentialPardon name: noname"<< std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string _name) 
 : Form(_name, false, 25, 5)
 {
-	std::cout << "create type: Shrubbery, name: " << this->getName() 
-	<< ", sign: "<< this->getRights() << std::endl;
+	std::cout << "create type: PresidentialPardon name: " << this->getName() << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &scf) 
 : Form(scf.getName(), scf.getRights() , 25, 5)
 {
-	std::cout << "create type: Shrubbery, name: " << this->getName() 
-	<< ", sign: "<< this->getRights() << std::endl;
+	std::cout << "create type: PresidentialPardon name: " << this->getName() << std::endl;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &scf)
@@ -27,7 +25,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << "Delete type: Shrubbery, name: " << this->getName() << std::endl;
+	std::cout << "Delete type: PresidentialPardon name: " << this->getName() << std::endl;
 }
 
 void PresidentialPardonForm::action() const
@@ -41,7 +39,7 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 		throw HaveNoSign();
 	} else {
 		if (this->getExecGrade() >= executor.getGrade()) {
-			std::cout << "Form <" << this->getName() << "> executing..." << std::endl;
+			std::cout << "Form " << this->getName() << " executing..." << std::endl;
 			this->action();
 		} else {
 			throw GradeTooLowException();
