@@ -12,7 +12,7 @@ private:
 	double value;
 public:
 	Convert();
-	Convert(std::string &input);
+	Convert(char *input);
 	~Convert();
 
 	// char toChar();
