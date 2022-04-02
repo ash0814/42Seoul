@@ -4,27 +4,25 @@ Convert::Convert() {}
 
 Convert::Convert(std::string &input)
 {
-	this->input = input;
-	
 }
 
 Convert::~Convert()
 {
 }
 
-char Convert::toChar()
-{
+// char Convert::toChar()
+// {
 
-}
-int Convert::toInt()
-{
+// }
+// int Convert::toInt()
+// {
 
-}
-float Convert::toFloat()
-{
+// }
+// float Convert::toFloat()
+// {
 
-}
-double Convert::toDouble()
-{
+// }
+// double Convert::toDouble()
+// {
 
-}
+// }

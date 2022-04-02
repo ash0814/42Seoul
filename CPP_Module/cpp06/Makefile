@@ -1,4 +1,4 @@
-NAME	=	a.out
+NAME	=	Convert
 
 CXX		=	c++ -Wall -Wextra -Werror -std=c++98
 SRC		=	main.cpp Convert.cpp
@@ -6,6 +6,7 @@ SRC		=	main.cpp Convert.cpp
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)
+			make clean
 
 %.o		:	./%.cpp
 			$(CXX) -c $< -o $@

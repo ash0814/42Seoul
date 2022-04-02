@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 class Convert
 {
@@ -14,10 +15,10 @@ public:
 	Convert(std::string &input);
 	~Convert();
 
-	char toChar();
-	int toInt();
-	float toFloat();
-	double toDouble();
+	// char toChar();
+	// int toInt();
+	// float toFloat();
+	// double toDouble();
 };
 
 
