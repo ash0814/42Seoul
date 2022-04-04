@@ -15,8 +15,8 @@ private:
 	std::string input;
 	double value;
 	std::string type;
-public:
 	Convert();
+public:
 	Convert(char *input);
 	Convert(const Convert &cvt);
 	~Convert();

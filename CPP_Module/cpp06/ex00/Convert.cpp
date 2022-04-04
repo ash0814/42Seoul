@@ -1,14 +1,24 @@
 #include "./Convert.hpp"
 
-Convert::Convert() {}
+Convert::Convert() 
+{
+	this->input = "";
+	this->value = 0;
+	this->type = "";
+}
 
-// Convert::Convert(const Convert &cvt)
-// {
-// }
+Convert::Convert(const Convert &cvt)
+{
+	*this = cvt;
+}
 
-// Convert &Convert::operator=(const Convert &cvt)
-// {
-// }
+Convert &Convert::operator=(const Convert &cvt)
+{
+	this->input = cvt.input;
+	this->value = cvt.value;
+	this->type = cvt.type;
+	return *this;
+}
 
 Convert::~Convert()
 {
@@ -29,20 +39,20 @@ std::string Convert::setType(std::string input)
 		return ("Inf");
 	if (input == "nan" || input == "nanf")
 		return ("NaN");
-	if (input.length() == 1 && isascii(input[0]) && !('0' <= input[0] && input[0] <= '9'))
+	if (input.length() == 1 && isascii(input[0]) && !isdigit(input[0]))
 		return ("Char");
-	if (this->value == 0 && !('0' <= input[0] && input[0] <= '9'))
+	if (this->value == 0 && !isdigit(input[0]))
 		return ("Error");
 	for (int i = 0; i < (int)input.length(); i++) {
 		if (input[i] == '.') {
 			dot = true;
 			i++;
 		}
-		if (dot == true && !('0' <= input[i] && input[i] <= '9') && input[i] != 'f')
+		if (dot == true && !(isdigit(input[i])) && input[i] != 'f')
 			return ("Error");
 		if (dot == true && input[i] == 'f' && input[i + 1])
 			return ("Error");
-		if (dot == false && !('0' <= input[i] && input[i] <= '9'))
+		if (dot == false && !(isdigit(input[i])))
 			return ("Error");
 	}
 	return ("Number");
