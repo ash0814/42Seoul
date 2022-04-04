@@ -20,13 +20,9 @@ char Convert::toChar()
 		if (isprint((this->input)[0]))
 			return (this->input)[0];
 	}
-	// std::cout << this->value << " "  << this->input << std::endl;
-	// if (isascii(this->value) && !isprint(this->value))
-	// 	throw NonDisplayable();
-	// if (isprint((this->input)[0]) && (this->input).length() == 1)
-	// 	return this->input[0];
 	if (this->input == "nan" || this->input == "inf"
-		|| this->input == "inff" || this->input == "nanf" || !isascii(this->value))
+		|| this->input == "inff" || this->input == "nanf"
+		|| !isascii(this->value))
 		throw Impossible();
 	return static_cast<char>(this->value);
 }
@@ -36,8 +32,6 @@ int Convert::toInt()
 	if (this->input == "nan" || this->input == "inf"
 		|| this->input == "inff" || this->input == "nanf")
 		throw Impossible();
-	if (this->value)
-		return static_cast<int>(this->value);
 	else {
 		if (isprint((this->input)[0]) && (this->input).length() == 1)
 			return static_cast<int>(this->input[0]);

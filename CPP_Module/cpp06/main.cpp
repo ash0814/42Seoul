@@ -9,8 +9,8 @@ int main(int argc, char **argv)
 
 	// int c = -42;
 	// std::cout << "aaa : " << (char)c << std::endl;
-	cvt.printChar();
-	// cvt.printInt();
+	// cvt.printChar();
+	cvt.printInt();
 	// cvt.printFloat();
 	// cvt.printDouble();
 
