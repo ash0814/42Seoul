@@ -14,10 +14,15 @@ class Convert
 private:
 	std::string input;
 	double value;
+	std::string type;
 public:
 	Convert();
 	Convert(char *input);
+	Convert(const Convert &cvt);
 	~Convert();
+	Convert &operator=(const Convert &cvt);
+
+	std::string setType(std::string input);
 
 	char toChar();
 	int toInt();

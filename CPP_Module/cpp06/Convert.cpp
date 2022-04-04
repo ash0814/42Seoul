@@ -2,63 +2,90 @@
 
 Convert::Convert() {}
 
-Convert::Convert(char *input)
-{	
-	this->input = input;
-	this->value = std::strtod(input, NULL);
-}
+// Convert::Convert(const Convert &cvt)
+// {
+// }
+
+// Convert &Convert::operator=(const Convert &cvt)
+// {
+// }
 
 Convert::~Convert()
 {
 }
 
+Convert::Convert(char *input)
+{	
+	this->input = input;
+	this->value = std::strtod(input, NULL);
+	this->type = setType(this->input);
+}
+
+std::string Convert::setType(std::string input)
+{
+	bool dot = false;
+	if (input == "+inf" || input == "-inf" || input == "+inff"
+		|| input == "-inff" || input == "inff" || input == "inf")
+		return ("Inf");
+	if (input == "nan" || input == "nanf")
+		return ("NaN");
+	if (input.length() == 1 && isascii(input[0]) && !('0' <= input[0] && input[0] <= '9'))
+		return ("Char");
+	if (this->value == 0 && !('0' <= input[0] && input[0] <= '9'))
+		return ("Error");
+	for (int i = 0; i < (int)input.length(); i++) {
+		if (input[i] == '.') {
+			dot = true;
+			i++;
+		}
+		if (dot == true && !('0' <= input[i] && input[i] <= '9') && input[i] != 'f')
+			return ("Error");
+		if (dot == true && input[i] == 'f' && input[i + 1])
+			return ("Error");
+		if (dot == false && !('0' <= input[i] && input[i] <= '9'))
+			return ("Error");
+	}
+	return ("Number");
+}
+
 char Convert::toChar()
 {
-	if (this->input.length() == 1) {
-		if (isascii(this->value) && !isprint(this->value) && !isprint((this->input)[0]))
-			throw NonDisplayable();
-		if (isprint((this->input)[0]))
-			return (this->input)[0];
+	if (this->type == "Char") {
+		if (isprint(input[0]))
+			return static_cast<char>(input[0]);
+		throw NonDisplayable();
 	}
-	if (this->input == "nan" || this->input == "inf"
-		|| this->input == "inff" || this->input == "nanf"
-		|| !isascii(this->value))
-		throw Impossible();
-	return static_cast<char>(this->value);
+	else if (this->type == "Number") {
+		if (isprint(static_cast<int>(this->value)))
+			return static_cast<char>(this->value);
+		else if (isascii(static_cast<int>(this->value)))
+			throw NonDisplayable();
+	}
+	throw Impossible();
 }
 
 int Convert::toInt()
 {
-	if (this->input == "nan" || this->input == "inf"
-		|| this->input == "inff" || this->input == "nanf")
-		throw Impossible();
-	else {
-		if (isprint((this->input)[0]) && (this->input).length() == 1)
-			return static_cast<int>(this->input[0]);
-		throw Impossible();
-	}
-	return static_cast<int>(this->value);
+	if (this->type == "Number")
+		return static_cast<int>(this->value);
+	if (this->type == "Char")
+		return static_cast<int>(this->input[0]);
+	throw Impossible();
 }
 float Convert::toFloat()
 {
-	if (this->value >= 0)
-		return static_cast<float>(this->value);
-	else{
-		if (isprint((this->input)[0]) && (this->input).length() == 1)
-			return static_cast<float>(this->input[0]);
+	if (this->type == "Error")
 		throw Impossible();
-	}
+	if (this->type == "Char")
+		return static_cast<float>(this->input[0]);
 	return static_cast<float>(this->value);
 }
 double Convert::toDouble()
 {
-		if (this->value)
-		return static_cast<double>(this->value);
-	else{
-		if (isascii((this->input)[0]) && (this->input).length() == 1)
-			return static_cast<double>(this->input[0]);
+	if (this->type == "Error")
 		throw Impossible();
-	}
+	if (this->type == "Char")
+		return static_cast<double>(this->input[0]);
 	return static_cast<double>(this->value);
 }
 
@@ -66,6 +93,7 @@ void Convert::printChar()
 {
 	try
 	{
+		std::cout << "char : ";
 		this->toChar();
 		std::cout << "'" << this->toChar() << "'" << std::endl;
 	}
@@ -79,7 +107,7 @@ void Convert::printInt()
 {
 	try
 	{
-		std::cout << this->toInt() << std::endl;
+		std::cout << "int : " << this->toInt() << std::endl;
 	}
 	catch (const std::exception &e)
 	{
@@ -91,9 +119,10 @@ void Convert::printFloat()
 {
 	try
 	{
+		std::cout.precision(7);
+		std::cout << "float : " << this->toFloat();
 		float a = this->toFloat();
-		std::cout << this->toFloat();
-		if (a - this->toInt() == 0)
+		if (a - (int)a == 0)
 			std::cout << ".0f" << std::endl;
 		else
 			std::cout << "f" << std::endl;
@@ -109,9 +138,10 @@ void Convert::printDouble()
 {
 	try
 	{
+		std::cout.precision(15);
+		std::cout << "double : " << this->toDouble();
 		double a = this->toDouble();
-		std::cout << this->toDouble();
-		if (a - this->toInt() == 0)
+		if (a - (int)a == 0)
 			std::cout << ".0" << std::endl;
 		else
 			std::cout << std::endl;
