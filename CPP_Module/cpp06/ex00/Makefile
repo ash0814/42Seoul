@@ -6,7 +6,6 @@ SRC		=	main.cpp Convert.cpp
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)
-			make clean
 
 %.o		:	./%.cpp
 			$(CXX) -c $< -o $@
