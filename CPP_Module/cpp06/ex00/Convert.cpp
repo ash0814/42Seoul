@@ -25,37 +25,19 @@ Convert::~Convert()
 }
 
 Convert::Convert(char *input)
-{	
-	this->input = input;
-	this->value = std::strtod(input, NULL);
-	this->type = setType(this->input);
-}
-
-std::string Convert::setType(std::string input)
 {
-	bool dot = false;
-	if (input == "+inf" || input == "-inf" || input == "+inff"
-		|| input == "-inff" || input == "inff" || input == "inf")
-		return ("Inf");
-	if (input == "nan" || input == "nanf")
-		return ("NaN");
-	if (input.length() == 1 && isascii(input[0]) && !isdigit(input[0]))
-		return ("Char");
-	if (this->value == 0 && !isdigit(input[0]))
-		return ("Error");
-	for (int i = 0; i < (int)input.length(); i++) {
-		if (input[i] == '.') {
-			dot = true;
-			i++;
-		}
-		if (dot == true && !(isdigit(input[i])) && input[i] != 'f')
-			return ("Error");
-		if (dot == true && input[i] == 'f' && input[i + 1])
-			return ("Error");
-		if (dot == false && !(isdigit(input[i])))
-			return ("Error");
+	this->input = input;
+	this->value = std::strtod(input, &check);
+	if (*check == 0)
+		this->type = "Number";
+	else {
+		if (*check == 'f' && *(check + 1) == 0)
+			this->type = "Number";
+		else if (isascii(*check) && !isdigit(*check) && *(check + 1) == 0 && this->value == 0)
+			this->type = "Char";
+		else
+			this->type = "Error";
 	}
-	return ("Number");
 }
 
 char Convert::toChar()
@@ -76,8 +58,12 @@ char Convert::toChar()
 
 int Convert::toInt()
 {
-	if (this->type == "Number")
+	if (this->input == "nan" || this->input == "nanf" || this->input == "+inf" || this->input == "-inf"
+		|| this->input == "+inff" || this->input == "-inff" || this->input == "inf" || this->input == "inff")
+		throw Impossible();
+	if (this->type == "Number") {
 		return static_cast<int>(this->value);
+	}
 	if (this->type == "Char")
 		return static_cast<int>(this->input[0]);
 	throw Impossible();

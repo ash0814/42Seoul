@@ -16,13 +16,12 @@ private:
 	double value;
 	std::string type;
 	Convert();
+	char *check;
 public:
 	Convert(char *input);
 	Convert(const Convert &cvt);
 	~Convert();
 	Convert &operator=(const Convert &cvt);
-
-	std::string setType(std::string input);
 
 	char toChar();
 	int toInt();
@@ -43,7 +42,5 @@ public:
 		const char* what() const throw();
 	};
 };
-
-
 
 #endif
