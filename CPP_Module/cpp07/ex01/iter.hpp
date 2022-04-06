@@ -18,12 +18,4 @@ void print(T &a)
 	std::cout << a << " ";
 }
 
-// template <typename T>
-// void add(T &a)
-// {
-// 	a += 'd';
-// 	a += 'a';
-// 	a += 'y';
-// }
-
 #endif

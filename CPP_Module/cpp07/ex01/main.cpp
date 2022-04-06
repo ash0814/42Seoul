@@ -8,12 +8,6 @@ int main()
 
 	iter(a, 10, print);
 	std::cout << std::endl;
-	// iter(a, 10, add);
-	// iter(a, 10, print);
-	// std::cout << std::endl;
 	iter(str, 7, print);
-	// std::cout << std::endl;
-	// iter(str, 7, add);
-	// iter(str, 7, print);
 	return (0);
 }

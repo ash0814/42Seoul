@@ -17,8 +17,8 @@ int main()
 		const int value = rand();
 		numbers[i] = value;
 		mirror[i] = value;
-		std::cout << numbers.size() << std::endl;
 	}
+	std::cout << numbers.size() << std::endl;
 	{
 		Array<int> tmp = numbers;
 		Array<int> test(tmp);

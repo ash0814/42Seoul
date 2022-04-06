@@ -1,27 +1,5 @@
-#ifndef ARRAY_HPP
-#define ARRAY_HPP
+#include "./Array.hpp"
 
-#include <iostream>
-#include <exception>
-#include <typeinfo>
-
-template <typename T>
-class Array
-{
-private:
-	T *arrayData;
-	int _size;
-public:
-	Array();
-	Array(int n);
-	Array(const Array &a);
-	~Array();
-
-	Array &operator=(const Array &a);
-	T &operator[](int i);
-	const T &operator[](int i) const;
-	int size();
-};
 
 template <typename T>
 Array<T>::Array()
@@ -86,4 +64,3 @@ int Array<T>::size()
 	return (_size);
 }
 
-#endif
