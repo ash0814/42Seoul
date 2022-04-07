@@ -4,7 +4,7 @@
 
 int main()
 {
-	std::vector<int> v;
+	std::vector<int> v(5, 10);
 	v.push_back(10);
 	v.push_back(12);
 	v.push_back(14);

@@ -22,6 +22,18 @@ public:
 	void addNumber(std::vector<int>::iterator start, std::vector<int>::iterator end, const int &newNumber);
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
+	
+	class NeedMoreElements : public std::exception
+	{
+		public:
+		const char * what() const throw();
+	};
+
+	class SpanIsFull : public std::exception
+	{
+		public:
+		const char * what() const throw();
+	};
 };
 
 

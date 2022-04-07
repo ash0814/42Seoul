@@ -29,7 +29,7 @@ Span::~Span()
 void Span::addNumber(int num)
 {
 	if (data.size() == max_size)
-		throw std::exception();
+		throw SpanIsFull();
 	this->data.push_back(num);
 }
 
@@ -46,7 +46,7 @@ void Span::addNumber(std::vector<int>::iterator start, std::vector<int>::iterato
 unsigned int Span::shortestSpan()
 {
 	if (this->data.size() < 2)
-		throw std::exception();
+		throw NeedMoreElements();
 	unsigned int ret = this->data[0];
 	std::vector<int> cp(this->data);
 	std::sort(cp.begin(), cp.end());
@@ -60,10 +60,20 @@ unsigned int Span::shortestSpan()
 unsigned int Span::longestSpan()
 {
 	if (this->data.size() < 2)
-		throw std::exception();
+		throw NeedMoreElements();
 	unsigned int ret = 0;
 	int a = *std::max_element(this->data.begin(), this->data.end());
 	int b =  *std::min_element(this->data.begin(), this->data.end());
 	ret = a - b;
 	return (ret);
+}
+
+const char * Span::NeedMoreElements::what() const throw()
+{
+	return ("Span Needs More Elements");
+}
+
+const char * Span::SpanIsFull::what() const throw()
+{
+	return ("Span is Full");
 }
