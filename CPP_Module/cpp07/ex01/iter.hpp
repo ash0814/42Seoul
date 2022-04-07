@@ -5,7 +5,7 @@
 #include <string>
 
 template <typename T>
-void iter(T *arrPtr, int len, void (*f)(T &arr))
+void iter(T *arrPtr, int len, void (*f)(T const &arr))
 {
 	for (int i = 0; i < len; i++) {
 		f(arrPtr[i]);
@@ -13,7 +13,7 @@ void iter(T *arrPtr, int len, void (*f)(T &arr))
 }
 
 template <typename T>
-void print(T &a)
+void myprint(T const &a)
 {
 	std::cout << a << " ";
 }

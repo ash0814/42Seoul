@@ -21,6 +21,13 @@ public:
 	T &operator[](int i);
 	const T &operator[](int i) const;
 	int size();
+	class RangeOver : public std::exception
+	{
+	public:
+		const char* what() const throw() {
+			return ("Range Over");
+		}
+	};
 };
 
 template <typename T>
@@ -54,7 +61,7 @@ template <typename T>
 T &Array<T>::operator[](int i)
 {
 	if (i < 0 || i >= _size)
-		throw std::exception();
+		throw RangeOver();
 	return arrayData[i];
 }
 
@@ -62,7 +69,7 @@ template <typename T>
 const T &Array<T>::operator[](int i) const
 {
 	if (i < 0 || i >= _size)
-		throw std::exception();
+		throw RangeOver();
 	return arrayData[i];
 }
 
