@@ -24,6 +24,7 @@ Span &Span::operator=(const Span &sp)
 
 Span::~Span()
 {
+	//소멸자에서 free나 clear?
 }
 
 void Span::addNumber(int num)

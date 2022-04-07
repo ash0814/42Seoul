@@ -28,9 +28,11 @@ int main()
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
 
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
+
+	Span sp2 = Span(100000);
+
 	return 0;
 }
