@@ -24,7 +24,6 @@ Span &Span::operator=(const Span &sp)
 
 Span::~Span()
 {
-	//소멸자에서 free나 clear?
 }
 
 void Span::addNumber(int num)
@@ -34,16 +33,6 @@ void Span::addNumber(int num)
 	this->data.push_back(num);
 }
 
-void Span::addNumber(std::vector<int>::iterator start, std::vector<int>::iterator end, const int &newNumber)
-{
-	std::vector<int>::iterator i;
-	i = start;
-	while (i < end)
-	{
-		addNumber(newNumber);
-		i++;
-	}
-}
 unsigned int Span::shortestSpan()
 {
 	if (this->data.size() < 2)

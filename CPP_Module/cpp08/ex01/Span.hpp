@@ -19,21 +19,38 @@ public:
 	~Span();
 
 	void addNumber(int num);
-	void addNumber(std::vector<int>::iterator start, 
-		std::vector<int>::iterator end, const int &newNumber);
+
+	template <typename T>
+	void addAnyArray(T *arrPtr, int len)
+	{
+		for (int i = 0; i < len; i++) {
+			addNumber(arrPtr[i]);
+		}
+	}
+
+	template <typename T>
+	void addAnyArray(T &t, int len)
+	{
+		int i = 0;
+		typename T::iterator it = t.begin();
+		while (it == t.end() || ++i <= len){
+			addNumber(*it);
+		}
+	}
+
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
-	
+
 	class NeedMoreElements : public std::exception
 	{
-		public:
-		const char * what() const throw();
+	public:
+		const char *what() const throw();
 	};
 
 	class SpanIsFull : public std::exception
 	{
-		public:
-		const char * what() const throw();
+	public:
+		const char *what() const throw();
 	};
 };
 

@@ -7,13 +7,12 @@ int main()
 	try
 	{
 		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
+
 	sp.addNumber(6);
 	sp.addNumber(3);
 	sp.addNumber(17);
@@ -32,7 +31,21 @@ int main()
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
 
-	Span sp2 = Span(100000);
+	int arr[10] = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	std::vector<int> v(10, 100);
+	Span sp2 = Span(15);
+	try
+	{
+		sp2.addAnyArray(arr, 10);
+		// sp2.addAnyArray(arr, 6);
+		sp2.addAnyArray(v, 5);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << sp2.shortestSpan() << std::endl;
+	std::cout << sp2.longestSpan() << std::endl;
 
 	return 0;
 }
