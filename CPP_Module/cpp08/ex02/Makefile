@@ -1,4 +1,4 @@
-wNAME	=	ex02
+NAME	=	ex02
 
 CXX		=	c++ -Wall -Wextra -Werror -std=c++98
 SRC		=	main.cpp

@@ -9,24 +9,21 @@
 template <typename T>
 class MutantStack : public std::stack<T>
 {
-private:
-	/* data */
 public:
-	MutantStack();
-	MutantStack(const MutantStack &ms);
-	MutantStack &operator=(const MutantStack &ms);
-	~MutantStack();
+	MutantStack() {};
+	// MutantStack(const MutantStack &ms);
+	// MutantStack &operator=(const MutantStack &ms);
+	~MutantStack() {};
 
+	typedef typename std::stack<T>::container_type::iterator
+		iterator;
+	iterator begin() {
+		return this->c.begin();
+	}
+	iterator end() {
+		return this->c.end();
+	}
 	
 };
-
-MutantStack::MutantStack()
-{
-}
-
-MutantStack::~MutantStack()
-{
-}
-
 
 #endif
