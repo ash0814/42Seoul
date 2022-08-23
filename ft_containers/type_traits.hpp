@@ -5,7 +5,7 @@ namespace ft {
   template <bool, typename T = void>
   struct enable_if {};
   template <typename T>
-  struct enable_if<true, T> { typedef T type };
+  struct enable_if<true, T> { typedef T type; };
 
   template <class T, T v>
   struct integral_constant
