@@ -1,11 +1,11 @@
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef TYPE_TRAITS_HPP
+#define TYPE_TRAITS_HPP
 
 namespace ft {
   template <bool, typename T = void>
   struct enable_if {};
   template <typename T>
-  struct enable_if<true, T> { typedef T type };
+  struct enable_if<true, T> { typedef T type; };
 
   template <class T, T v>
   struct integral_constant
@@ -14,6 +14,7 @@ namespace ft {
     typedef T value_type;
     typedef integral_constant<T, v> type;
   };
+  
   typedef integral_constant<bool, true> true_type;
   typedef integral_constant<bool, false> false_type;
 

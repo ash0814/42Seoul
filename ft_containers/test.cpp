@@ -1,33 +1,27 @@
-#include <iostream>
-#include <type_traits>
-#include "type_traits.hpp"
-// int negate(int i) { 
-//   std::cout << "int " << std::endl;
-//   return -i; }
+// lexicographical_compare example
+#include <iostream>     // std::cout, std::boolalpha
+#include <algorithm>    // std::lexicographical_compare
+#include <cctype>       // std::tolower
 
-// template <typename T>
-// typename T::value_type negate(const T& t) {
-//   std::cout << "SFINAE" << std::endl;
-//   return -T(t);
-// }
+// a case-insensitive comparison function:
+bool mycomp (char c1, char c2)
+{ return std::tolower(c1)<std::tolower(c2); }
 
-// template <typename T>
-// void negate(const T& t) {
-//   typename T::value_type n = -t();
-// }
+int main () {
+  char foo[]="Apple";
+  char bar[]="applepie";
 
-template <class T>
-typename std::enable_if<std::is_integral<T>::value, bool>::type
-  is_odd (T i) {return bool(i%2);}
+  std::cout << std::boolalpha;
 
-template <class T>
-typename ft::enable_if<ft::is_integral<T>::value, bool>::type
-  is_even (T i) {return bool(!(i%2));}
+  std::cout << "Comparing foo and bar lexicographically (foo<bar):\n";
 
+  std::cout << "Using default comparison (operator<): ";
+  std::cout << std::lexicographical_compare(foo,foo+5,bar,bar+9);
+  std::cout << '\n';
 
+  std::cout << "Using mycomp as comparison object: ";
+  std::cout << std::lexicographical_compare(bar,bar+9,foo,foo+9,mycomp);
+  std::cout << '\n';
 
-int main()
-{
-  std::cout << is_odd(10) << std::endl;
-  std::cout << is_even(10) << std::endl;
+  return 0;
 }
