@@ -1,7 +1,6 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/ash/42Seoul/ft_containers'
-c++ -Wall -Wextra -Werror -std=c++98 -c main.cpp -o main.o
-c++ -Wall -Wextra -Werror -std=c++98 main.cpp -o ft_containers
- 
 make: Leaving directory `/Users/ash/42Seoul/ft_containers'
  
+make: *** No targets specified and no makefile found.  Stop.
+
