@@ -13,30 +13,32 @@
 #include "./iterator.hpp"
 #include "./utility.hpp"
 
+#include <vector>
+
 namespace ft
 {
   template <class T, class Allocator = std::allocator<T> >
   class vector
   {
   public:
-    typedef T value_type;
-    typedef Allocator allocator_type;
-    typedef std::allocator_traits<allocator_type> type_traits;
-    typedef typename allocator_type::pointer pointer;
-    typedef typename allocator_type::const_pointer const_pointer;
-    typedef typename allocator_type::reference reference;
-    typedef typename allocator_type::const_reference const_reference;
+    typedef T                                                 value_type;
+    typedef Allocator                                         allocator_type;
+    typedef std::allocator_traits<allocator_type>             type_traits;
+    typedef typename allocator_type::pointer                  pointer;
+    typedef typename allocator_type::const_pointer            const_pointer;
+    typedef typename allocator_type::reference                reference;
+    typedef typename allocator_type::const_reference          const_reference;
 
-    typedef typename std::size_t size_type;
-    typedef typename std::ptrdiff_t difference_type;
+    typedef typename std::size_t                              size_type;
+    typedef typename std::ptrdiff_t                           difference_type;
 
-    typedef ft::random_access_iterator<value_type> iterator;
-    typedef ft::random_access_iterator<const value_type> const_iterator;
-    typedef ft::reverse_iterator<iterator> reverse_iterator;
-    typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
+    typedef ft::random_access_iterator<value_type>            iterator;
+    typedef ft::random_access_iterator<const value_type>      const_iterator;
+    typedef ft::reverse_iterator<iterator>                    reverse_iterator;
+    typedef ft::reverse_iterator<const_iterator>              const_reverse_iterator;
 
     explicit vector(const allocator_type &alloc = allocator_type())
-        : _begin(ft::nil), _end(ft::nil), _cap(ft::nil), _alloc(alloc) {}
+        : _begin(ft::nil), _end(ft::nil), _end_cap(ft::nil), _alloc(alloc) {}
 
     explicit vector(size_type n, const value_type &value = value_type(), const allocator_type &alloc = allocator_type()) : _alloc(alloc)  {
       _allocate(n);
@@ -59,12 +61,12 @@ namespace ft
       _construct(n);
       std::copy(v._begin, v._end, _begin);
     }
-    ~vector(void)
+    ~vector()
     {
       if (_begin == ft::nil) { return; }
-      size_type pre_capacity = capacity();
+      size_type cap = capacity();
       _destruct(_begin);
-      _alloc.deallocate(_begin, pre_capacity);
+      _alloc.deallocate(_begin, cap);
     }
 
     vector &operator=(const vector &v)
@@ -169,48 +171,49 @@ namespace ft
 
     void resize(size_type n, value_type value = value_type())
     {
-      if (size() > n)
-      {
-        size_type diff = size() - n;
-        _destruct(diff);
-      }
-      else if (size() < n)
-      {
-        size_type diff = n - size();
+      if (size() > n) {
+        size_type rm_size = size() - n;
+        _destruct(rm_size);
+      } else if (size() < n) {
+        size_type new_size = n - size();
         if (capacity() < n)
-        {
           reserve(n);
+        for (size_type i = 0; i < new_size; _end++, i++) {
+          _alloc.construct(_end);
+          *_end = value;
         }
-        _construct(diff, value);
       }
     }
 
     size_type capacity(void) const
     {
-      return static_cast<size_type>(_cap - _begin);
+      return static_cast<size_type>(_end_cap - _begin);
     }
 
     bool empty(void) const { return _begin == _end; }
 
     void reserve(size_type n)
     {
-      if (n <= size() || n <= capacity())
-      {
-        return;
+      if (n > capacity()) {
+        if (n > max_size())
+          throw std::length_error("ERROR: allocate size too large");
+        if (n < capacity() * 2) {
+          if (capacity() * 2 < max_size())
+            n = capacity() * 2;
+          else
+            n = max_size();
+        }
+        size_type pre_size = size();
+        size_type pre_cap = capacity();
+        pointer new_begin = _alloc.allocate(n);
+        
+        std::uninitialized_copy(_begin, _end, new_begin);
+        _destruct(_begin);
+        _alloc.deallocate(_begin, pre_cap);
+        _begin = new_begin;
+        _end = _begin + pre_size;
+        _end_cap = _begin + n;
       }
-      if (n < capacity() * 2)
-      {
-        n = capacity() * 2;
-      }
-      size_type pre_size = size();
-      size_type pre_capacity = capacity();
-      pointer begin = _alloc.allocate(n);
-      std::uninitialized_copy(_begin, _end, begin);
-      _destruct(_begin);
-      _alloc.deallocate(_begin, pre_capacity);
-      _begin = begin;
-      _end = _begin + pre_size;
-      _cap = _begin + n;
     }
 
     template <class InputIterator>
@@ -218,9 +221,7 @@ namespace ft
     {
       size_type n = ft::distance(first, last);
       if (capacity() < n)
-      {
         reserve(n);
-      }
       std::copy(first, last, _begin);
       _end = _begin + n;
     }
@@ -317,7 +318,7 @@ namespace ft
     {
       std::swap(_begin, v._begin);
       std::swap(_end, v._end);
-      std::swap(_cap, v._cap);
+      std::swap(_end_cap, v._end_cap);
       std::swap(_alloc, v._alloc);
     }
     void clear(void)
@@ -333,17 +334,14 @@ namespace ft
   private:
     pointer _begin;
     pointer _end;
-    pointer _cap;
+    pointer _end_cap;
     allocator_type _alloc;
 
     void _allocate(size_type n)
     {
-      if (n > max_size()) {
-        throw std::length_error("ERROR: allocate size too big");
-      }
       _begin = _alloc.allocate(n);
       _end = _begin;
-      _cap = _begin + n;
+      _end_cap = _begin + n;
     }
 
     void _construct(size_type n, T value)

@@ -1,8 +1,6 @@
 #ifndef UTILITY_HPP
 #define UTILITY_HPP
 
-#include "iterator_traits.hpp"
-
 namespace ft
 {
   template <class T1, class T2>
@@ -59,17 +57,6 @@ namespace ft
   {
     return !(y < x);
   }
-
-  template < typename InputIt >
-	typename ft::iterator_traits<InputIt>::difference_type	distance(InputIt first, InputIt last)
-	{
-		typename ft::iterator_traits<InputIt>::difference_type	dist = 0;
-		while (first != last){
-			++first;
-			++dist;
-		}
-		return dist;
-	}
 }
 
 #endif

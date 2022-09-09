@@ -9,12 +9,12 @@ namespace ft {
   template <typename T>
   class random_access_iterator : public ft::iterator<ft::random_access_iterator_tag, T> {
   public:
-    typedef T *iterator_type;
-    typedef typename ft::iterator_traits<iterator_type>::value_type value_type;
-    typedef typename ft::iterator_traits<iterator_type>::difference_type difference_type;
-    typedef typename ft::iterator_traits<iterator_type>::pointer pointer;
-    typedef typename ft::iterator_traits<iterator_type>::reference reference;
-    typedef typename ft::iterator_traits<iterator_type>::iterator_category iterator_category;
+    typedef T *                                                             iterator_type;
+    typedef typename ft::iterator_traits<iterator_type>::value_type         value_type;
+    typedef typename ft::iterator_traits<iterator_type>::difference_type    difference_type;
+    typedef typename ft::iterator_traits<iterator_type>::pointer            pointer;
+    typedef typename ft::iterator_traits<iterator_type>::reference          reference;
+    typedef typename ft::iterator_traits<iterator_type>::iterator_category  iterator_category;
 
   random_access_iterator(void): _i(ft::nil) {}
   random_access_iterator(T* pointer) : _i(pointer) {}
@@ -30,6 +30,7 @@ namespace ft {
   }
 
   iterator_type base(void) const { return _i; }
+  
   pointer operator->(void) const { return _i; }
   reference operator*(void) const { return *_i; }
   reference operator[](difference_type n) const { return _i[n]; }
