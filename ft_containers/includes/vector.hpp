@@ -53,6 +53,7 @@ namespace ft
       _construct(n);
       std::copy(first, last, _begin);
     }
+
     vector(const vector &v)
         : _alloc(v._alloc)
     {
@@ -65,7 +66,10 @@ namespace ft
     {
       if (_begin == ft::nil) { return; }
       size_type cap = capacity();
-      _destruct(_begin);
+      // for (; _end != _begin; _end--) // TODO 얘는 안되는데 밑에 쟤는 됨.
+      //   _alloc.destroy(_end);
+      for (; _end != _begin && _end--;)
+        _alloc.destroy(_end);
       _alloc.deallocate(_begin, cap);
     }
 
@@ -173,7 +177,8 @@ namespace ft
     {
       if (size() > n) {
         size_type rm_size = size() - n;
-        _destruct(rm_size);
+        for (size_type i = 0; i < rm_size; i++)
+          _alloc.destroy(_end--);
       } else if (size() < n) {
         size_type new_size = n - size();
         if (capacity() < n)
@@ -208,7 +213,8 @@ namespace ft
         pointer new_begin = _alloc.allocate(n);
         
         std::uninitialized_copy(_begin, _end, new_begin);
-        _destruct(_begin);
+        for (; _end != _begin; _end--)
+          _alloc.destroy(_end);
         _alloc.deallocate(_begin, pre_cap);
         _begin = new_begin;
         _end = _begin + pre_size;
@@ -216,7 +222,7 @@ namespace ft
       }
     }
 
-    template <class InputIterator>
+    template <class InputIterator> // TODO enable_if 는 왜 있는걸까?
     void assign(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = ft::nil)
     {
       size_type n = ft::distance(first, last);
@@ -225,92 +231,86 @@ namespace ft
       std::copy(first, last, _begin);
       _end = _begin + n;
     }
+
     void assign(size_type n, const value_type &value)
     {
       if (capacity() < n)
-      {
         reserve(n);
-      }
       std::fill_n(_begin, n, value);
       _end = _begin + n;
     }
+
     void push_back(const value_type &value)
     {
       size_type n = size() + 1;
       if (capacity() < n)
-      {
         reserve(n);
-      }
-      _construct(1);
+      _alloc.construct(_end++);
       *(_end - 1) = value;
     }
+
     void pop_back(void)
     {
-      _destruct(1);
+      _alloc.destroy(_end--);
     }
 
     iterator insert(iterator position, const value_type &value)
     {
-      difference_type diff = position - begin();
+      difference_type insert_pos = ft::distance(begin(), position);
       if (capacity() < size() + 1)
-      {
         reserve(size() + 1);
-      }
-      pointer ptr = _begin + diff;
-      _construct(1);
-      std::copy_backward(ptr, _end - 1, _end);
-      *ptr = value;
-      return iterator(ptr);
+      _alloc.construct(_end++);
+
+      pointer insert_ptr = _begin + insert_pos;
+      std::copy_backward(insert_ptr, _end - 1, _end);
+      *insert_ptr = value;
+      return iterator(insert_ptr);
     }
+
     void insert(iterator position, size_type n, const value_type &value)
     {
-      difference_type diff = position - begin();
+      difference_type insert_pos = ft::distance(begin(), position);
       if (capacity() < size() + n)
-      {
         reserve(size() + n);
-      }
-      pointer ptr = _begin + diff;
-      _construct(n);
-      std::copy_backward(ptr, _end - n, _end);
+      pointer insert_ptr = _begin + insert_pos;
+      for (size_type i = 0; i < n;i++)
+        _alloc.construct(_end++);
+      std::copy_backward(insert_ptr, _end - n, _end);
       for (size_type i = 0; i < n; i++)
-      {
-        ptr[i] = value;
-      }
+        insert_ptr[i] = value;
     }
+
     template <class InputIterator>
-    void insert(iterator position,
-                InputIterator first,
-                InputIterator last,
+    void insert(iterator position, InputIterator first, InputIterator last,
                 typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = ft::nil)
     {
       difference_type n = ft::distance(first, last);
-      difference_type diff = position - begin();
+      difference_type insert_pos = ft::distance(begin(), position);
       if (capacity() < size() + n)
-      {
         reserve(size() + n);
-      }
-      pointer ptr = _begin + diff;
-      _construct(n);
+      pointer ptr = _begin + insert_pos;
+      for (difference_type i = 0; i < n;i++)
+        _alloc.construct(_end++);
       std::copy_backward(ptr, _end - n, _end);
       for (InputIterator i = first; i != last; i++, ptr++)
-      {
         *ptr = *i;
-      }
     }
 
     iterator erase(iterator position)
     {
-      difference_type diff = position - begin();
-      pointer ptr = _begin + diff;
-      std::copy(ptr + 1, _end, ptr);
-      _destruct(1);
-      return iterator(ptr);
+      difference_type erase_pos = ft::distance(begin(), position);
+      pointer erase_ptr = _begin + erase_pos;
+      std::copy(erase_ptr + 1, _end, erase_ptr);
+      _alloc.destroy(_end--);
+      return iterator(erase_ptr);
     }
+
     iterator erase(iterator first, iterator last)
     {
       difference_type n = ft::distance(first, last);
       std::copy(last, end(), first);
-      _destruct(n);
+      for (difference_type i = 0; i < n ; i++)
+        _alloc.destroy(_end--);
       return first;
     }
     
@@ -321,9 +321,11 @@ namespace ft
       std::swap(_end_cap, v._end_cap);
       std::swap(_alloc, v._alloc);
     }
+
     void clear(void)
     {
-      _destruct(_begin);
+      for (; _end != _begin; _end--)
+        _alloc.destroy(_end);
     }
 
     allocator_type get_allocator(void) const
@@ -358,22 +360,6 @@ namespace ft
       for (; n > 0; _end++, n--)
       {
         _alloc.construct(_end);
-      }
-    }
-
-    void _destruct(size_type n)
-    {
-      for (; n > 0 && _end--; n--)
-      {
-        _alloc.destroy(_end);
-      }
-    }
-
-    void _destruct(pointer until)
-    {
-      for (; _end != until && _end--;)
-      {
-        _alloc.destroy(_end);
       }
     }
   };
