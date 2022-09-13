@@ -29,8 +29,8 @@ namespace ft
     typedef typename allocator_type::reference                reference;
     typedef typename allocator_type::const_reference          const_reference;
 
-    typedef typename std::size_t                              size_type;
-    typedef typename std::ptrdiff_t                           difference_type;
+    typedef std::size_t                              size_type;
+    typedef std::ptrdiff_t                           difference_type;
 
     typedef ft::random_access_iterator<value_type>            iterator;
     typedef ft::random_access_iterator<const value_type>      const_iterator;
@@ -77,10 +77,10 @@ namespace ft
     {
       if (_begin == ft::nil) { return; }
       size_type cap = capacity();
-      // for (; _end != _begin; _end--) // TODO 얘는 안되는데 밑에 쟤는 됨.
-      //   _alloc.destroy(_end);
-      for (; _end != _begin && _end--;)
+      for (; _end != _begin; _end--)
         _alloc.destroy(_end);
+      // for (; _end != _begin && _end--;)
+      //   _alloc.destroy(_end);
       _alloc.deallocate(_begin, cap);
     }
 
