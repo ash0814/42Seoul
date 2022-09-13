@@ -1,10 +1,6 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
-#include <algorithm>
-#include <limits>
-#include <memory>
-#include <stdexcept>
 #include "./algorithm.hpp"
 #include "./iterator_traits.hpp"
 #include "./random_access_iterator.hpp"
@@ -12,6 +8,10 @@
 #include "./type_traits.hpp"
 #include "./iterator.hpp"
 #include "./utility.hpp"
+#include <limits>
+#include <memory>
+#include <stdexcept>
+#include <algorithm>
 
 #include <vector>
 
@@ -41,16 +41,24 @@ namespace ft
         : _begin(ft::nil), _end(ft::nil), _end_cap(ft::nil), _alloc(alloc) {}
 
     explicit vector(size_type n, const value_type &value = value_type(), const allocator_type &alloc = allocator_type()) : _alloc(alloc)  {
-      _allocate(n);
-      _construct(n, value);
+      _begin = _alloc.allocate(n);
+      _end = _begin;
+      _end_cap = _begin + n;
+      for (size_type i = 0; i < n; i++) {
+        _alloc.construct(_end);
+        *_end++ = value;
+      }
     }
 
     template <class InputIterator>
     vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
            typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = ft::nil) : _alloc(alloc) {
       size_type n = ft::distance(first, last);
-      _allocate(n);
-      _construct(n);
+      _begin = _alloc.allocate(n);
+      _end = _begin;
+      _end_cap = _begin + n;
+      for (; n > 0; _end++, n--)
+        _alloc.construct(_end);
       std::copy(first, last, _begin);
     }
 
@@ -58,8 +66,11 @@ namespace ft
         : _alloc(v._alloc)
     {
       size_type n = v.size();
-      _allocate(v.capacity());
-      _construct(n);
+      _begin = _alloc.allocate(v.capacity());
+      _end = _begin;
+      _end_cap = _begin + v.capacity();
+      for (; n > 0; _end++, n--)
+        _alloc.construct(_end);
       std::copy(v._begin, v._end, _begin);
     }
     ~vector()
@@ -213,7 +224,7 @@ namespace ft
         pointer new_begin = _alloc.allocate(n);
         
         std::uninitialized_copy(_begin, _end, new_begin);
-        for (; _end != _begin; _end--)
+        for (; _end != _begin && _end-- ; )
           _alloc.destroy(_end);
         _alloc.deallocate(_begin, pre_cap);
         _begin = new_begin;
@@ -324,44 +335,17 @@ namespace ft
 
     void clear(void)
     {
-      for (; _end != _begin; _end--)
+      for (; _end != _begin && _end-- ; )
         _alloc.destroy(_end);
     }
 
-    allocator_type get_allocator(void) const
-    {
-      return _alloc;
-    }
+    allocator_type get_allocator(void) const { return _alloc; }
 
   private:
     pointer _begin;
     pointer _end;
     pointer _end_cap;
     allocator_type _alloc;
-
-    void _allocate(size_type n)
-    {
-      _begin = _alloc.allocate(n);
-      _end = _begin;
-      _end_cap = _begin + n;
-    }
-
-    void _construct(size_type n, T value)
-    {
-      for (; n > 0; _end++, n--)
-      {
-        _alloc.construct(_end);
-        *_end = value;
-      }
-    }
-
-    void _construct(size_type n)
-    {
-      for (; n > 0; _end++, n--)
-      {
-        _alloc.construct(_end);
-      }
-    }
   };
 
   template <typename T, class Allocator>
