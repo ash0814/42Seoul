@@ -13,8 +13,6 @@
 #include <stdexcept>
 #include <algorithm>
 
-#include <vector>
-
 namespace ft
 {
   template <class T, class Allocator = std::allocator<T> >
@@ -79,8 +77,6 @@ namespace ft
       size_type cap = capacity();
       for (; _end != _begin; _end--)
         _alloc.destroy(_end);
-      // for (; _end != _begin && _end--;)
-      //   _alloc.destroy(_end);
       _alloc.deallocate(_begin, cap);
     }
 
@@ -233,7 +229,7 @@ namespace ft
       }
     }
 
-    template <class InputIterator> // TODO enable_if 는 왜 있는걸까?
+    template <class InputIterator>
     void assign(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = ft::nil)
     {
       size_type n = ft::distance(first, last);
