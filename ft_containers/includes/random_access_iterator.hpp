@@ -30,7 +30,6 @@ namespace ft {
   }
 
   iterator_type base(void) const { return _i; }
-  
   pointer operator->(void) const { return _i; }
   reference operator*(void) const { return *_i; }
   reference operator[](difference_type n) const { return _i[n]; }
@@ -74,50 +73,50 @@ namespace ft {
 };
 
 template <typename T>
-random_access_iterator<T> operator+(typename random_access_iterator<T>::difference_type n,
-                                    const random_access_iterator<T>& i) {
+random_access_iterator<T> operator+(typename random_access_iterator<T>::difference_type n, const random_access_iterator<T>& i)
+{
   return random_access_iterator<T>(i.base() + n);
 }
 
 template <typename T1, typename T2>
-typename random_access_iterator<T1>::difference_type operator-(const random_access_iterator<T1>& x,
-                                                               const random_access_iterator<T2>& y) {
+typename random_access_iterator<T1>::difference_type operator-(const random_access_iterator<T1>& x, const random_access_iterator<T2>& y)
+{
   return x.base() - y.base();
 }
 
 template <typename T1, typename T2>
-bool operator==(const random_access_iterator<T1>& x,
-                const random_access_iterator<T2>& y) {
+bool operator==(const random_access_iterator<T1>& x, const random_access_iterator<T2>& y)
+{
   return x.base() == y.base();
 }
 
 template <typename T1, typename T2>
-bool operator!=(const random_access_iterator<T1>& x,
-                const random_access_iterator<T2>& y) {
+bool operator!=(const random_access_iterator<T1>& x, const random_access_iterator<T2>& y)
+{
   return x.base() != y.base();
 }
 
 template <typename T1, typename T2>
-bool operator<(const random_access_iterator<T1>& x,
-               const random_access_iterator<T2>& y) {
+bool operator<(const random_access_iterator<T1>& x, const random_access_iterator<T2>& y)
+{
   return x.base() < y.base();
 }
 
 template <typename T1, typename T2>
-bool operator<=(const random_access_iterator<T1>& x,
-                const random_access_iterator<T2>& y) {
+bool operator<=(const random_access_iterator<T1>& x, const random_access_iterator<T2>& y) 
+{
   return x.base() <= y.base();
 }
 
 template <typename T1, typename T2>
-bool operator>(const random_access_iterator<T1>& x,
-               const random_access_iterator<T2>& y) {
+bool operator>(const random_access_iterator<T1>& x, const random_access_iterator<T2>& y)
+{
   return x.base() > y.base();
 }
 
 template <typename T1, typename T2>
-bool operator>=(const random_access_iterator<T1>& x,
-                const random_access_iterator<T2>& y) {
+bool operator>=(const random_access_iterator<T1>& x, const random_access_iterator<T2>& y)
+{
   return x.base() >= y.base();
 }
 };

@@ -14,24 +14,22 @@ namespace ft
   template <typename T, class Key, class Comp, class Allocator>
   class rb_tree
   {
-
-
   public:
-    typedef T value_type;
-    typedef Key key_type;
-    typedef Comp compare_type;
+    typedef T                                                           value_type;
+    typedef Key                                                         key_type;
+    typedef Comp                                                        compare_type;
 
-    typedef tree_node<value_type> node_type;
-    typedef tree_node<value_type> *node_pointer;
+    typedef tree_node<value_type>                                       node_type;
+    typedef tree_node<value_type>                                       *node_pointer;
 
-    typedef tree_iterator<value_type, node_type> iterator;
-    typedef tree_iterator<const value_type, node_type> const_iterator;
+    typedef Allocator                                                   allocator_type;
+    typedef typename allocator_type::template rebind<node_type>::other  node_allocator;
 
-    typedef Allocator allocator_type;
-    typedef typename allocator_type::template rebind<node_type>::other node_allocator;
+    typedef std::size_t                                                 size_type;
+    typedef std::ptrdiff_t                                              difference_type;
 
-    typedef std::size_t size_type;
-    typedef std::ptrdiff_t difference_type;
+    typedef tree_iterator<value_type, node_type>                        iterator;
+    typedef tree_iterator<const value_type, node_type>                  const_iterator;
 
     rb_tree(const compare_type &comp, const allocator_type &alloc) : _comp(comp), _alloc(alloc), _size(size_type())
     {
@@ -148,11 +146,11 @@ namespace ft
       node_pointer ptr = get_root();
       node_pointer tmp = _end;
       while (ptr != _nil) {
-        if (!_comp(ptr->val, key)) {
+        if (_comp(ptr->val, key)) {
+          ptr = ptr->right;
+        } else {
           tmp = ptr;
           ptr = ptr->left;
-        } else {
-          ptr = ptr->right;
         }
       }
       return iterator(tmp, _nil);
@@ -323,7 +321,7 @@ namespace ft
 
     void fix_after_insert(node_pointer ptr)
     {
-      while (is_red_node(ptr->parent)) {
+      while (ptr->parent->color == RED) {
         if (is_left_child(ptr->parent))
           fix_insert_left(ptr);
         else
@@ -335,7 +333,7 @@ namespace ft
     void fix_insert_left(node_pointer &ptr)
     {
       node_pointer uncle = ptr->parent->parent->right;
-      if (is_red_node(uncle)) {
+      if (uncle->color == RED) {
         ptr->parent->color = BLACK;
         uncle->color = BLACK;
         uncle->parent->color = RED;
@@ -354,7 +352,7 @@ namespace ft
     void fix_insert_right(node_pointer &ptr)
     {
       node_pointer uncle = ptr->parent->parent->left;
-      if (is_red_node(uncle)) {
+      if (uncle->color == RED) {
         ptr->parent->color = BLACK;
         uncle->color = BLACK;
         uncle->parent->color = RED;
@@ -374,7 +372,7 @@ namespace ft
     {
       node_pointer up_node;
       node_pointer replace_node;
-      bool original_node = is_black_node(ptr);
+      bool original_node = ptr->color;
       if (ptr->left == _nil) {
         up_node = ptr->right;
         transport(ptr, ptr->right);
@@ -383,7 +381,7 @@ namespace ft
         transport(ptr, ptr->left);
       } else {
         replace_node = get_min(ptr->right, _nil);
-        original_node = is_black_node(replace_node);
+        original_node = replace_node->color;
         up_node = replace_node->right;
         if (replace_node->parent == ptr) {
           up_node->parent = replace_node;
@@ -395,7 +393,7 @@ namespace ft
         transport(ptr, replace_node);
         replace_node->left = ptr->left;
         replace_node->left->parent = replace_node;
-        replace_node->color = is_black_node(ptr);
+        replace_node->color = ptr->color;
       }
       if (original_node == BLACK)
         fix_after_erase(up_node);
@@ -403,7 +401,7 @@ namespace ft
 
     void fix_after_erase(node_pointer ptr)
     {
-      while (ptr != get_root() && is_black_node(ptr)) {
+      while (ptr != get_root() && ptr->color == BLACK) {
         if (is_left_child(ptr))
           fix_erase_left(ptr);
         else
@@ -415,26 +413,26 @@ namespace ft
     void fix_erase_left(node_pointer &ptr)
     {
       node_pointer sibling = ptr->parent->right;
-      if (is_red_node(sibling))
+      if (sibling->color == RED)
       {
         sibling->color = BLACK;
         ptr->parent->color = RED;
         rotation_left(ptr->parent);
         sibling = ptr->parent->right;
       }
-      if (is_black_node(sibling->left) && is_black_node(sibling->right))
+      if (sibling->left->color == BLACK && sibling->right->color == BLACK)
       {
         sibling->color = RED;
         ptr = ptr->parent;
-      } else if (is_black_node(sibling->right)) {
+      } else if (sibling->right->color == BLACK) {
         sibling->left->color = BLACK;
         sibling->color = RED;
         rotation_right(sibling);
         sibling = ptr->parent->right;
       }
-      if (is_red_node(sibling->right))
+      if (sibling->right->color == RED)
       {
-        sibling->color = is_black_node(ptr->parent);
+        sibling->color = ptr->parent->color;
         ptr->parent->color = BLACK;
         sibling->right->color = BLACK;
         rotation_left(ptr->parent);
@@ -445,26 +443,26 @@ namespace ft
     void fix_erase_right(node_pointer &ptr)
     {
       node_pointer sibling = ptr->parent->left;
-      if (is_red_node(sibling))
+      if (sibling->color == RED)
       {
         sibling->color = BLACK;
         ptr->parent->color = RED;
         rotation_right(ptr->parent);
         sibling = ptr->parent->left;
       }
-      if (is_black_node(sibling->right) && is_black_node(sibling->left))
+      if (sibling->right->color == BLACK && sibling->left->color == BLACK)
       {
         sibling->color = RED;
         ptr = ptr->parent;
-      } else if (is_black_node(sibling->left)) {
+      } else if (sibling->left->color == BLACK) {
         sibling->right->color = BLACK;
         sibling->color = RED;
         rotation_left(sibling);
         sibling = ptr->parent->left;
       }
-      if (is_red_node(sibling->left))
+      if (sibling->left->color == RED)
       {
-        sibling->color = is_black_node(ptr->parent);
+        sibling->color = ptr->parent->color;
         ptr->parent->color = BLACK;
         sibling->left->color = BLACK;
         rotation_right(ptr->parent);

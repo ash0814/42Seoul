@@ -4,7 +4,7 @@
 
 namespace ft {
 
-template <typename T, class Container = ft::vector<T> >
+template <typename T, typename Container = ft::vector<T> >
 class stack {
  public:
   typedef Container container_type;
@@ -13,8 +13,7 @@ class stack {
   typedef typename container_type::reference reference;
   typedef typename container_type::const_reference const_reference;
 
-  explicit stack(const container_type& container = container_type())
-    : c(container) {}
+  explicit stack(const container_type& container = container_type()) : c(container) {}
   stack(const stack& s) : c(s.c) {}
   ~stack(void) {}
 
@@ -25,64 +24,53 @@ class stack {
     return *this;
   }
 
-  reference top(void) {
-    return c.back();
-  }
-  const_reference top(void) const {
-    return c.back();
-  }
+  reference top(void) { return c.back(); }
+  const_reference top(void) const { return c.back(); }
 
-  bool empty(void) const {
-    return c.empty();
-  }
+  bool empty(void) const { return c.empty(); }
 
-  size_type size(void) const {
-    return c.size();
-  }
+  size_type size(void) const { return c.size(); }
 
-  void push(const value_type& value) {
-    c.push_back(value);
-  }
-  void pop(void) {
-    c.pop_back();
-  }
-  template <typename U, class C>
+  void push(const value_type& value) { c.push_back(value); }
+  void pop(void) { c.pop_back(); }
+
+  template <typename U, typename C>
   friend bool operator==(const stack<U, C>& x, const stack<U, C>& y);
-  template <typename U, class C>
+  template <typename U, typename C>
   friend bool operator!=(const stack<U, C>& x, const stack<U, C>& y);
-  template <typename U, class C>
+  template <typename U, typename C>
   friend bool operator<(const stack<U, C>& x, const stack<U, C>& y);
-  template <typename U, class C>
+  template <typename U, typename C>
   friend bool operator<=(const stack<U, C>& x, const stack<U, C>& y);
-  template <typename U, class C>
+  template <typename U, typename C>
   friend bool operator>(const stack<U, C>& x, const stack<U, C>& y);
-  template <typename U, class C>
+  template <typename U, typename C>
   friend bool operator>=(const stack<U, C>& x, const stack<U, C>& y);
 
  protected:
   container_type c;
 };
-  template <typename T, class C>
+  template <typename T, typename C>
   bool operator==(const stack<T, C>& x, const stack<T, C>& y) {
     return x.c == y.c;
   }
-  template <typename T, class C>
+  template <typename T, typename C>
   bool operator!=(const stack<T, C>& x, const stack<T, C>& y) {
     return x.c != y.c;
   }
-  template <typename T, class C>
+  template <typename T, typename C>
   bool operator<(const stack<T, C>& x, const stack<T, C>& y) {
     return x.c < y.c;
   }
-  template <typename T, class C>
+  template <typename T, typename C>
   bool operator<=(const stack<T, C>& x, const stack<T, C>& y) {
     return x.c <= y.c;
   }
-  template <typename T, class C>
+  template <typename T, typename C>
   bool operator>(const stack<T, C>& x, const stack<T, C>& y) {
     return x.c > y.c;
   }
-  template <typename T, class C>
+  template <typename T, typename C>
   bool operator>=(const stack<T, C>& x, const stack<T, C>& y) {
     return x.c >= y.c;
   }

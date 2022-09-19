@@ -15,7 +15,7 @@
 
 namespace ft
 {
-  template <class T, class Allocator = std::allocator<T> >
+  template <typename T, typename Allocator = std::allocator<T> >
   class vector
   {
   public:
@@ -48,7 +48,7 @@ namespace ft
       }
     }
 
-    template <class InputIterator>
+    template <typename InputIterator>
     vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
            typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = ft::nil) : _alloc(alloc) {
       size_type n = ft::distance(first, last);
@@ -88,97 +88,40 @@ namespace ft
       return *this;
     }
 
-    iterator begin(void)
-    {
-      return iterator(_begin);
-    }
-    const_iterator begin(void) const
-    {
-      return const_iterator(_begin);
-    }
-    iterator end(void)
-    {
-      return iterator(_end);
-    }
-    const_iterator end(void) const
-    {
-      return const_iterator(_end);
-    }
-    reverse_iterator rbegin(void)
-    {
-      return reverse_iterator(end());
-    }
-    const_reverse_iterator rbegin(void) const
-    {
-      return const_reverse_iterator(end());
-    }
-    reverse_iterator rend(void)
-    {
-      return reverse_iterator(begin());
-    }
-    const_reverse_iterator rend(void) const
-    {
-      return const_reverse_iterator(begin());
-    }
+    iterator begin(void) { return iterator(_begin); }
+    const_iterator begin(void) const { return const_iterator(_begin); }
+    iterator end(void) { return iterator(_end); }
+    const_iterator end(void) const { return const_iterator(_end); }
+    reverse_iterator rbegin(void) { return reverse_iterator(end()); }
+    const_reverse_iterator rbegin(void) const { return const_reverse_iterator(end()); }
+    reverse_iterator rend(void) { return reverse_iterator(begin()); }
+    const_reverse_iterator rend(void) const { return const_reverse_iterator(begin()); }
 
-    reference operator[](size_type n)
-    {
-      return _begin[n];
-    }
-    const_reference operator[](size_type n) const
-    {
-      return _begin[n];
-    }
+    reference operator[](size_type n) { return _begin[n]; }
+    const_reference operator[](size_type n) const { return _begin[n]; }
+
     reference at(size_type n)
     {
       if (n >= size())
-      {
         throw std::out_of_range("index out of range");
-      }
       return _begin[n];
     }
     const_reference at(size_type n) const
     {
       if (n >= size())
-      {
         throw std::out_of_range("index out of range");
-      }
       return _begin[n];
     }
-    reference front(void)
-    {
-      return *_begin;
-    }
-    const_reference front(void) const
-    {
-      return *_begin;
-    }
-    reference back(void)
-    {
-      return *(_end - 1);
-    }
-    const_reference back(void) const
-    {
-      return *(_end - 1);
-    }
-    T *data(void) throw()
-    {
-      return reinterpret_cast<T *>(_begin);
-    }
-    const T *data(void) const throw()
-    {
-      return reinterpret_cast<const T *>(_begin);
-    }
+    reference front(void) { return *_begin; }
+    const_reference front(void) const { return *_begin; }
+    reference back(void) { return *(_end - 1); }
+    const_reference back(void) const { return *(_end - 1); }
+    T *data(void) throw() { return reinterpret_cast<T *>(_begin); }
+    const T *data(void) const throw() { return reinterpret_cast<const T *>(_begin); }
 
-    size_type size(void) const
-    {
-      return static_cast<size_type>(_end - _begin);
-    }
+    size_type size(void) const { return static_cast<size_type>(_end - _begin); }
 
-    size_type max_size(void) const
-    {
-      return _alloc.max_size();
-    }
+    size_type max_size(void) const { return _alloc.max_size(); }
 
     void resize(size_type n, value_type value = value_type())
     {
@@ -197,10 +140,7 @@ namespace ft
       }
     }
 
-    size_type capacity(void) const
-    {
-      return static_cast<size_type>(_end_cap - _begin);
-    }
+    size_type capacity(void) const { return static_cast<size_type>(_end_cap - _begin); }
 
     bool empty(void) const { return _begin == _end; }
 
@@ -229,7 +169,7 @@ namespace ft
       }
     }
 
-    template <class InputIterator>
+    template <typename InputIterator>
     void assign(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = ft::nil)
     {
       size_type n = ft::distance(first, last);
@@ -287,7 +227,7 @@ namespace ft
         insert_ptr[i] = value;
     }
 
-    template <class InputIterator>
+    template <typename InputIterator>
     void insert(iterator position, InputIterator first, InputIterator last,
                 typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = ft::nil)
     {
@@ -344,52 +284,44 @@ namespace ft
     allocator_type _alloc;
   };
 
-  template <typename T, class Allocator>
-  bool operator==(const ft::vector<T, Allocator> &x,
-                  const ft::vector<T, Allocator> &y)
+  template <typename T, typename Allocator>
+  bool operator==(const ft::vector<T, Allocator> &x, const ft::vector<T, Allocator> &y)
   {
-    return x.size() == y.size() &&
-           ft::equal(x.begin(), x.end(), y.begin());
+    return x.size() == y.size() && ft::equal(x.begin(), x.end(), y.begin());
   }
 
-  template <typename T, class Allocator>
-  bool operator!=(const ft::vector<T, Allocator> &x,
-                  const ft::vector<T, Allocator> &y)
+  template <typename T, typename Allocator>
+  bool operator!=(const ft::vector<T, Allocator> &x, const ft::vector<T, Allocator> &y)
   {
     return !(x == y);
   }
 
-  template <typename T, class Allocator>
-  bool operator<(const ft::vector<T, Allocator> &x,
-                 const ft::vector<T, Allocator> &y)
+  template <typename T, typename Allocator>
+  bool operator<(const ft::vector<T, Allocator> &x, const ft::vector<T, Allocator> &y)
   {
     return ft::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
   }
 
-  template <typename T, class Allocator>
-  bool operator<=(const ft::vector<T, Allocator> &x,
-                  const ft::vector<T, Allocator> &y)
+  template <typename T, typename Allocator>
+  bool operator<=(const ft::vector<T, Allocator> &x, const ft::vector<T, Allocator> &y)
   {
     return x == y || x < y;
   }
 
-  template <typename T, class Allocator>
-  bool operator>(const ft::vector<T, Allocator> &x,
-                 const ft::vector<T, Allocator> &y)
+  template <typename T, typename Allocator>
+  bool operator>(const ft::vector<T, Allocator> &x, const ft::vector<T, Allocator> &y)
   {
     return !(x <= y);
   }
 
-  template <typename T, class Allocator>
-  bool operator>=(const ft::vector<T, Allocator> &x,
-                  const ft::vector<T, Allocator> &y)
+  template <typename T, typename Allocator>
+  bool operator>=(const ft::vector<T, Allocator> &x, const ft::vector<T, Allocator> &y)
   {
-    return x == y || x > y;
+    return (x == y || x > y);
   }
 
-  template <typename T, class Allocator>
-  void swap(ft::vector<T, Allocator> &x,
-            ft::vector<T, Allocator> &y)
+  template <typename T, typename Allocator>
+  void swap(ft::vector<T, Allocator> &x, ft::vector<T, Allocator> &y)
   {
     x.swap(y);
   }

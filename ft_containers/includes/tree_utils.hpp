@@ -43,31 +43,19 @@ namespace ft
     }
   };
 
-  template <class Ptr>
+  template <typename Ptr>
   bool is_left_child(const Ptr &ptr)
   {
     return ptr == ptr->parent->left;
   }
 
-  template <class Ptr>
+  template <typename Ptr>
   bool is_right_child(const Ptr &ptr)
   {
     return ptr == ptr->parent->right;
   }
 
-  template <class Ptr>
-  bool is_black_node(const Ptr &ptr)
-  {
-    return ptr->color;
-  }
-
-  template <class Ptr>
-  bool is_red_node(const Ptr &ptr)
-  {
-    return !ptr->color;
-  }
-
-  template <class Ptr>
+  template <typename Ptr>
   Ptr get_min(Ptr ptr, Ptr nil)
   {
     while (ptr->left != nil)
@@ -75,7 +63,7 @@ namespace ft
     return ptr;
   }
 
-  template <class Ptr>
+  template <typename Ptr>
   Ptr get_max(Ptr ptr, Ptr nil)
   {
     while (ptr->right != nil)
@@ -83,7 +71,7 @@ namespace ft
     return ptr;
   }
 
-  template <class Ptr>
+  template <typename Ptr>
   Ptr get_next_node(Ptr ptr, Ptr nil)
   {
     if (ptr->right != nil)
@@ -93,7 +81,7 @@ namespace ft
     return ptr->parent;
   }
 
-  template <class Ptr>
+  template <typename Ptr>
   Ptr get_prev_node(Ptr ptr, Ptr nil)
   {
     if (ptr->left != nil)
@@ -104,7 +92,7 @@ namespace ft
   }
 
   //대소가 아니라 기준이 comp에 있는거임.
-  template <typename U, typename V, class Comp>
+  template <typename U, typename V, typename Comp>
   bool is_equal(const U &u, const V &v, Comp comp)
   {
     return !comp(u, v) && !comp(v, u);
@@ -124,35 +112,35 @@ namespace ft
     typedef typename ft::iterator_traits<iterator_type>::reference          node_reference;
     typedef typename ft::iterator_traits<iterator_type>::iterator_category  iterator_category;
 
-    tree_iterator(void) : __cur(ft::nil), __nil(ft::nil) {}
+    tree_iterator(void) : cur_ptr(ft::nil), _nil(ft::nil) {}
     tree_iterator(node_pointer cur, node_pointer nil)
-        : __cur(cur), __nil(nil) {}
+        : cur_ptr(cur), _nil(nil) {}
     tree_iterator(const tree_iterator &i)
-        : __cur(i.__cur), __nil(i.__nil) {}
+        : cur_ptr(i.cur_ptr), _nil(i._nil) {}
     ~tree_iterator(void) {}
 
     tree_iterator &operator=(const tree_iterator &i)
     {
       if (this != &i)
       {
-        __cur = i.__cur;
-        __nil = i.__nil;
+        cur_ptr = i.cur_ptr;
+        _nil = i._nil;
       }
       return *this;
     }
 
-    node_pointer base(void) const { return __cur; }
-    pointer operator->(void) const { return &__cur->val; }
-    reference operator*(void) const { return __cur->val; }
+    node_pointer base(void) const { return cur_ptr; }
+    pointer operator->(void) const { return &cur_ptr->val; }
+    reference operator*(void) const { return cur_ptr->val; }
 
     tree_iterator &operator++(void)
     {
-      __cur = ft::get_next_node(__cur, __nil);
+      cur_ptr = ft::get_next_node(cur_ptr, _nil);
       return *this;
     }
     tree_iterator &operator--(void)
     {
-      __cur = ft::get_prev_node(__cur, __nil);
+      cur_ptr = ft::get_prev_node(cur_ptr, _nil);
       return *this;
     }
     tree_iterator operator++(int)
@@ -171,7 +159,7 @@ namespace ft
     template <typename T>
     bool operator==(const tree_iterator<T, node_type> &i) const
     {
-      return __cur == i.base();
+      return cur_ptr == i.base();
     }
     template <typename T>
     bool operator!=(const tree_iterator<T, node_type> &i) const
@@ -181,12 +169,12 @@ namespace ft
 
     operator tree_iterator<const value_type, node_type>(void) const
     {
-      return tree_iterator<const value_type, node_type>(__cur, __nil);
+      return tree_iterator<const value_type, node_type>(cur_ptr, _nil);
     }
 
   private:
-    node_pointer __cur;
-    node_pointer __nil;
+    node_pointer cur_ptr;
+    node_pointer _nil;
   };
 }
 

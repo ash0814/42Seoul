@@ -4,7 +4,6 @@
 #include <cstdint>
 
 namespace ft {
-
   const class nullptr_t {
   private:
     void operator&(void) const;
@@ -19,10 +18,11 @@ namespace ft {
 
   template <bool, typename T = void>
   struct enable_if {};
+
   template <typename T>
   struct enable_if<true, T> { typedef T type; };
 
-  template <class T, T v>
+  template <typename T, T v>
   struct integral_constant
   {
     static const T value = v;
@@ -32,7 +32,6 @@ namespace ft {
   
   typedef integral_constant<bool, true> true_type;
   typedef integral_constant<bool, false> false_type;
-
 
   template <typename T>
   struct is_integral_base : public false_type {};
@@ -64,14 +63,13 @@ namespace ft {
   template <>
   struct is_integral_base<unsigned long long> : public true_type {}; 
 
-  template <class T> struct remove_cv                   { typedef T type; };
-  template <class T> struct remove_cv<const T>          { typedef T type; };
-  template <class T> struct remove_cv<volatile T>       { typedef T type; };
-  template <class T> struct remove_cv<const volatile T> { typedef T type; };
+  template <typename T> struct remove_cv                   { typedef T type; };
+  template <typename T> struct remove_cv<const T>          { typedef T type; };
+  template <typename T> struct remove_cv<volatile T>       { typedef T type; };
+  template <typename T> struct remove_cv<const volatile T> { typedef T type; };
   
   template <typename T>
-  struct is_integral
-      : public is_integral_base<typename remove_cv<T>::type> {};
+  struct is_integral : public is_integral_base<typename remove_cv<T>::type> {};
 }
 
 #endif
