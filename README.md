@@ -12,4 +12,9 @@
 |2|miniRT|Success|Mini RayTracing|100|
 |3|minishell|Success|Create a simple Shell|100|
 |3|Philosophers|Success|Basics of threading a process|100|
-|4|CPP Module|Ongoing|C++|-|
+|4|CPP Module 00-08|Success|C++|100|
+|5|webserv|Success|Make own Webserver like Nginx|100|
+|5|ft_containers|Success|Make own STL in c++ : Vector, Set, Map, etc..|125|
+|5|Inception|Success|Building a Web Architecture with Docker on a VM|100|
+|6|ft_transcendence|Success|Make a webservice with ping-pong Game and Chatting|100|
+
